@@ -1,0 +1,20 @@
+Identificamos tokens
+
+read(a,b);
+
+//READ '(' id ',' ID ')' ';'
+
+a = (-b+3)*c/2;
+
+//ID '=' '(' '-' ID '+' CTE ')' '*' ID '/' CTE ';'
+
+write (a,c*2);
+
+//WRITE '(' ID ',' ID '*' CTE ')' ';'
+
+La asignacion puede ser o no una expresion.
+Depende del lenguaje.
+Una expresion es aquello que devulve un valor 
+(se evalua y deja en el tope de la pila un valor).
+
+Programa es un conjunto de nodos AST ó una lista de sentencias.

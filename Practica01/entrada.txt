@@ -1,0 +1,3 @@
+read(a,b);
+a = (-b+3)*c/2;
+write (a,c*2);
