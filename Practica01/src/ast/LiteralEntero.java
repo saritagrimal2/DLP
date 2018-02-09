@@ -16,5 +16,9 @@ public class LiteralEntero extends AbstractNodoAST implements Expresion {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+	
+	public String toString() {
+		return String.valueOf(this.valor);
+	}
 
 }

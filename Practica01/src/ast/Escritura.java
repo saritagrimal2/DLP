@@ -16,5 +16,9 @@ public class Escritura extends AbstractNodoAST implements Sentencia {
 	public void setExpresion(Expresion expresion) {
 		this.expresion = expresion;
 	}
+	
+	public String toString() {
+		return String.valueOf(this.expresion);
+	}
 
 }

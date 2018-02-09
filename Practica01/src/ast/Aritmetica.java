@@ -38,5 +38,9 @@ public class Aritmetica extends AbstractNodoAST implements Expresion {
 	}
 	
 	
+	public String toString() {
+		return this.exp1 + this.operador + this.exp2;
+	}
+	
 
 }

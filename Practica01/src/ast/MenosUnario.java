@@ -16,5 +16,10 @@ public class MenosUnario extends AbstractNodoAST implements Expresion {
 	public void setExpresion(Expresion expresion) {
 		this.expresion = expresion;
 	}
+	
+	public String toString() {
+		return "-" + this.expresion;
+	}
+
 
 }

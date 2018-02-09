@@ -16,4 +16,8 @@ public class Variable extends AbstractNodoAST implements Expresion{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String toString() {
+		return this.nombre;
+	}
 }

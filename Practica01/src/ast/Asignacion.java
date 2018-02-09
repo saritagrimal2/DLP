@@ -27,5 +27,9 @@ public class Asignacion extends AbstractNodoAST implements Sentencia {
 		this.exp2 = exp2;
 	}
 	
+	public String toString() {
+		return this.exp1 + "=" + this.exp2;
+	}
+	
 
 }

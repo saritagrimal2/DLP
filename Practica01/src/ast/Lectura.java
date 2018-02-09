@@ -17,5 +17,9 @@ public class Lectura extends AbstractNodoAST implements Sentencia {
 		this.expresion = expresion;
 	}
 	
+	public String toString() {
+		return String.valueOf(this.expresion);
+	}
+
 
 }
