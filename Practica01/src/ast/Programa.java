@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Programa extends AbstractNodoAST{
 	
-	private List<Sentencia> sentencias;
+	private List<Sentencia> sentencias = new ArrayList<Sentencia>();
 
 	public Programa(int linea, int columna, List<Sentencia> sentencias) {
 		super(linea, columna);
-		sentencias = new ArrayList<Sentencia>();
+		this.sentencias = sentencias;
 	}
 
 	public List<Sentencia> getSentencias() {
