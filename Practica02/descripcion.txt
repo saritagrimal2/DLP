@@ -1,0 +1,22 @@
+
+Elementos léxicos sensibles a mayúsculas/minúsculas.
+
+Elementos:
+
+  Comentarios con // hasta el final de línea
+  Comentarios con varias líneas (de /* hasta */)
+  Identificadores { letra (letra|digito)* }
+  		Se permitirán tildes y eñes
+  Palabras Reservadas: read write while if else int float32 
+		char var struct return func main void
+
+
+  Constantes Enteras sin signo
+  Constantes Reales con punto decimal y formato exponente
+	12.3, 34.12E-3, 2., 3e3, 3e-10
+  Constantes carácter entre '', pudiendo identificar 
+	el código ASCII en decimal '\126' y '\n' '\t'
+  Operadores + - / * % > < = == <= >= != ( ) [ ] && || ! .
+  Delimitadores de ámbito con llaves { }
+  El delimitador de sentencias ; y de declaración de variables ,
+  POR CONVENIO, el final de fichero es el token 0
