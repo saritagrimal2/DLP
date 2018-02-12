@@ -1,0 +1,13 @@
+Jplex --> Generar automaticamente el lexico
+
+Los comentarios no tienen ningun token asociado y se eliminan. No tienen
+significado en nuestro programa.
+
+var i,j int; (6 tokens)
+
+Identificar cuando abres y cierras algo. Un token
+para { y otro para }
+
+
+-->Para la generar la clase lexico.jflef
+
