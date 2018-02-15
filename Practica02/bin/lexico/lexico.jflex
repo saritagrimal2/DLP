@@ -36,85 +36,141 @@ public Object getYylval() {
 %}
 
 // ************  Patrones (macros) ********************
+
+Identificador = [a-zA-Zñá-úÁ-Ú][a-zA-Zñá-úÁ-Ú0-9]*
 ConstanteEntera = [0-9]*
-ConstanteReal = [0-9]+"."[0-9]*
+Real = [.][0-9]+|[0-9]+[.][0-9]*
+ConstanteReal = {Real}|{Real}E-[0-9]+|[0-9]+e[0-9]+|[0-9]+e-[0-9]+
+CodigoASCII = [']\\[0-9]*[']
+
 
 %%
 // ************  Acciones ********************
+         			  
+// * Palabras Reservadas
+		  
+"read" { this.yylval = yytext();
+         return Parser.READ;	}
+         			  			  
+"write" { this.yylval = yytext();
+          return Parser.WRITE;	}
+         			  			  
+"while" { this.yylval = yytext();
+          return Parser.WHILE;	}
+         			  		  
+"if" { this.yylval = yytext();
+       return Parser.IF;	} 
+         			  	  
+"else" { this.yylval = yytext();
+         return Parser.ELSE;	} 
+		  
+"int" { this.yylval = yytext();
+        return Parser.INT;	} 
+         			  			  
+"float32" { this.yylval = yytext();
+           	return Parser.FLOAT32;	} 
+		  
+"char" { this.yylval = yytext();
+         return Parser.CHAR;	} 
+		  
+"var" { this.yylval = yytext();
+        return Parser.VAR;	}
+			  
+"struct" { this.yylval = yytext();
+           return Parser.STRUCT;	} 
+		  
+"return" { this.yylval = yytext();
+           return Parser.RETURN;	}  
+	  
+"func" { this.yylval = yytext();
+         return Parser.FUNC;	}  
+         			  	  
+"main" { this.yylval = yytext();
+         return Parser.MAIN;	}  
+         			  		  
+"void" { this.yylval = yytext();
+         return Parser.VOID;	} 
+         
+         
+// * Identificador
 
-// * Constante Entera
+{Identificador}		{ this.yylval = yytext();
+         			  return Parser.ID;  }
+
+// * Constantes
+
 {ConstanteEntera}	{ this.yylval = new Integer(yytext());
          			  return Parser.CTE_ENTERA;  }
          			  
-// * Constante real
-{ConstanteReal}	{ this.yylval = new Float(yytext());
+{ConstanteReal}		{ this.yylval = new Double(yytext());
          			  return Parser.CTE_REAL;  }
-
-// * Palabra reservada read			  
-"read" { this.yylval = yytext();
-         			  return Parser.READ;	}
          			  
-// * Palabra reservada write			  
-"write" { this.yylval = yytext();
-         			  return Parser.WRITE;	}
+{CodigoASCII}	{ this.yylval = (char) Integer.parseInt(yytext().replace("'","").replace("\\",""));
+         			  return Parser.CTE_CARACTER;  }
          			  
-// * Palabra reservada while			  
-"while" { this.yylval = yytext();
-         			  return Parser.WHILE;	}
+"'"."'"	{ this.yylval = yytext().charAt(1);
+         			  return Parser.CTE_CARACTER;  }
          			  
-// * Palabra reservada if			  
-"if" { this.yylval = yytext();
-         			  return Parser.IF;	} 
+'\\n' { this.yylval = new Character('\n');
+         			  return Parser.CTE_CARACTER;  }
          			  
-// * Palabra reservada else			  
-"else" { this.yylval = yytext();
-         			  return Parser.ELSE;	} 
+'\\t' { this.yylval = new Character('\t');
+         			  return Parser.CTE_CARACTER;  }
+         
+// * Operadores
 
-// * Palabra reservada int			  
-"int" { this.yylval = yytext();
-         			  return Parser.INT;	} 
-         			  
-
-// * Palabra reservada float32			  
-"float32" { this.yylval = yytext();
-         			  return Parser.FLOAT32;	} 
-
-// * Palabra reservada char			  
-"char" { this.yylval = yytext();
-         			  return Parser.CHAR;	} 
-
-// * Palabra reservada var			  
-"var" { this.yylval = yytext();
-         			  return Parser.VAR;	}
-
-// * Palabra reservada struct			  
-"struct" { this.yylval = yytext();
-         			  return Parser.STRUCT;	} 
-
-// * Palabra reservada return			  
-"return" { this.yylval = yytext();
-         			  return Parser.RETURN;	}  
-
-// * Palabra reservada func			  
-"func" { this.yylval = yytext();
-         			  return Parser.FUNC;	}  
-         			  
-// * Palabra reservada main			  
-"main" { this.yylval = yytext();
-         			  return Parser.MAIN;	}  
-         			  
-// * Palabra reservada void			  
-"void" { this.yylval = yytext();
-         			  return Parser.VOID;	} 
-        			  
 "+" |
 "-" |
+"/" |
+"*"	|
+"%" |
 ">" |
-"<" 	{this.yylval = yytext(); return yytext().charAt(0);	}
-         			  
-"=="	{this.yylval = yytext(); return Parser.IGUAL_IGUAL;	}
+"<" |
+"="	|
+"(" |
+")" |
+"[" |
+"]" |
+"!" |
+"." {this.yylval = yytext(); 
+	 return yycharat(0);	}
+	 
+"==" {this.yylval = yytext(); 
+	  return Parser.IGUAL_IGUAL;	}
+	  
+"<=" {this.yylval = yytext(); 
+	  return Parser.MENOR_IGUAL;	}
+	  
+">=" {this.yylval = yytext(); 
+	  return Parser.MAYOR_IGUAL;	}
+	  
+"!=" {this.yylval = yytext(); 
+	  return Parser.DISTINTO;	}
+	  
+"&&" {this.yylval = yytext(); 
+	  return Parser.AND;	}
+	  
+"||" {this.yylval = yytext(); 
+	  return Parser.OR;	}
+	  
+	  
+// * Delimitadores
 
-. {System.out.println("Error " + yytext()); }
-"\n" {}  			  
-         			  
+"{" |
+"}" |
+";" |
+"," {this.yylval = yytext(); 
+	 return yycharat(0);	}
+	 
+// * Cosas a ignorar
 
+" " |
+"\t" |
+"\n" |
+"\r" |
+"//".* |
+"/*"~"*/" {}
+
+
+// * Caracteres erroneos
+.	{System.err.println ("Lexical error at line " + this.yyline + " and column " + this.yycolumn +":\n\tUnknow character \'"+ yycharat(0) + "\'."); }
