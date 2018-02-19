@@ -8,13 +8,56 @@ import java.io.Reader;
 
 // * Declaraciones Yacc
 %token CTE_ENTERA
+%token DISTINTO
+%token MAIN
+%token IF
+%token CTE_CARACTER
+%token ID
+%token MENOR_IGUAL
+%token ELSE
+%token WRITE
+%token VOID
+%token MAYOR_IGUAL
+%token IGUAL_IGUAL
+%token CTE_REAL
+%token STRUCT
+%token WHILE
+%token FUNC
+%token FLOAT32
+%token INT
+%token RETURN
+%token CHAR
+%token AND
+%token READ
+%token VAR
+%token OR
+
+%left '+'
+%left '*'
 
 %%
 // * Gramática y acciones Yacc
+programa : expresion 
+		| lista_sentencias
+		;
+
 expresion: expresion '+' expresion		
          | expresion '*' expresion
          | CTE_ENTERA	
          ;
+         
+lista_sentencias: sentencia_if
+				| sentencia_else
+				|
+				;
+         
+sentencia_if: IF expresion '{' lista_sentencias '}'
+			;
+			
+sentencia_else: ELSE '{' lista_sentencias '}'
+			;
+
+
 %%
 
 // * Código Java

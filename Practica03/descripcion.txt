@@ -1,7 +1,16 @@
 Un programa es una secuencia de variables y definiciones de funciones.
+
+programa: lista_definiciones FUNC MAIN '(' ')' '{' lista_sentencias '}'
+
 La sintaxis de la definición de una variable es la palabra reservada var 
 seguido de una lista, con al menos un elemento, de identificadores separados por comas
-y un tipo. 
+y un tipo.
+
+
+definicion_variable: VAR identificadores tipo ';'
+identificadores:...
+tipo:...
+ 
 Las definiciones de variables terminan mediante el caracter ';'
 Las funciones se definen especificando la palabra reservada func, el identificador de
 la función, una lista de parametros separados por comas entre '(' y ')' y el tipo
@@ -13,7 +22,7 @@ por una secuencia de sentencias. En ambos casos terminan con el caracter ';'
 La funcion "main" debe estar la última, no retorna nada y no tiene parámetros.
 Los tipos simples son "int", "float32" y "char". Los arrays se pueden crear con el
  constructor de tipos "[]", siguiendo la sintaxis Go:
- var nombre_variable [t] tipo;
+ var nombre_variable [t] tipo; (t es una contante entera, el tamño del array)
 el tamaño t se especifica con un entero (como en C).
 Se usa el constructor de tipos "struct" para la creacion de registros. Los 
 registros no tienen identificador, y los campos son declarados como variables 
@@ -45,3 +54,12 @@ Las expresiones están formadas por:
 		&& || 		A Izquierdas
 		=			A derechas
 
+
+sentencia_else: ELSE expresion '{' lista_sentencias '}'
+			| ELSE '(' expresion ')' '{' lista_sentencias '}'
+			;
+			
+sentencia_while: WHILE expresion '{' lista_sentencias '}'
+			| WHILE '(' expresion ')' '{' lista_sentencias '}'
+			;
+			

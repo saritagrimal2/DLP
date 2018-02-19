@@ -1,1 +1,6 @@
+programa : expresion
+		| sentencia_if
+		;
 
+
+Por ejemplo, vamos poco a poco probando

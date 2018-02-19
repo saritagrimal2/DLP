@@ -1,33 +1,4 @@
-/* 
-    Prueba de análisis léxico
-*/
-
-var i,j int;
-
-// Función f
-func f(a int) int {
-    return a;
-}
-
-// Función Principal
-func main() {
-    var i,b int;
-    var miFecha struct { dia, mes, anio int; };
-    var v [10]int;
-    var r float32;
-    var c char;
-
-    i = 1;  
-    r = 12.3 - 34.12E-3 * 2. + 3e-3;
-    c = '\n';
-
-    b = v[2];
-    if 1 && 2 || !0 {
-        i = b;
-    }
-    
-    while i<10 {
-        i=i+1;
-        j=i;
-    }      
+if ( 10 + 10 ) {
+	if ( 10 + 10 ) { } 
+	else { }
 }
