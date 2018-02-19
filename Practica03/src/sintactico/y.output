@@ -12,10 +12,8 @@
    8                   |
 
    9  sentencia_if : IF expresion '{' lista_sentencias '}'
-  10               | IF '(' expresion ')' '{' lista_sentencias '}'
 
-  11  sentencia_else : ELSE expresion '{' lista_sentencias '}'
-  12                 | ELSE '(' expresion ')' '{' lista_sentencias '}'
+  10  sentencia_else : ELSE '{' lista_sentencias '}'
 
 state 0
 	$accept : . programa $end  (0)
@@ -41,24 +39,18 @@ state 1
 
 state 2
 	sentencia_if : IF . expresion '{' lista_sentencias '}'  (9)
-	sentencia_if : IF . '(' expresion ')' '{' lista_sentencias '}'  (10)
 
 	CTE_ENTERA  shift 1
-	'('  shift 9
 	.  error
 
-	expresion  goto 10
+	expresion  goto 9
 
 
 state 3
-	sentencia_else : ELSE . expresion '{' lista_sentencias '}'  (11)
-	sentencia_else : ELSE . '(' expresion ')' '{' lista_sentencias '}'  (12)
+	sentencia_else : ELSE . '{' lista_sentencias '}'  (10)
 
-	CTE_ENTERA  shift 1
-	'('  shift 11
+	'{'  shift 10
 	.  error
-
-	expresion  goto 12
 
 
 state 4
@@ -72,8 +64,8 @@ state 5
 	expresion : expresion . '+' expresion  (3)
 	expresion : expresion . '*' expresion  (4)
 
-	'+'  shift 13
-	'*'  shift 14
+	'+'  shift 11
+	'*'  shift 12
 	$end  reduce 1
 
 
@@ -96,7 +88,31 @@ state 8
 
 
 state 9
-	sentencia_if : IF '(' . expresion ')' '{' lista_sentencias '}'  (10)
+	expresion : expresion . '+' expresion  (3)
+	expresion : expresion . '*' expresion  (4)
+	sentencia_if : IF expresion . '{' lista_sentencias '}'  (9)
+
+	'+'  shift 11
+	'*'  shift 12
+	'{'  shift 13
+	.  error
+
+
+state 10
+	sentencia_else : ELSE '{' . lista_sentencias '}'  (10)
+	lista_sentencias : .  (8)
+
+	IF  shift 2
+	ELSE  shift 3
+	'}'  reduce 8
+
+	lista_sentencias  goto 14
+	sentencia_if  goto 7
+	sentencia_else  goto 8
+
+
+state 11
+	expresion : expresion '+' . expresion  (3)
 
 	CTE_ENTERA  shift 1
 	.  error
@@ -104,67 +120,16 @@ state 9
 	expresion  goto 15
 
 
-state 10
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
-	sentencia_if : IF expresion . '{' lista_sentencias '}'  (9)
-
-	'+'  shift 13
-	'*'  shift 14
-	'{'  shift 16
-	.  error
-
-
-state 11
-	sentencia_else : ELSE '(' . expresion ')' '{' lista_sentencias '}'  (12)
-
-	CTE_ENTERA  shift 1
-	.  error
-
-	expresion  goto 17
-
-
 state 12
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
-	sentencia_else : ELSE expresion . '{' lista_sentencias '}'  (11)
-
-	'+'  shift 13
-	'*'  shift 14
-	'{'  shift 18
-	.  error
-
-
-state 13
-	expresion : expresion '+' . expresion  (3)
-
-	CTE_ENTERA  shift 1
-	.  error
-
-	expresion  goto 19
-
-
-state 14
 	expresion : expresion '*' . expresion  (4)
 
 	CTE_ENTERA  shift 1
 	.  error
 
-	expresion  goto 20
+	expresion  goto 16
 
 
-state 15
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
-	sentencia_if : IF '(' expresion . ')' '{' lista_sentencias '}'  (10)
-
-	'+'  shift 13
-	'*'  shift 14
-	')'  shift 21
-	.  error
-
-
-state 16
+state 13
 	sentencia_if : IF expresion '{' . lista_sentencias '}'  (9)
 	lista_sentencias : .  (8)
 
@@ -172,48 +137,30 @@ state 16
 	ELSE  shift 3
 	'}'  reduce 8
 
-	lista_sentencias  goto 22
+	lista_sentencias  goto 17
 	sentencia_if  goto 7
 	sentencia_else  goto 8
 
 
-state 17
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
-	sentencia_else : ELSE '(' expresion . ')' '{' lista_sentencias '}'  (12)
+state 14
+	sentencia_else : ELSE '{' lista_sentencias . '}'  (10)
 
-	'+'  shift 13
-	'*'  shift 14
-	')'  shift 23
+	'}'  shift 18
 	.  error
 
 
-state 18
-	sentencia_else : ELSE expresion '{' . lista_sentencias '}'  (11)
-	lista_sentencias : .  (8)
-
-	IF  shift 2
-	ELSE  shift 3
-	'}'  reduce 8
-
-	lista_sentencias  goto 24
-	sentencia_if  goto 7
-	sentencia_else  goto 8
-
-
-state 19
+state 15
 	expresion : expresion . '+' expresion  (3)
 	expresion : expresion '+' expresion .  (3)
 	expresion : expresion . '*' expresion  (4)
 
-	'*'  shift 14
+	'*'  shift 12
 	$end  reduce 3
 	'+'  reduce 3
 	'{'  reduce 3
-	')'  reduce 3
 
 
-state 20
+state 16
 	expresion : expresion . '+' expresion  (3)
 	expresion : expresion . '*' expresion  (4)
 	expresion : expresion '*' expresion .  (4)
@@ -221,97 +168,24 @@ state 20
 	.  reduce 4
 
 
-state 21
-	sentencia_if : IF '(' expresion ')' . '{' lista_sentencias '}'  (10)
-
-	'{'  shift 25
-	.  error
-
-
-state 22
+state 17
 	sentencia_if : IF expresion '{' lista_sentencias . '}'  (9)
 
-	'}'  shift 26
+	'}'  shift 19
 	.  error
 
 
-state 23
-	sentencia_else : ELSE '(' expresion ')' . '{' lista_sentencias '}'  (12)
+state 18
+	sentencia_else : ELSE '{' lista_sentencias '}' .  (10)
 
-	'{'  shift 27
-	.  error
-
-
-state 24
-	sentencia_else : ELSE expresion '{' lista_sentencias . '}'  (11)
-
-	'}'  shift 28
-	.  error
+	.  reduce 10
 
 
-state 25
-	sentencia_if : IF '(' expresion ')' '{' . lista_sentencias '}'  (10)
-	lista_sentencias : .  (8)
-
-	IF  shift 2
-	ELSE  shift 3
-	'}'  reduce 8
-
-	lista_sentencias  goto 29
-	sentencia_if  goto 7
-	sentencia_else  goto 8
-
-
-state 26
+state 19
 	sentencia_if : IF expresion '{' lista_sentencias '}' .  (9)
 
 	.  reduce 9
 
 
-state 27
-	sentencia_else : ELSE '(' expresion ')' '{' . lista_sentencias '}'  (12)
-	lista_sentencias : .  (8)
-
-	IF  shift 2
-	ELSE  shift 3
-	'}'  reduce 8
-
-	lista_sentencias  goto 30
-	sentencia_if  goto 7
-	sentencia_else  goto 8
-
-
-state 28
-	sentencia_else : ELSE expresion '{' lista_sentencias '}' .  (11)
-
-	.  reduce 11
-
-
-state 29
-	sentencia_if : IF '(' expresion ')' '{' lista_sentencias . '}'  (10)
-
-	'}'  shift 31
-	.  error
-
-
-state 30
-	sentencia_else : ELSE '(' expresion ')' '{' lista_sentencias . '}'  (12)
-
-	'}'  shift 32
-	.  error
-
-
-state 31
-	sentencia_if : IF '(' expresion ')' '{' lista_sentencias '}' .  (10)
-
-	.  reduce 10
-
-
-state 32
-	sentencia_else : ELSE '(' expresion ')' '{' lista_sentencias '}' .  (12)
-
-	.  reduce 12
-
-
-32 terminals, 6 nonterminals
-13 grammar rules, 33 states
+30 terminals, 6 nonterminals
+11 grammar rules, 20 states

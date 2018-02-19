@@ -178,92 +178,66 @@ public final static short VAR=279;
 public final static short OR=280;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
-    0,    0,    1,    1,    1,    2,    2,    2,    3,    3,
-    4,    4,
+    0,    0,    1,    1,    1,    2,    2,    2,    3,    4,
 };
 final static short yylen[] = {                            2,
-    1,    1,    3,    3,    1,    1,    1,    0,    5,    7,
-    5,    7,
+    1,    1,    3,    3,    1,    1,    1,    0,    5,    4,
 };
 final static short yydefred[] = {                         0,
     5,    0,    0,    0,    0,    2,    6,    7,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    4,
-    0,    0,    0,    0,    0,    9,    0,   11,    0,    0,
-   10,   12,
+    0,    0,    0,    0,    0,    4,    0,   10,    9,
 };
 final static short yydgoto[] = {                          4,
     5,    6,    7,    8,
 };
-final static short yysindex[] = {                      -235,
-    0,  -40,  -39,    0,  -32,    0,    0,    0, -254,  -38,
- -254,  -36, -254, -254,  -11, -236,   -8, -236,  -29,    0,
- -107,  -99, -105,  -98, -236,    0, -236,    0,  -89,  -88,
-    0,    0,
+final static short yysindex[] = {                      -253,
+    0, -243, -108,    0,  -37,    0,    0,    0,  -40, -252,
+ -243, -243, -252, -107,  -25,    0, -106,    0,    0,
 };
-final static short yyrindex[] = {                        38,
-    0,    0,    0,    0,   39,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,  -85,    0,  -85,    2,    0,
-    0,    0,    0,    0,  -85,    0,  -85,    0,    0,    0,
-    0,    0,
+final static short yyrindex[] = {                        20,
+    0,    0,    0,    0,   21,    0,    0,    0,    0, -103,
+    0,    0, -103,    0,    1,    0,    0,    0,    0,
 };
 final static short yygindex[] = {                         0,
-    6,   -4,    0,    0,
+   -2,    3,    0,    0,
 };
-final static int YYTABLESIZE=218;
+final static int YYTABLESIZE=124;
 static short yytable[];
 static { yytable();}
 static void yytable(){
 yytable = new short[]{                          9,
-   11,    3,    1,   14,   13,   14,   13,   10,   12,   14,
-   13,   22,   14,   24,   15,   25,   17,   27,   19,   20,
-   29,    1,   30,    2,    2,   26,   28,    3,    3,   21,
-   14,   13,   23,   14,   13,   31,   32,    8,    1,    8,
-    0,    0,    3,    0,    3,    0,    0,    0,    0,    0,
+    3,   12,   11,    1,   12,   11,    2,    2,   15,   16,
+    3,    3,   14,    1,   10,   17,   12,   18,   19,    8,
+    1,    8,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    3,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,   16,    0,   18,    0,    0,    0,
+    0,    0,   13,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    3,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    1,    1,
+    0,    0,    0,    3,
 };
 }
 static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
-yycheck = new short[] {                         40,
-   40,    0,  257,   42,   43,   42,   43,    2,    3,   42,
-   43,   16,   42,   18,    9,  123,   11,  123,   13,   14,
-   25,  257,   27,  260,  260,  125,  125,  264,  264,   41,
-   42,   43,   41,   42,   43,  125,  125,    0,    0,  125,
-   -1,   -1,   41,   -1,   43,   -1,   -1,   -1,   -1,   -1,
+yycheck = new short[] {                          2,
+    0,   42,   43,  257,   42,   43,  260,  260,   11,   12,
+  264,  264,   10,  257,  123,   13,   42,  125,  125,    0,
+    0,  125,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   43,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,  123,   -1,  123,   -1,   -1,   -1,
+   -1,   -1,  123,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,  123,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,  257,  257,
+   -1,   -1,   -1,  123,
 };
 }
 final static short YYFINAL=4;
@@ -271,7 +245,7 @@ final static short YYMAXTOKEN=280;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,"'('","')'","'*'","'+'",null,
+null,null,null,null,null,null,null,null,null,null,null,null,"'*'","'+'",null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
@@ -301,12 +275,10 @@ final static String yyrule[] = {
 "lista_sentencias : sentencia_else",
 "lista_sentencias :",
 "sentencia_if : IF expresion '{' lista_sentencias '}'",
-"sentencia_if : IF '(' expresion ')' '{' lista_sentencias '}'",
-"sentencia_else : ELSE expresion '{' lista_sentencias '}'",
-"sentencia_else : ELSE '(' expresion ')' '{' lista_sentencias '}'",
+"sentencia_else : ELSE '{' lista_sentencias '}'",
 };
 
-//#line 64 "../../src/sintactico/sintactico.y"
+//#line 62 "../../src/sintactico/sintactico.y"
 
 // * Código Java
 // * Se crea una clase "Parser", lo que aquí ubiquemos será:
@@ -344,7 +316,7 @@ public void yyerror (String error) {
 public Parser(Lexico lexico) {
 	this.lexico = lexico;
 }
-//#line 284 "Parser.java"
+//#line 256 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
