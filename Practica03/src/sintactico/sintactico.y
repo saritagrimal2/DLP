@@ -32,23 +32,57 @@ import java.io.Reader;
 %token VAR
 %token OR
 
+%right '='
+%left OR
+%left AND
+%left IGUAL_IGUAL
+%left DISTINTO
+%left MENOR_IGUAL
+%left '<'
+%left MAYOR_IGUAL
+%left '>'
+%left '-'
 %left '+'
+%left '%'
+%left '/'
 %left '*'
+%right '!'
+%nonassoc '[' ']'
+%left '.'
+%nonassoc '(' ')'
 
 %%
 // * Gramática y acciones Yacc
-programa : lista_definiciones
+programa : lista_expresiones
 		;
 		
 lista_expresiones: expresion
 				 | lista_expresiones ',' expresion
 				 ;
 
-expresion: expresion '+' expresion		
-         | expresion '*' expresion
-         | CTE_ENTERA	
+expresion: CTE_ENTERA	
          | CTE_REAL
          | CTE_CARACTER
+         | ID
+         | '(' expresion ')'
+         | expresion '.' expresion
+         | '[' expresion ']'
+         | '-' expresion
+         | '!' expresion
+         | expresion '*' expresion		
+         | expresion '/' expresion
+         | expresion '%' expresion		
+         | expresion '+' expresion
+         | expresion '-' expresion		
+         | expresion '>' expresion
+         | expresion MAYOR_IGUAL expresion		
+         | expresion '<' expresion
+         | expresion MENOR_IGUAL expresion		
+         | expresion DISTINTO expresion
+         | expresion IGUAL_IGUAL expresion		
+         | expresion AND expresion
+         | expresion OR expresion
+         | expresion '=' expresion
          ;
                   
          
