@@ -1,191 +1,288 @@
    0  $accept : programa $end
 
-   1  programa : expresion
-   2           | lista_sentencias
+   1  programa : lista_definiciones
 
-   3  expresion : expresion '+' expresion
-   4            | expresion '*' expresion
-   5            | CTE_ENTERA
+   2  lista_expresiones : expresion
+   3                    | lista_expresiones ',' expresion
 
-   6  lista_sentencias : sentencia_if
-   7                   | sentencia_else
-   8                   |
+   4  expresion : expresion '+' expresion
+   5            | expresion '*' expresion
+   6            | CTE_ENTERA
+   7            | CTE_REAL
+   8            | CTE_CARACTER
 
-   9  sentencia_if : IF expresion '{' lista_sentencias '}'
+   9  lista_sentencias : sentencia_if lista_sentencias
+  10                   | sentencia_else lista_sentencias
+  11                   | sentencia_while lista_sentencias
+  12                   | sentencia_write lista_sentencias
+  13                   | sentencia_read lista_sentencias
+  14                   |
 
-  10  sentencia_else : ELSE '{' lista_sentencias '}'
+  15  sentencia_if : IF expresion '{' lista_sentencias '}'
+
+  16  sentencia_else : ELSE '{' lista_sentencias '}'
+
+  17  sentencia_while : WHILE expresion '{' lista_sentencias '}'
+
+  18  sentencia_write : WRITE '(' lista_expresiones ')' ';'
+
+  19  sentencia_read : READ '(' lista_expresiones ')' ';'
+
+  20  lista_definiciones : lista_definiciones definicion_variable
+  21                     |
+
+  22  definicion_variable : VAR identificadores tipo ';'
+
+  23  identificadores : ID
+  24                  | identificadores ',' ID
+
+  25  variable_struct : identificadores tipo ';'
+
+  26  variables_struct : variable_struct
+  27                   | variable_struct variables_struct
+
+  28  tipo : INT
+  29       | FLOAT32
+  30       | CHAR
+  31       | '[' CTE_ENTERA ']' tipo
+  32       | STRUCT '{' variables_struct '}'
 
 state 0
 	$accept : . programa $end  (0)
-	lista_sentencias : .  (8)
+	lista_definiciones : .  (21)
 
-	CTE_ENTERA  shift 1
-	IF  shift 2
-	ELSE  shift 3
-	$end  reduce 8
+	.  reduce 21
 
-	programa  goto 4
-	expresion  goto 5
-	lista_sentencias  goto 6
-	sentencia_if  goto 7
-	sentencia_else  goto 8
+	programa  goto 1
+	lista_definiciones  goto 2
 
 
 state 1
-	expresion : CTE_ENTERA .  (5)
-
-	.  reduce 5
-
-
-state 2
-	sentencia_if : IF . expresion '{' lista_sentencias '}'  (9)
-
-	CTE_ENTERA  shift 1
-	.  error
-
-	expresion  goto 9
-
-
-state 3
-	sentencia_else : ELSE . '{' lista_sentencias '}'  (10)
-
-	'{'  shift 10
-	.  error
-
-
-state 4
 	$accept : programa . $end  (0)
 
 	$end  accept
 
 
-state 5
-	programa : expresion .  (1)
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
+state 2
+	programa : lista_definiciones .  (1)
+	lista_definiciones : lista_definiciones . definicion_variable  (20)
 
-	'+'  shift 11
-	'*'  shift 12
+	VAR  shift 3
 	$end  reduce 1
+
+	definicion_variable  goto 4
+
+
+state 3
+	definicion_variable : VAR . identificadores tipo ';'  (22)
+
+	ID  shift 5
+	.  error
+
+	identificadores  goto 6
+
+
+state 4
+	lista_definiciones : lista_definiciones definicion_variable .  (20)
+
+	.  reduce 20
+
+
+state 5
+	identificadores : ID .  (23)
+
+	.  reduce 23
 
 
 state 6
-	programa : lista_sentencias .  (2)
+	definicion_variable : VAR identificadores . tipo ';'  (22)
+	identificadores : identificadores . ',' ID  (24)
 
-	.  reduce 2
+	STRUCT  shift 7
+	FLOAT32  shift 8
+	INT  shift 9
+	CHAR  shift 10
+	','  shift 11
+	'['  shift 12
+	.  error
+
+	tipo  goto 13
 
 
 state 7
-	lista_sentencias : sentencia_if .  (6)
+	tipo : STRUCT . '{' variables_struct '}'  (32)
 
-	.  reduce 6
+	'{'  shift 14
+	.  error
 
 
 state 8
-	lista_sentencias : sentencia_else .  (7)
+	tipo : FLOAT32 .  (29)
 
-	.  reduce 7
+	.  reduce 29
 
 
 state 9
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
-	sentencia_if : IF expresion . '{' lista_sentencias '}'  (9)
+	tipo : INT .  (28)
 
-	'+'  shift 11
-	'*'  shift 12
-	'{'  shift 13
-	.  error
+	.  reduce 28
 
 
 state 10
-	sentencia_else : ELSE '{' . lista_sentencias '}'  (10)
-	lista_sentencias : .  (8)
+	tipo : CHAR .  (30)
 
-	IF  shift 2
-	ELSE  shift 3
-	'}'  reduce 8
-
-	lista_sentencias  goto 14
-	sentencia_if  goto 7
-	sentencia_else  goto 8
+	.  reduce 30
 
 
 state 11
-	expresion : expresion '+' . expresion  (3)
+	identificadores : identificadores ',' . ID  (24)
 
-	CTE_ENTERA  shift 1
+	ID  shift 15
 	.  error
-
-	expresion  goto 15
 
 
 state 12
-	expresion : expresion '*' . expresion  (4)
+	tipo : '[' . CTE_ENTERA ']' tipo  (31)
 
-	CTE_ENTERA  shift 1
+	CTE_ENTERA  shift 16
 	.  error
-
-	expresion  goto 16
 
 
 state 13
-	sentencia_if : IF expresion '{' . lista_sentencias '}'  (9)
-	lista_sentencias : .  (8)
+	definicion_variable : VAR identificadores tipo . ';'  (22)
 
-	IF  shift 2
-	ELSE  shift 3
-	'}'  reduce 8
-
-	lista_sentencias  goto 17
-	sentencia_if  goto 7
-	sentencia_else  goto 8
+	';'  shift 17
+	.  error
 
 
 state 14
-	sentencia_else : ELSE '{' lista_sentencias . '}'  (10)
+	tipo : STRUCT '{' . variables_struct '}'  (32)
 
-	'}'  shift 18
+	ID  shift 5
 	.  error
+
+	identificadores  goto 18
+	variable_struct  goto 19
+	variables_struct  goto 20
 
 
 state 15
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion '+' expresion .  (3)
-	expresion : expresion . '*' expresion  (4)
+	identificadores : identificadores ',' ID .  (24)
 
-	'*'  shift 12
-	$end  reduce 3
-	'+'  reduce 3
-	'{'  reduce 3
+	.  reduce 24
 
 
 state 16
-	expresion : expresion . '+' expresion  (3)
-	expresion : expresion . '*' expresion  (4)
-	expresion : expresion '*' expresion .  (4)
+	tipo : '[' CTE_ENTERA . ']' tipo  (31)
 
-	.  reduce 4
-
-
-state 17
-	sentencia_if : IF expresion '{' lista_sentencias . '}'  (9)
-
-	'}'  shift 19
+	']'  shift 21
 	.  error
 
 
-state 18
-	sentencia_else : ELSE '{' lista_sentencias '}' .  (10)
+state 17
+	definicion_variable : VAR identificadores tipo ';' .  (22)
 
-	.  reduce 10
+	.  reduce 22
+
+
+state 18
+	identificadores : identificadores . ',' ID  (24)
+	variable_struct : identificadores . tipo ';'  (25)
+
+	STRUCT  shift 7
+	FLOAT32  shift 8
+	INT  shift 9
+	CHAR  shift 10
+	','  shift 11
+	'['  shift 12
+	.  error
+
+	tipo  goto 22
 
 
 state 19
-	sentencia_if : IF expresion '{' lista_sentencias '}' .  (9)
+	variables_struct : variable_struct .  (26)
+	variables_struct : variable_struct . variables_struct  (27)
 
-	.  reduce 9
+	ID  shift 5
+	'}'  reduce 26
+
+	identificadores  goto 18
+	variable_struct  goto 19
+	variables_struct  goto 23
 
 
-30 terminals, 6 nonterminals
-11 grammar rules, 20 states
+state 20
+	tipo : STRUCT '{' variables_struct . '}'  (32)
+
+	'}'  shift 24
+	.  error
+
+
+state 21
+	tipo : '[' CTE_ENTERA ']' . tipo  (31)
+
+	STRUCT  shift 7
+	FLOAT32  shift 8
+	INT  shift 9
+	CHAR  shift 10
+	'['  shift 12
+	.  error
+
+	tipo  goto 25
+
+
+state 22
+	variable_struct : identificadores tipo . ';'  (25)
+
+	';'  shift 26
+	.  error
+
+
+state 23
+	variables_struct : variable_struct variables_struct .  (27)
+
+	.  reduce 27
+
+
+state 24
+	tipo : STRUCT '{' variables_struct '}' .  (32)
+
+	.  reduce 32
+
+
+state 25
+	tipo : '[' CTE_ENTERA ']' tipo .  (31)
+
+	.  reduce 31
+
+
+state 26
+	variable_struct : identificadores tipo ';' .  (25)
+
+	.  reduce 25
+
+
+Rules never reduced:
+	lista_expresiones : expresion  (2)
+	lista_expresiones : lista_expresiones ',' expresion  (3)
+	expresion : expresion '+' expresion  (4)
+	expresion : expresion '*' expresion  (5)
+	expresion : CTE_ENTERA  (6)
+	expresion : CTE_REAL  (7)
+	expresion : CTE_CARACTER  (8)
+	lista_sentencias : sentencia_if lista_sentencias  (9)
+	lista_sentencias : sentencia_else lista_sentencias  (10)
+	lista_sentencias : sentencia_while lista_sentencias  (11)
+	lista_sentencias : sentencia_write lista_sentencias  (12)
+	lista_sentencias : sentencia_read lista_sentencias  (13)
+	lista_sentencias :  (14)
+	sentencia_if : IF expresion '{' lista_sentencias '}'  (15)
+	sentencia_else : ELSE '{' lista_sentencias '}'  (16)
+	sentencia_while : WHILE expresion '{' lista_sentencias '}'  (17)
+	sentencia_write : WRITE '(' lista_expresiones ')' ';'  (18)
+	sentencia_read : READ '(' lista_expresiones ')' ';'  (19)
+
+
+36 terminals, 16 nonterminals
+33 grammar rules, 27 states

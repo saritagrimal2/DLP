@@ -37,17 +37,26 @@ import java.io.Reader;
 
 %%
 // * Gramática y acciones Yacc
-programa : expresion 
-		| lista_sentencias
+programa : lista_definiciones
 		;
+		
+lista_expresiones: expresion
+				 | lista_expresiones ',' expresion
+				 ;
 
 expresion: expresion '+' expresion		
          | expresion '*' expresion
          | CTE_ENTERA	
+         | CTE_REAL
+         | CTE_CARACTER
          ;
+                  
          
-lista_sentencias: sentencia_if
-				| sentencia_else
+lista_sentencias: sentencia_if lista_sentencias
+				| sentencia_else lista_sentencias
+				| sentencia_while lista_sentencias
+				| sentencia_write lista_sentencias
+				| sentencia_read lista_sentencias
 				|
 				;
          
@@ -55,7 +64,47 @@ sentencia_if: IF expresion '{' lista_sentencias '}'
 			;
 			
 sentencia_else: ELSE '{' lista_sentencias '}'
-			;
+			  ;
+			
+sentencia_while: WHILE expresion '{' lista_sentencias '}'
+				;
+				
+sentencia_write: WRITE '(' lista_expresiones ')' ';'
+				;
+				
+sentencia_read: READ '(' lista_expresiones ')' ';'
+				;
+				
+
+
+
+lista_definiciones: lista_definiciones definicion_variable 
+				  | 
+				  ;
+
+				
+				
+definicion_variable: VAR identificadores tipo ';'
+					;
+					
+identificadores: ID
+				| identificadores ',' ID
+				;
+					
+variable_struct: identificadores tipo ';'
+				;
+				
+variables_struct: variable_struct 
+				| variable_struct variables_struct
+				;
+
+					
+tipo: INT
+	| FLOAT32
+	| CHAR
+	| '[' CTE_ENTERA ']' tipo
+	| STRUCT '{' variables_struct '}'
+	;
 
 
 %%
