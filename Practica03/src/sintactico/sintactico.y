@@ -47,6 +47,7 @@ import java.io.Reader;
 %left '/'
 %left '*'
 %right '!'
+%right MENOSUNARIO
 %nonassoc '[' ']'
 %left '.'
 %nonassoc '(' ')'
@@ -54,7 +55,7 @@ import java.io.Reader;
 %%
 // * Gramática y acciones Yacc
 
-programa : lista_sentencias
+programa : lista_variables lista_sentencias
 		;
 
 expresion: CTE_ENTERA	
@@ -64,7 +65,7 @@ expresion: CTE_ENTERA
          | '(' expresion ')'
          | expresion '.' expresion
          | expresion '[' expresion ']'
-         | '-' expresion
+         | '-' expresion %prec MENOSUNARIO
          | '!' expresion
          | expresion '*' expresion		
          | expresion '/' expresion
@@ -79,7 +80,6 @@ expresion: CTE_ENTERA
          | expresion IGUAL_IGUAL expresion		
          | expresion AND expresion
          | expresion OR expresion
-         | expresion '=' expresion ';'
          ;
 
                   
@@ -91,8 +91,11 @@ lista_sentencias: sentencia_if lista_sentencias
 				| sentencia_while lista_sentencias
 				| sentencia_write lista_sentencias
 				| sentencia_read lista_sentencias
+				| sentencia_asignacion lista_sentencias
 				|
 				;
+				
+sentencia_asignacion: expresion '=' expresion ';'
          
 sentencia_if: IF expresion '{' lista_sentencias '}'
 			;
@@ -116,7 +119,7 @@ sentencia_read: READ '(' lista_expresiones ')' ';'
 
 // * Definicion varible
 
-lista_definiciones: lista_definiciones definicion_variable 
+lista_variables: lista_variables definicion_variable 
 				  | 
 				  ;
 
@@ -140,6 +143,7 @@ tipo: INT
 	| '[' CTE_ENTERA ']' tipo
 	| STRUCT '{' variables_struct '}'
 	;
+
 
 
 %%
