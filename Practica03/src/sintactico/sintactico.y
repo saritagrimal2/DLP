@@ -57,6 +57,11 @@ import java.io.Reader;
 
 programa : lista_variables lista_sentencias
 		;
+		
+/*	
+programa: lista_definiciones FUNC MAIN '(' ')' '{' lista_sentencias '}'
+		;		
+*/
 
 expresion: CTE_ENTERA	
          | CTE_REAL
@@ -144,6 +149,10 @@ tipo: INT
 	| STRUCT '{' variables_struct '}'
 	;
 
+
+// * Definicion de funcion
+
+definicion_funcion: 
 
 
 %%
