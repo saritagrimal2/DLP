@@ -55,13 +55,14 @@ import java.io.Reader;
 %%
 // * Gramática y acciones Yacc
 
-programa : lista_variables lista_sentencias
+programa :lista_definiciones
 		;
 		
-/*	
-programa: lista_definiciones FUNC MAIN '(' ')' '{' lista_sentencias '}'
-		;		
-*/
+		
+
+lista_definiciones: 
+		
+
 
 expresion: CTE_ENTERA	
          | CTE_REAL
@@ -85,9 +86,10 @@ expresion: CTE_ENTERA
          | expresion IGUAL_IGUAL expresion		
          | expresion AND expresion
          | expresion OR expresion
+         | tipo '(' expresion ')'
+         | ID '('  lista_expresiones ')'
          ;
-
-                  
+   
          
 // * Definicion sentencias
          
@@ -97,6 +99,8 @@ lista_sentencias: sentencia_if lista_sentencias
 				| sentencia_write lista_sentencias
 				| sentencia_read lista_sentencias
 				| sentencia_asignacion lista_sentencias
+				| sentencia_return
+				| invocacion_funcion lista_sentencias
 				|
 				;
 				
@@ -110,17 +114,28 @@ sentencia_else: ELSE '{' lista_sentencias '}'
 			
 sentencia_while: WHILE expresion '{' lista_sentencias '}'
 				;
-				
-lista_expresiones: expresion
-				 | lista_expresiones ',' expresion
-				 ;				
+							 
+lista_expresiones: expresiones
+				| 
+				;	   
+
+expresiones: expresion
+		| expresiones ',' expresion
+				 
+				 			 			
 				
 sentencia_write: WRITE '(' lista_expresiones ')' ';'
 				;
 				
 sentencia_read: READ '(' lista_expresiones ')' ';'
 				;
-				
+		
+sentencia_return: RETURN expresion ';'
+				;
+
+invocacion_funcion: ID '('  lista_expresiones ')' ';'
+					;
+		
 
 // * Definicion varible
 
@@ -150,10 +165,27 @@ tipo: INT
 	;
 
 
-// * Definicion de funcion
+// * Definicion funcion
 
-definicion_funcion: 
+lista_funciones: lista_funciones definicion_funcion
+				|
+				;
 
+definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' lista_variables lista_sentencias '}'
+
+retorno: tipo 
+	   | VOID
+	   |
+	   ;
+	   
+	   
+lista_parametros: parametro
+				| 
+				;	   
+
+parametro: ID tipo
+		| parametro ',' ID tipo
+	 
 
 %%
 
