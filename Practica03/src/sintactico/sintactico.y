@@ -33,19 +33,10 @@ import java.io.Reader;
 %token OR
 
 %right '='
-%left OR
-%left AND
-%left IGUAL_IGUAL
-%left DISTINTO
-%left MENOR_IGUAL
-%left '<'
-%left MAYOR_IGUAL
-%left '>'
-%left '-'
-%left '+'
-%left '%'
-%left '/'
-%left '*'
+%left AND OR
+%left '>' MAYOR_IGUAL '<' MENOR_IGUAL DISTINTO IGUAL_IGUAL
+%left '+' '-'
+%left '*' '/' '%'
 %right '!'
 %right MENOSUNARIO
 %nonassoc '[' ']'
@@ -55,12 +46,14 @@ import java.io.Reader;
 %%
 // * Gramática y acciones Yacc
 
-programa :lista_definiciones
+programa : lista_definiciones
 		;
 		
-		
-
-lista_definiciones: 
+lista_definiciones: definicion_funcion
+				 | definicion_variable
+				 | definicion_funcion lista_definiciones
+				 | definicion_variable lista_definiciones
+				 ;
 		
 
 
@@ -86,6 +79,7 @@ expresion: CTE_ENTERA
          | expresion IGUAL_IGUAL expresion		
          | expresion AND expresion
          | expresion OR expresion
+         | expresion '=' expresion
          | tipo '(' expresion ')'
          | ID '('  lista_expresiones ')'
          ;
@@ -100,7 +94,7 @@ lista_sentencias: sentencia_if lista_sentencias
 				| sentencia_read lista_sentencias
 				| sentencia_asignacion lista_sentencias
 				| sentencia_return
-				| invocacion_funcion lista_sentencias
+				| sentencia_invocacion lista_sentencias
 				|
 				;
 				
@@ -133,15 +127,15 @@ sentencia_read: READ '(' lista_expresiones ')' ';'
 sentencia_return: RETURN expresion ';'
 				;
 
-invocacion_funcion: ID '('  lista_expresiones ')' ';'
+sentencia_invocacion: ID '('  lista_expresiones ')' ';'
 					;
 		
 
 // * Definicion varible
 
-lista_variables: lista_variables definicion_variable 
-				  | 
-				  ;
+lista_variables: definicion_variable lista_variables
+				|
+				;
 
 definicion_variable: VAR identificadores tipo ';'
 					;
@@ -162,19 +156,16 @@ tipo: INT
 	| CHAR
 	| '[' CTE_ENTERA ']' tipo
 	| STRUCT '{' variables_struct '}'
+	| VOID
 	;
 
 
 // * Definicion funcion
 
-lista_funciones: lista_funciones definicion_funcion
-				|
-				;
-
 definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' lista_variables lista_sentencias '}'
+				  ;
 
 retorno: tipo 
-	   | VOID
 	   |
 	   ;
 	   
