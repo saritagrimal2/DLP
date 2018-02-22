@@ -46,14 +46,16 @@ import java.io.Reader;
 %%
 // * Gramática y acciones Yacc
 
-programa : lista_definiciones
+programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}'
 		;
 		
-lista_definiciones: definicion_funcion
-				 | definicion_variable
-				 | definicion_funcion lista_definiciones
-				 | definicion_variable lista_definiciones
-				 ;
+lista_definiciones: lista_definiciones lista
+				  | 
+				  ;
+				  
+lista: definicion_funcion
+	| definicion_variable
+	;
 		
 
 
@@ -99,6 +101,7 @@ lista_sentencias: sentencia_if lista_sentencias
 				;
 				
 sentencia_asignacion: expresion '=' expresion ';'
+					;
          
 sentencia_if: IF expresion '{' lista_sentencias '}'
 			;
@@ -114,7 +117,8 @@ lista_expresiones: expresiones
 				;	   
 
 expresiones: expresion
-		| expresiones ',' expresion
+		   | expresiones ',' expresion
+		   ;
 				 
 				 			 			
 				
@@ -136,6 +140,7 @@ sentencia_invocacion: ID '('  lista_expresiones ')' ';'
 lista_variables: definicion_variable lista_variables
 				|
 				;
+				
 
 definicion_variable: VAR identificadores tipo ';'
 					;
@@ -164,6 +169,7 @@ tipo: INT
 
 definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' lista_variables lista_sentencias '}'
 				  ;
+				  
 
 retorno: tipo 
 	   |
@@ -176,6 +182,7 @@ lista_parametros: parametro
 
 parametro: ID tipo
 		| parametro ',' ID tipo
+		;
 	 
 
 %%
