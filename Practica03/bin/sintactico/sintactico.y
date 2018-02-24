@@ -49,15 +49,24 @@ import java.io.Reader;
 programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}'
 		;
 		
-lista_definiciones: lista_definiciones lista
-				  | 
+lista_definiciones: /* vacio */
+				  | lista_definiciones definicion
 				  ;
 				  
-lista: definicion_funcion
+definicion: definicion_funcion
 	| definicion_variable
 	;
 		
+		
+// * Expresiones
 
+lista_expresiones: /* vacio */
+				| lista_expresionesP
+				;	   
+
+lista_expresionesP: expresion
+		   | lista_expresionesP ',' expresion
+		   ;   
 
 expresion: CTE_ENTERA	
          | CTE_REAL
@@ -81,24 +90,29 @@ expresion: CTE_ENTERA
          | expresion IGUAL_IGUAL expresion		
          | expresion AND expresion
          | expresion OR expresion
-         | expresion '=' expresion
          | tipo '(' expresion ')'
          | ID '('  lista_expresiones ')'
          ;
+               
    
+// * Sentencias       
+
          
-// * Definicion sentencias
-         
-lista_sentencias: sentencia_if lista_sentencias
-				| sentencia_else lista_sentencias
-				| sentencia_while lista_sentencias
-				| sentencia_write lista_sentencias
-				| sentencia_read lista_sentencias
-				| sentencia_asignacion lista_sentencias
-				| sentencia_return
-				| sentencia_invocacion lista_sentencias
-				|
+lista_sentencias: /* vacio */
+				| lista_sentencias sentencia
 				;
+				
+				
+sentencia: sentencia_if
+		 | sentencia_else
+		 | sentencia_while
+		 | sentencia_write
+		 | sentencia_read
+		 | sentencia_asignacion
+		 | sentencia_return
+		 | sentencia_invocacion
+		 ;
+				
 				
 sentencia_asignacion: expresion '=' expresion ';'
 					;
@@ -111,17 +125,7 @@ sentencia_else: ELSE '{' lista_sentencias '}'
 			
 sentencia_while: WHILE expresion '{' lista_sentencias '}'
 				;
-							 
-lista_expresiones: expresiones
-				| 
-				;	   
-
-expresiones: expresion
-		   | expresiones ',' expresion
-		   ;
-				 
-				 			 			
-				
+							 				 			 			
 sentencia_write: WRITE '(' lista_expresiones ')' ';'
 				;
 				
@@ -137,8 +141,8 @@ sentencia_invocacion: ID '('  lista_expresiones ')' ';'
 
 // * Definicion varible
 
-lista_variables: definicion_variable lista_variables
-				|
+lista_variables: /* vacio */
+				|lista_variables definicion_variable 
 				;
 				
 
@@ -153,7 +157,7 @@ variable_struct: identificadores tipo ';'
 				;
 				
 variables_struct: variable_struct 
-				| variable_struct variables_struct
+				| variables_struct variable_struct 
 				;
 
 tipo: INT
@@ -171,18 +175,18 @@ definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' lista_variables
 				  ;
 				  
 
-retorno: tipo 
-	   |
+retorno: /* vacio */ 
+	   | tipo
 	   ;
-	   
-	   
-lista_parametros: parametro
-				| 
-				;	   
-
-parametro: ID tipo
-		| parametro ',' ID tipo
+		
+lista_parametros: /* vacio */
+				| lista_parametrosP
+				;
+				
+lista_parametrosP: ID tipo
+		| lista_parametrosP ',' ID tipo
 		;
+		
 	 
 
 %%
