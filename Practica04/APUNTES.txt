@@ -1,6 +1,6 @@
-programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}'
+programa : lista_definiciones FUNC MAIN '(' ')' '{'lista_variables lista_sentencias '}'
 		{
-			this.ast = new Programa(linea, columna, (List<Definicion>)$1, ()$7, ()$8);
+			this.ast = new Programa(linea, columna, (List<Definicion>)$1, ()$7, ()$8 );
 		}
 		;
 		
@@ -8,6 +8,30 @@ programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_senten
 tipo: INT
 	| FLOAT32
 	| CHAR
-	| '[' CTE_ENTERA ']' tipo {  $$ = new TipoArray($1, $4)}
+	| '[' CTE_ENTERA ']' tipo {  $$ = new TipoArray($2, $4)}
 	| STRUCT '{' variables_struct '}' 
 	;
+	
+	
+	
+public class Programa extends AbstractNodoAST{
+	
+	private List<Sentencia> definiciones;
+
+	public Programa(int linea, int columna, List<Definicion> definiciones, 
+			List<DefVarible> variblesLocales, List<Sentencia> cuerpoMain) {
+		super(linea, columna);
+		this.definiciones = definiciones;
+		DefFuncion mi_main = DefFuncion(linea, columna "main", new TipoFuncion(TipoVoid.getInstance(), new ArrayList<DefVariable>()));
+		this.definiciones.add(mi_main);
+	}
+
+	public List<Sentencia> getDefiniciones() {
+		return definiciones;
+	}
+
+	public void setDefiniciones(List<Sentencia> sentencias) {
+		this.definiciones = sentencias;
+	}
+
+}

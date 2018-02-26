@@ -5,22 +5,19 @@ import java.util.List;
 
 public class Programa extends AbstractNodoAST{
 	
-	private List<Sentencia> definiciones;
+	private List<Sentencia> sentencias = new ArrayList<Sentencia>();
 
-	public Programa(int linea, int columna, List<Definicion> definiciones, 
-			List<DefVarible> variblesLocales, List<Sentencia> cuerpoMain) {
+	public Programa(int linea, int columna, List<Sentencia> sentencias) {
 		super(linea, columna);
-		this.definiciones = definiciones;
-		DefFuncion mi_main = DefFuncion(linea, columna "main", new TipoFuncion(TipoVoid.getInstance(), new ArrayList<DefVariable>()));
-		this.definiciones.add(mi_main);
+		this.sentencias = sentencias;
 	}
 
-	public List<Sentencia> getDefiniciones() {
-		return definiciones;
+	public List<Sentencia> getSentencias() {
+		return sentencias;
 	}
 
-	public void setDefiniciones(List<Sentencia> sentencias) {
-		this.definiciones = sentencias;
+	public void setSentencias(List<Sentencia> sentencias) {
+		this.sentencias = sentencias;
 	}
 
 }

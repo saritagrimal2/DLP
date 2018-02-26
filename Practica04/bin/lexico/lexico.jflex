@@ -87,9 +87,6 @@ CodigoASCII = [']\\[0-9]*[']
          			  	  
 "main" { this.yylval = yytext();
          return Parser.MAIN;	}  
-         			  		  
-"void" { this.yylval = yytext();
-         return Parser.VOID;	} 
          
          
 // * Identificador

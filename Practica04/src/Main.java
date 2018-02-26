@@ -1,7 +1,6 @@
 import java.io.FileReader;
 import java.io.IOException;
-import introspector.model.IntrospectorModel;
-import introspector.view.IntrospectorTree;
+
 import lexico.Lexico;
 import sintactico.Parser;
 
@@ -34,11 +33,7 @@ public class Main {
 		Lexico lexico = new Lexico(fr);
 		Parser parser = new Parser(lexico);
 		// * "Parseamos"
-		parser.run();	
-		
-		// * Mostramos el AST
-		IntrospectorModel modelo=new IntrospectorModel("Programa",parser.getAST());
-		new IntrospectorTree("Introspector", modelo);
+		parser.run();		
 	}
 
 }

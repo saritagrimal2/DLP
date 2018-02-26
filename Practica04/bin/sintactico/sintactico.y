@@ -73,7 +73,7 @@ expresion: CTE_ENTERA
          | CTE_CARACTER
          | ID
          | '(' expresion ')'
-         | expresion '.' expresion
+         | expresion '.' ID
          | expresion '[' expresion ']'
          | '-' expresion %prec MENOSUNARIO
          | '!' expresion
@@ -139,12 +139,11 @@ sentencia_invocacion: ID '('  lista_expresiones ')' ';'
 					;
 		
 
-// * Definicion varible
+// * Definicion variable				
 
 lista_variables: /* vacio */
 				|lista_variables definicion_variable 
 				;
-				
 
 definicion_variable: VAR identificadores tipo ';'
 					;
@@ -153,19 +152,19 @@ identificadores: ID
 				| identificadores ',' ID
 				;
 					
-variable_struct: identificadores tipo ';'
+campo: identificadores tipo ';'
 				;
 				
-variables_struct: variable_struct 
-				| variables_struct variable_struct 
-				;
+lista_campos: campo
+			| lista_campos campo 
+			;
+			
 
 tipo: INT
 	| FLOAT32
 	| CHAR
 	| '[' CTE_ENTERA ']' tipo
-	| STRUCT '{' variables_struct '}' /*Cambiar a lista_campos*/
-	| VOID /*quitar, ahora ek void seria como no poner nada, quitar tambien del lexico */
+	| STRUCT '{' lista_campos '}'
 	;
 
 
@@ -174,18 +173,23 @@ tipo: INT
 definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' lista_variables lista_sentencias '}'
 				  ;
 				  
+tipoSimple: INT
+		  | FLOAT32
+	      | CHAR
+	      ;
+				  
 
 retorno: /* vacio */ 
-	   | tipo
+	   | tipoSimple
 	   ;
 		
-lista_parametros: /* vacio */    /*Cambiar a definiciones de variables, se considera tmabien sin var*/
+lista_parametros: /* vacio */
 				| lista_parametrosP
 				;
 				
-lista_parametrosP: ID tipo
-		| lista_parametrosP ',' ID tipo
-		;
+lista_parametrosP: ID tipoSimple
+		        | lista_parametrosP ',' ID tipoSimple
+		        ;
 		
 	 
 
