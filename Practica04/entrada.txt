@@ -1,0 +1,56 @@
+// * Definicion de variables y funciones
+var i, j, n int;
+var c char;
+
+// * Función vacia
+func p() {}
+
+func f(n int, r float32) int {
+  var real float32;
+  var c1, c2 char;
+  c1 = char(n);
+  real = c1 + n + r;
+  p(); // * Invocacion procedimiento
+  return int(c1);
+}
+
+
+// * Funcion main
+func main() {
+  // * Record
+  var pair struct {
+    integer int;
+    character char;
+  };
+  // * Array
+  //Revisar arrays
+  var vector [10][5]float32;
+  
+  i=0;
+  j=0;
+  while i<10{
+    while j<5 {
+      vector[i][j] = i + j;
+      j=j+1;
+    }
+  i=i+1;
+  }
+  
+  i=0;
+  pair.character = '0';
+  pair.integer = '0';
+  while pair.integer >= i {
+    if pair.integer == vector[0][0] || !pair.character || i%2==0
+    {
+      write ('t', 'r', 'u', 'e', '\n');
+    }
+    else 
+    {
+      write('f', 'a', 'l', 's', 'e', '\n');
+    }
+    i=i+1;
+  }
+  write(f(i, float32(i))); // * Invocacion como expresion
+  vector[9][int(4.3)]=5.6;
+  f(1, 2.2); // * Invocation como sentencia
+}

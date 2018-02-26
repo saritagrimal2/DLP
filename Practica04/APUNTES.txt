@@ -1,0 +1,13 @@
+programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}'
+		{
+			this.ast = new Programa(linea, columna, (List<Definicion>)$1, ()$7, ()$8);
+		}
+		;
+		
+		
+tipo: INT
+	| FLOAT32
+	| CHAR
+	| '[' CTE_ENTERA ']' tipo {  $$ = new TipoArray($1, $4)}
+	| STRUCT '{' variables_struct '}' 
+	;
