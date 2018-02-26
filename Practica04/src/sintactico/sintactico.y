@@ -4,6 +4,8 @@
 // * El package lo añade yacc si utilizamos la opción -Jpackage
 import lexico.Lexico;
 import java.io.Reader;
+import ast.*;
+import java.util.*;
 %}
 
 // * Declaraciones Yacc
@@ -177,7 +179,7 @@ tipoSimple: INT
 		  | FLOAT32
 	      | CHAR
 	      ;
-				  
+
 
 retorno: /* vacio */ 
 	   | tipoSimple
@@ -206,7 +208,13 @@ lista_parametrosP: ID tipoSimple
 //	void yyerror(String)
 
 // * Referencia al analizador léxico
+
 private Lexico lexico;
+private NodoAST ast;
+
+public NodoAST getAST(){
+    return ast;
+}
 
 // * Llamada al analizador léxico
 private int yylex () {

@@ -23,7 +23,9 @@ package sintactico;
 /* * El package lo añade yacc si utilizamos la opción -Jpackage*/
 import lexico.Lexico;
 import java.io.Reader;
-//#line 23 "Parser.java"
+import ast.*;
+import java.util.*;
+//#line 25 "Parser.java"
 
 
 
@@ -659,7 +661,7 @@ final static String yyrule[] = {
 "lista_parametrosP : lista_parametrosP ',' ID tipoSimple",
 };
 
-//#line 197 "../../src/sintactico/sintactico.y"
+//#line 199 "../../src/sintactico/sintactico.y"
 
 // * Código Java
 // * Se crea una clase "Parser", lo que aquí ubiquemos será:
@@ -672,7 +674,13 @@ final static String yyrule[] = {
 //	void yyerror(String)
 
 // * Referencia al analizador léxico
+
 private Lexico lexico;
+private NodoAST ast;
+
+public NodoAST getAST(){
+    return ast;
+}
 
 // * Llamada al analizador léxico
 private int yylex () {
@@ -697,7 +705,7 @@ public void yyerror (String error) {
 public Parser(Lexico lexico) {
 	this.lexico = lexico;
 }
-//#line 637 "Parser.java"
+//#line 645 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
