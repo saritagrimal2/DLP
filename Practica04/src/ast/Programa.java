@@ -20,7 +20,10 @@ public class Programa extends AbstractNodoAST{
 		
 		this.definiciones.add(mi_main);
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Programa [definiciones=" + definiciones + "]";
+	}
 
 }
