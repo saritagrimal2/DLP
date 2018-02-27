@@ -1,0 +1,17 @@
+
+
+func examen(hola int){
+//	var array [day]char;
+	var i float32;
+	if hola > 10 {
+		
+		return '\t';
+	}
+	var i float32;
+//	;
+}
+
+var i float32;
+func main(){
+
+}

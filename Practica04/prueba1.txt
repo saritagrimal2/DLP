@@ -1,0 +1,109 @@
+/*
+  Control Evalución Continua
+  DLP 17-18
+*/
+
+// Variables globales
+var integer int;
+var character char;
+var real float32;
+
+var MATRIXSIZE int;
+var matrix [10][10]int;
+
+
+// Funciones
+func setValue(row int, columnn int, value int){  // void??
+  //var váríábléCónÑñ int; //variable con ñ y tildes
+  if row >= 0 && row < MATRIXSIZE && columnn >= 0 && columnn < MATRIXSIZE {
+    matrix[row][column] = value;
+  }
+}
+
+func getValue(row int, columnn int) int {
+  if ((row < 0 || row >= MATRIXSIZE) || (columnn < 0 && columnn >= MATRIXSIZE)){
+    return -1;
+  }
+  else{ 
+    return matrix[row][column];
+  }
+}
+func fill(value int) {
+  var i,j int;  // Declaracion múltiple de variables
+  i = 0;  
+  while i < MATRIXSIZE {
+    j = 0;
+    while j < MATRIXSIZE {
+      setValue(i,j, value);
+      j = j + 1;
+    }
+    i = i + 1;
+  }
+}
+
+
+// Registro
+var date struct { 
+  day int;
+};
+
+//* Función con más pruebas
+func errores() {
+//var array [day]char; //el tamaño del array se especifica con un entero (no con una expresión)
+//var array [-5]char; //el tamaño del array se especifica con un entero (no con una expresión)
+//var array [5.5]char; //el tamaño del array se especifica con un entero (no con una expresión)
+  //if value == 0 // If debe tener llaves
+    write('e', 'r', 'r', 'o', 'r');
+
+//else huerfano
+
+//return vacio
+//  return ;
+  //;//?
+}
+//*/
+
+//@ //Error léxico
+//# //Error léxico
+
+
+//Estos errores podrían no ser críticos
+//El tipo de retorno y de los parámetros debe ser de tipo simple. 
+func errores2(array int) int {
+  var anidado struct{
+    nivel1 [10]struct{
+      date struct{day, mounth, year int; array [2][2]float32;};//sin ;?
+    };
+  };
+  write(fill(1), anidado.nivel1[2].array[0][1]);
+}//;//?
+
+
+// Programa principal
+// func noMain(){ // Debe haber una función main
+func main() { 
+//func main(args int) int {   //La funcion main no tiene argumentos ni retorno
+  var characters [1][2][3]char;
+  MATRIXSIZE = 10;
+  fill(1);
+  setValue(5,5,5);
+  integer = getValue(5,5);
+  if (integer == 5) { // Comentar { para probar
+    write('O','k','\n');
+  }
+  else {
+    write('E','r','r','o','r','\n');
+  }
+  show();
+  
+  date.day = 9;
+  date.mounth = 3;
+  date.year = 2016;
+  
+  character = char(date.day);
+  real = 4.5 + 4. * 3e-3 - 5.4E-3;
+  
+  //int error; // las definiciones de variables están al principio del cuerpo de la función
+}
+
+// void otraFuncion(){} // el main es la última funcion
