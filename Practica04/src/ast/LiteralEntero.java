@@ -6,19 +6,12 @@ public class LiteralEntero extends AbstractNodoAST implements Expresion {
 
 	public LiteralEntero(int linea, int columna, int valor) {
 		super(linea, columna);
-		this.setValor(valor);
-	}
-
-	public int getValor() {
-		return valor;
-	}
-
-	public void setValor(int valor) {
 		this.valor = valor;
 	}
-	
+
+	@Override
 	public String toString() {
-		return String.valueOf(this.valor);
+		return "LiteralEntero [valor=" + valor + "]";
 	}
 
 }
