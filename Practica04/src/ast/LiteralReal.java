@@ -2,9 +2,9 @@ package ast;
 
 public class LiteralReal extends AbstractNodoAST implements Expresion {
 
-	private float valor;
+	private double valor;
 
-	public LiteralReal(int linea, int columna, float valor) {
+	public LiteralReal(int linea, int columna, double valor) {
 		super(linea, columna);
 		this.valor = valor;
 	}

@@ -3,9 +3,9 @@ package ast;
 public class AccesoCampo extends AbstractNodoAST implements Expresion{
 	
 	private Expresion expresion;
-	private Identificador identificador;
+	private String identificador;
 
-	public AccesoCampo(int linea, int columna, Expresion expresion, Identificador identificador) {
+	public AccesoCampo(int linea, int columna, Expresion expresion, String identificador) {
 		super(linea, columna);
 		this.expresion = expresion;
 		this.identificador = identificador;

@@ -6,6 +6,8 @@ import lexico.Lexico;
 import java.io.Reader;
 import ast.*;
 import java.util.*;
+import ast.tipo.*;
+
 %}
 
 // * Declaraciones Yacc
@@ -48,113 +50,113 @@ import java.util.*;
 %%
 // * Gramática y acciones Yacc
 
-programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}'
+programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}' 
 		;
 		
 lista_definiciones: /* vacio */
 				  | lista_definiciones definicion
 				  ;
 				  
-definicion: definicion_funcion
-	| definicion_variable
+definicion: definicion_funcion		   
+	| definicion_variable				
 	;
 		
 		
 // * Expresiones
 
-lista_expresiones: /* vacio */
-				| lista_expresionesP
+lista_expresiones: /* vacio */						{ $$ = new ArrayList<Expresion>();}				
+				| lista_expresionesP				{ $$ = $1;}
 				;	   
 
-lista_expresionesP: expresion
-		   | lista_expresionesP ',' expresion
+lista_expresionesP: expresion						{ List<Expresion> expresiones = new ArrayList<Expresion>(); expresiones.add((Expresion)$1); $$=expresiones;}					
+		   | lista_expresionesP ',' expresion		{ $$ = $1; ((List<Expresion>)$$).add((Expresion)$3);}
 		   ;   
 
-expresion: CTE_ENTERA	
-         | CTE_REAL
-         | CTE_CARACTER
-         | ID
-         | '(' expresion ')'
-         | expresion '.' ID
-         | expresion '[' expresion ']'
-         | '-' expresion %prec MENOSUNARIO
-         | '!' expresion
-         | expresion '*' expresion		
-         | expresion '/' expresion
-         | expresion '%' expresion		
-         | expresion '+' expresion
-         | expresion '-' expresion		
-         | expresion '>' expresion
-         | expresion MAYOR_IGUAL expresion		
-         | expresion '<' expresion
-         | expresion MENOR_IGUAL expresion		
-         | expresion DISTINTO expresion
-         | expresion IGUAL_IGUAL expresion		
-         | expresion AND expresion
-         | expresion OR expresion
-         | tipo '(' expresion ')'
-         | ID '('  lista_expresiones ')'
+expresion: CTE_ENTERA								{ $$ = new LiteralEntero(lexico.getLinea(), lexico.getColumna(),(int)$1);}
+         | CTE_REAL									{ $$ = new LiteralReal(lexico.getLinea(), lexico.getColumna(),(double)$1);}
+         | CTE_CARACTER 	  						{ $$ = new LiteralCaracter(lexico.getLinea(), lexico.getColumna(),(char)$1);}
+         | ID				 						{ $$ = new Identificador(lexico.getLinea(), lexico.getColumna(),(String)$1);}
+         | '(' expresion ')'  						{ $$ = $2; }
+         | expresion '.' ID   						{ $$ = new AccesoCampo (lexico.getLinea(), lexico.getColumna(), (Expresion)$1, (String)$3);}
+         | expresion '[' expresion ']'  			{ $$ = new AccesoArray (lexico.getLinea(), lexico.getColumna(), (Expresion)$1, (Expresion)$3);} 
+         | '-' expresion %prec MENOSUNARIO  		{ $$ = new MenosUnario(lexico.getLinea(), lexico.getColumna(),(Expresion) $2);}
+         | '!' expresion							{ $$ = new Negacion(lexico.getLinea(), lexico.getColumna(),(Expresion) $2);}
+         | expresion '*' expresion					{ $$ = new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion '/' expresion					{ $$ = new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion '%' expresion					{ $$ = new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}		
+         | expresion '+' expresion					{ $$ = new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion '-' expresion					{ $$ = new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}		
+         | expresion '>' expresion					{ $$ = new Comparacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion MAYOR_IGUAL expresion		    { $$ = new Comparacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion '<' expresion					{ $$ = new Comparacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion MENOR_IGUAL expresion			{ $$ = new Comparacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion DISTINTO expresion				{ $$ = new Comparacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion IGUAL_IGUAL expresion			{ $$ = new Comparacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion AND expresion					{ $$ = new Logica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | expresion OR expresion					{ $$ = new Logica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion)$3);}
+         | tipo '(' expresion ')'					{ $$ = new Cast(lexico.getLinea(), lexico.getColumna(), (Tipo) $1,(Expresion)$3);} 
+         | ID '('  lista_expresiones ')'			{ $$ = new InvocacionFuncionExp(lexico.getLinea(), lexico.getColumna(), new Identificador(lexico.getLinea(), lexico.getColumna(),(String)$1), (List<Expresion>)$3);} 
          ;
                
    
 // * Sentencias       
 
          
-lista_sentencias: /* vacio */
-				| lista_sentencias sentencia
+lista_sentencias: /* vacio */						{ $$ = new ArrayList<Sentencia>();} 
+				| lista_sentencias sentencia		{ $$ = $1; ((List<Sentencia>)$$).add((Sentencia)$2);}
 				;
 				
 				
-sentencia: sentencia_if
-		 | sentencia_else
-		 | sentencia_while
-		 | sentencia_write
-		 | sentencia_read
-		 | sentencia_asignacion
-		 | sentencia_return
-		 | sentencia_invocacion
+sentencia: sentencia_if								{ $$ = $1;}
+		 | sentencia_else							{ $$ = $1;}
+		 | sentencia_while							{ $$ = $1;}
+		 | sentencia_write							{ $$ = $1;}
+		 | sentencia_read							{ $$ = $1;}
+		 | sentencia_asignacion						{ $$ = $1;}
+		 | sentencia_return							{ $$ = $1;}
+		 | sentencia_invocacion						{ $$ = $1;}
 		 ;
 				
 				
-sentencia_asignacion: expresion '=' expresion ';'
+sentencia_asignacion: expresion '=' expresion ';'				{$$ = new Asignacion(lexico.getLinea(), lexico.getColumna(),(Expresion)$1,(Expresion)$3);}
 					;
          
-sentencia_if: IF expresion '{' lista_sentencias '}'
+sentencia_if: IF expresion '{' lista_sentencias '}'				{$$ = new sentenciaIf(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4 );}
 			;
 			
-sentencia_else: ELSE '{' lista_sentencias '}'
+sentencia_else: ELSE '{' lista_sentencias '}'					{$$ = new sentenciaElse(lexico.getLinea(), lexico.getColumna(), (List<Sentencia>)$3 );}
 			  ;
 			
-sentencia_while: WHILE expresion '{' lista_sentencias '}'
+sentencia_while: WHILE expresion '{' lista_sentencias '}'		{$$ = new sentenciaWhile(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4 );}
 				;
 							 				 			 			
-sentencia_write: WRITE '(' lista_expresiones ')' ';'
+sentencia_write: WRITE '(' lista_expresiones ')' ';'			
 				;
 				
-sentencia_read: READ '(' lista_expresiones ')' ';'
+sentencia_read: READ '(' lista_expresiones ')' ';'				
 				;
 		
-sentencia_return: RETURN expresion ';'
+sentencia_return: RETURN expresion ';'							{$$ = new Return(lexico.getLinea(), lexico.getColumna(), (Expresion)$2 );}
 				;
 
-sentencia_invocacion: ID '('  lista_expresiones ')' ';'
+sentencia_invocacion: ID '('  lista_expresiones ')' ';'			{$$ = new InvocacionFuncionSent(lexico.getLinea(), lexico.getColumna(), new Identificador(lexico.getLinea(), lexico.getColumna(),(String)$1), (List<Expresion>)$3);}
 					;
 		
 
 // * Definicion variable				
 
-lista_variables: /* vacio */
-				|lista_variables definicion_variable 
+lista_variables: /* vacio */								{ $$ = new ArrayList<DefVariable>();} 
+				|lista_variables definicion_variable 		{ $$ = $1; ((List<DefVariable>)$$).add((DefVariable)$2);}
 				;
 
-definicion_variable: VAR identificadores tipo ';'
+definicion_variable: VAR identificadores tipo ';'			
 					;
 					
-identificadores: ID
-				| identificadores ',' ID
+identificadores: ID											{ List<String> identificadores = new ArrayList<String>(); identificadores.add((String)$1); $$=identificadores;}
+				| identificadores ',' ID					{ $$ = $1; ((List<String>)$$).add((String)$3);}
 				;
 					
-campo: identificadores tipo ';'
+campo: identificadores tipo ';'				
 				;
 				
 lista_campos: campo

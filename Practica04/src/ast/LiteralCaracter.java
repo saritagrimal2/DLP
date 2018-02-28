@@ -2,9 +2,9 @@ package ast;
 
 public class LiteralCaracter extends AbstractNodoAST implements Expresion {
 
-	private String valor;
+	private char valor;
 
-	public LiteralCaracter(int linea, int columna, String valor) {
+	public LiteralCaracter(int linea, int columna, char valor) {
 		super(linea, columna);
 		this.valor = valor;
 	}
