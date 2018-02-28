@@ -1,5 +1,5 @@
 package ast;
 
-public interface Sentencia {
+public interface Sentencia extends NodoAST{
 
 }

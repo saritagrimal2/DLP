@@ -1,5 +1,5 @@
 package ast;
 
-public interface Expresion {
+public interface Expresion extends NodoAST{
 
 }

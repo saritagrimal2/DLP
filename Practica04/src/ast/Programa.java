@@ -16,7 +16,7 @@ public class Programa extends AbstractNodoAST{
 		this.definiciones = definiciones;
 		
 		DefFuncion mi_main = new DefFuncion (linea, columna, "main", 
-				new TipoFuncion(TipoVoid.getInstance(), new ArrayList<DefVariable>()), sentencias);
+				new TipoFuncion(linea, columna, TipoVoid.getInstance(), new ArrayList<DefVariable>()), sentencias);
 		
 		this.definiciones.add(mi_main);
 	}

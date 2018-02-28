@@ -1,5 +1,7 @@
 package ast.tipo;
 
-public interface Tipo {
+import ast.NodoAST;
+
+public interface Tipo extends NodoAST{
 
 }

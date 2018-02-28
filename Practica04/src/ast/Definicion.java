@@ -2,7 +2,7 @@ package ast;
 
 import ast.tipo.Tipo;
 
-public interface Definicion {
+public interface Definicion extends NodoAST{
 	String getIdentificador();
 	Tipo getTipo();
 }

@@ -1,7 +1,11 @@
 package ast.tipo;
 
+import ast.NodoAST;
 
-public class TipoEntero implements Tipo {
+public class TipoEntero implements NodoAST, Tipo {
+	
+	private int linea;
+	private int columna;
 
 	private static TipoEntero instance = new TipoEntero();
 
@@ -17,5 +21,15 @@ public class TipoEntero implements Tipo {
 	@Override
 	public String toString() {
 		return "TipoEntero []";
+	}
+
+	@Override
+	public int getLinea() {
+		return linea;
+	}
+
+	@Override
+	public int getColumna() {
+		return columna;
 	}
 }

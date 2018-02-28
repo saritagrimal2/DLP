@@ -2,11 +2,14 @@ package ast.tipo;
 
 import java.util.List;
 
-public class TipoRegistro implements Tipo {
+import ast.AbstractNodoAST;
+
+public class TipoRegistro extends AbstractNodoAST implements Tipo {
 	
 	List<Campo> campos;
 
-	public TipoRegistro(List<Campo> campos) {
+	public TipoRegistro(int linea, int columna, List<Campo> campos) {
+		super(linea, columna);
 		this.campos = campos;
 	}
 

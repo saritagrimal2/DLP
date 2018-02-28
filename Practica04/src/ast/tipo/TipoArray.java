@@ -1,11 +1,14 @@
 package ast.tipo;
 
-public class TipoArray implements Tipo {
+import ast.AbstractNodoAST;
+
+public class TipoArray extends AbstractNodoAST implements Tipo {
 	
 	private int tamaño;
 	private Tipo tipo;
 
-	public TipoArray(int tamaño, Tipo tipo) {
+	public TipoArray(int linea, int columna, int tamaño, Tipo tipo) {
+		super(linea, columna);
 		this.tamaño = tamaño;
 		this.tipo = tipo;
 	}
