@@ -50,26 +50,27 @@ import ast.tipo.*;
 %%
 // * Gramática y acciones Yacc
 
-programa : lista_definiciones FUNC MAIN '(' ')' '{' lista_variables lista_sentencias '}' 
+programa : lista_definiciones FUNC MAIN '(' ')' '{' cuerpo '}'   { this.ast = new Programa(lexico.getLinea(), lexico.getColumna(), (List<Definicion>)$1, (List<Sentencia>)$7 ); }
 		;
 		
-lista_definiciones: /* vacio */
-				  | lista_definiciones definicion
+lista_definiciones: /* vacio */						{ $$ = new ArrayList<Definicion>(); }
+				  | lista_definiciones definicion	{List<Definicion> defs = (List<Definicion>)$1; List<Definicion> def = (List<Definicion>)$2; 
+				  										for(Definicion d:def){defs.add(d);} $$ = defs;} 
 				  ;
 				  
-definicion: definicion_funcion		   
-	| definicion_variable				
+definicion: definicion_funcion		{ List<DefFuncion> df = new ArrayList<DefFuncion>(); df.add((DefFuncion) $1); $$=df;} 
+	| definicion_variable			{ $$ = $1; }
 	;
 		
 		
 // * Expresiones
 
-lista_expresiones: /* vacio */						{ $$ = new ArrayList<Expresion>();}				
+lista_expresiones: /* vacio */						{ $$ = new ArrayList<Expresion>();} 		
 				| lista_expresionesP				{ $$ = $1;}
 				;	   
 
-lista_expresionesP: expresion						{ List<Expresion> expresiones = new ArrayList<Expresion>(); expresiones.add((Expresion)$1); $$=expresiones;}					
-		   | lista_expresionesP ',' expresion		{ $$ = $1; ((List<Expresion>)$$).add((Expresion)$3);}
+lista_expresionesP: expresion						{ List<Expresion> expresiones = new ArrayList<Expresion>(); expresiones.add((Expresion)$1); $$ = expresiones;}
+		   | lista_expresionesP ',' expresion		{ List<Expresion> expresiones = (List<Expresion>)$1; expresiones.add((Expresion)$3); $$ = expresiones;}
 		   ;   
 
 expresion: CTE_ENTERA								{ $$ = new LiteralEntero(lexico.getLinea(), lexico.getColumna(),(int)$1);}
@@ -102,19 +103,20 @@ expresion: CTE_ENTERA								{ $$ = new LiteralEntero(lexico.getLinea(), lexico.
 // * Sentencias       
 
          
-lista_sentencias: /* vacio */						{ $$ = new ArrayList<Sentencia>();} 
-				| lista_sentencias sentencia		{ $$ = $1; ((List<Sentencia>)$$).add((Sentencia)$2);}
+lista_sentencias: /* vacio */						{ $$ = new ArrayList<Sentencia>(); }
+				| lista_sentencias sentencia		{List<Sentencia> sents = (List<Sentencia>)$1; List<Sentencia> sent = (List<Sentencia>)$2; 
+				  										for(Sentencia s: sent){sents.add(s);} $$ = sents;} 
 				;
 				
 				
-sentencia: sentencia_if								{ $$ = $1;}
-		 | sentencia_else							{ $$ = $1;}
-		 | sentencia_while							{ $$ = $1;}
+sentencia: sentencia_if								{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_else							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_while							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_write							{ $$ = $1;}
 		 | sentencia_read							{ $$ = $1;}
-		 | sentencia_asignacion						{ $$ = $1;}
-		 | sentencia_return							{ $$ = $1;}
-		 | sentencia_invocacion						{ $$ = $1;}
+		 | sentencia_asignacion						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_return							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_invocacion						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 ;
 				
 				
@@ -130,10 +132,12 @@ sentencia_else: ELSE '{' lista_sentencias '}'					{$$ = new sentenciaElse(lexico
 sentencia_while: WHILE expresion '{' lista_sentencias '}'		{$$ = new sentenciaWhile(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4 );}
 				;
 							 				 			 			
-sentencia_write: WRITE '(' lista_expresiones ')' ';'			
+sentencia_write: WRITE '(' lista_expresiones ')' ';'			{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); List<Expresion> expresiones = (List<Expresion>) $3; 
+																	for(Expresion expresion: expresiones) {sentencias.add(new Escritura(lexico.getLinea(), lexico.getColumna(), expresion));} $$=sentencias;}
 				;
 				
-sentencia_read: READ '(' lista_expresiones ')' ';'				
+sentencia_read: READ '(' lista_expresiones ')' ';'				{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); List<Expresion> expresiones = (List<Expresion>) $3; 
+																	for(Expresion expresion: expresiones) {sentencias.add(new Lectura(lexico.getLinea(), lexico.getColumna(), expresion));} $$=sentencias;}
 				;
 		
 sentencia_return: RETURN expresion ';'							{$$ = new Return(lexico.getLinea(), lexico.getColumna(), (Expresion)$2 );}
@@ -145,56 +149,64 @@ sentencia_invocacion: ID '('  lista_expresiones ')' ';'			{$$ = new InvocacionFu
 
 // * Definicion variable				
 
-lista_variables: /* vacio */								{ $$ = new ArrayList<DefVariable>();} 
-				|lista_variables definicion_variable 		{ $$ = $1; ((List<DefVariable>)$$).add((DefVariable)$2);}
+lista_variables: /* vacio */								{ $$ = new ArrayList<DefVariable>(); }
+				|lista_variables definicion_variable 		{ List<DefVariable> defs = (List<DefVariable>)$1; List<DefVariable> def = (List<DefVariable>) $2; 
+																for(DefVariable var: def){defs.add(var);} $$ = defs;}
 				;
 
-definicion_variable: VAR identificadores tipo ';'			
+definicion_variable: VAR identificadores tipo ';'			{ List<String> identificadores = (List<String>)$2; List<DefVariable> variables = new ArrayList<DefVariable>(); 
+															  	for (String id: identificadores) {variables.add(new DefVariable(lexico.getLinea(), lexico.getColumna(),id, (Tipo)$3 ));} $$ = variables;}
 					;
 					
-identificadores: ID											{ List<String> identificadores = new ArrayList<String>(); identificadores.add((String)$1); $$=identificadores;}
-				| identificadores ',' ID					{ $$ = $1; ((List<String>)$$).add((String)$3);}
+identificadores: ID											{ List<String> identificadores = new ArrayList<String>(); identificadores.add((String)$1); $$ = identificadores;}
+				| identificadores ',' ID					{ List<String> identificadores = (List<String>)$1; identificadores.add((String)$3); $$ = identificadores;}
 				;
 					
-campo: identificadores tipo ';'				
+campo: identificadores tipo ';'								{ List<String> identificadores = (List<String>)$1; List<Campo> campos = new ArrayList<Campo>(); 
+															  	for (String id: identificadores) {campos.add(new Campo(lexico.getLinea(), lexico.getColumna(),id, (Tipo)$2 ));} $$ = campos;}
 				;
 				
-lista_campos: campo
-			| lista_campos campo 
+lista_campos: campo											{ $$ = $1;}   
+			| lista_campos campo 							{ List<Campo> camps = (List<Campo>)$1; List<Campo> camp = (List<Campo>) $2; 
+																for(Campo c: camp){camps.add(c);} $$ = camps;}
 			;
 			
 
-tipo: INT
-	| FLOAT32
-	| CHAR
-	| '[' CTE_ENTERA ']' tipo
-	| STRUCT '{' lista_campos '}'
+tipo: INT								{ $$ = TipoEntero.getInstance();}
+	| FLOAT32							{ $$ = TipoFloat.getInstance();}
+	| CHAR								{ $$ = TipoCaracter.getInstance();}
+	| '[' CTE_ENTERA ']' tipo			{ $$ = new TipoArray(lexico.getLinea(), lexico.getColumna(),(int) $2, (Tipo) $4);} 
+	| STRUCT '{' lista_campos '}'		{ $$ = new TipoRegistro(lexico.getLinea(), lexico.getColumna(),(List<Campo>) $3);} 
 	;
 
 
 // * Definicion funcion
 
-definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' lista_variables lista_sentencias '}'
+definicion_funcion: FUNC ID '(' lista_parametros ')' retorno '{' cuerpo '}'   { $$ = new DefFuncion(lexico.getLinea(), lexico.getColumna(), 
+																				(String)$2, new TipoFuncion(lexico.getLinea(), lexico.getColumna(), (Tipo)$6, (List<DefVariable>)$4 ),(List<Sentencia>)$8); }
 				  ;
 				  
-tipoSimple: INT
-		  | FLOAT32
-	      | CHAR
+cuerpo: lista_variables lista_sentencias	{ List<Sentencia> st = (List<Sentencia>) $1; List<Sentencia> sent = (List<Sentencia>) $2;
+												for(Sentencia s: sent){st.add(s);} $$ = st;}
+		;				  
+				  
+tipoSimple: INT				{ $$ = TipoEntero.getInstance();}
+		  | FLOAT32			{ $$ = TipoFloat.getInstance();}
+	      | CHAR			{ $$ = TipoCaracter.getInstance();}
 	      ;
 
 
-retorno: /* vacio */ 
-	   | tipoSimple
+retorno: /* vacio */ 		{ $$ = TipoVoid.getInstance();}
+	   | tipoSimple			{ $$ = $1;}
 	   ;
 		
-lista_parametros: /* vacio */
-				| lista_parametrosP
+lista_parametros: /* vacio */								{ $$ = new ArrayList<DefVariable>();}
+				| lista_parametrosP							{ $$ = $1;}
 				;
 				
-lista_parametrosP: ID tipoSimple
-		        | lista_parametrosP ',' ID tipoSimple
+lista_parametrosP: ID tipoSimple							{ List<DefVariable> variables = new ArrayList<DefVariable>(); variables.add(new DefVariable(lexico.getLinea(), lexico.getColumna(), (String)$1, (Tipo)$2)); $$ = variables;}
+		        | lista_parametrosP ',' ID tipoSimple		{ List<DefVariable> variables = (List<DefVariable>)$1; variables.add(new DefVariable(lexico.getLinea(), lexico.getColumna(), (String)$3, (Tipo)$4)); $$ = variables;}
 		        ;
-		
 	 
 
 %%
