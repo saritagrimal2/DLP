@@ -40,7 +40,7 @@ public Object getYylval() {
 Identificador = [a-zA-Zñá-úÁ-Ú][a-zA-Zñá-úÁ-Ú0-9]*
 ConstanteEntera = [0-9]*
 Real = [.][0-9]+|[0-9]+[.][0-9]*
-ConstanteReal = {Real}|{Real}E-[0-9]+|[0-9]+e[0-9]+|[0-9]+e-[0-9]+
+ConstanteReal = {Real}|{Real}E-[0-9]+|[0-9]+e[+][0-9]+|[0-9]+e-[0-9]+
 CodigoASCII = [']\\[0-9]*[']
 
 

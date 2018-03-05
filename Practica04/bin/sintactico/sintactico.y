@@ -110,7 +110,6 @@ lista_sentencias: /* vacio */						{ $$ = new ArrayList<Sentencia>(); }
 				
 				
 sentencia: sentencia_if								{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
-		 | sentencia_else							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_while							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_write							{ $$ = $1;}
 		 | sentencia_read							{ $$ = $1;}
@@ -123,11 +122,10 @@ sentencia: sentencia_if								{ List<Sentencia> sentencias = new ArrayList<Sent
 sentencia_asignacion: expresion '=' expresion ';'				{$$ = new Asignacion(lexico.getLinea(), lexico.getColumna(),(Expresion)$1,(Expresion)$3);}
 					;
          
-sentencia_if: IF expresion '{' lista_sentencias '}'				{$$ = new sentenciaIf(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4 );}
+sentencia_if: IF expresion '{' lista_sentencias '}'									{$$ = new sentenciaIf(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4, new ArrayList<Sentencia>());}
+			| IF expresion '{' lista_sentencias '}' ELSE '{' lista_sentencias '}'	{$$ = new sentenciaIf(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4, (List<Sentencia>)$8);}
 			;
 			
-sentencia_else: ELSE '{' lista_sentencias '}'					{$$ = new sentenciaElse(lexico.getLinea(), lexico.getColumna(), (List<Sentencia>)$3 );}
-			  ;
 			
 sentencia_while: WHILE expresion '{' lista_sentencias '}'		{$$ = new sentenciaWhile(lexico.getLinea(), lexico.getColumna(),(Expresion)$2, (List<Sentencia>)$4 );}
 				;
