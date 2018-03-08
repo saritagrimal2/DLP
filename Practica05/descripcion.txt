@@ -1,0 +1,65 @@
+Un programa es una secuencia de variables y definiciones de funciones.
+
+programa: lista_definiciones FUNC MAIN '(' ')' '{' lista_sentencias '}'
+
+La sintaxis de la definición de una variable es la palabra reservada var 
+seguido de una lista, con al menos un elemento, de identificadores separados por comas
+y un tipo.
+
+
+definicion_variable: VAR identificadores tipo ';'
+identificadores:...
+tipo:...
+ 
+Las definiciones de variables terminan mediante el caracter ';'
+Las funciones se definen especificando la palabra reservada func, el identificador de
+la función, una lista de parametros separados por comas entre '(' y ')' y el tipo
+de retorno. 
+El tipo de retorno y de los parámetros debe ser de tipo simple (no se permiten 
+ni arrays ni registros). El cuerpo de la funcion va entre '{' y '}'.
+El cuerpo de las funciones son secuencias de definiciones de variables seguidos 
+por una secuencia de sentencias. En ambos casos terminan con el caracter ';'
+La funcion "main" debe estar la última, no retorna nada y no tiene parámetros.
+Los tipos simples son "int", "float32" y "char". Los arrays se pueden crear con el
+ constructor de tipos "[]", siguiendo la sintaxis Go:
+ var nombre_variable [t] tipo; (t es una contante entera, el tamño del array)
+el tamaño t se especifica con un entero (como en C).
+Se usa el constructor de tipos "struct" para la creacion de registros. Los 
+registros no tienen identificador, y los campos son declarados como variables 
+dentro de '{' '}'. No se permite la definicion de tipos (p.e. typedef)
+Una escritura es la palabra reservada "write" seguida de una lista de expresiones
+ separadas por comas entre '(' y ')'.
+Una lectura es la palabra reservada "read" seguida de una lista de expresiones 
+separadas por comas entre '(' y ')'.
+Una asignación está compuesta por dos expresiones separadas por el operador '='.
+La sentencia condicional "if"-"else" y la sentencia iterativa "while" siguen la 
+sintaxis del lenguaje C. Los '(' y ')' son opcionales.
+Se permite la sentencia 'return' <expresion> (la expresion es obligatoria).
+La invocación a una función será una nueva expresión cuando retorne un valor.
+Un procedimiento (función sin tipo de retorno) será siempre sentencia.
+La conversión explícita a tipos simples (cast) se realizará utilizando la sintaxis
+ del lenguaje Go: tipo '(' expresión ')'
+Las expresiones están formadas por:
+- Constantes enteras, reales y caracter sin signo.
+- Identificadores
+- Los siguientes operadores aplicados a una o dos expresiones (por orden de precedencia descendente):
+		( )			Sin asociatividad
+		 .			A Izquierdas
+		[]			Sin asociatividad
+		- (unario)	A Derechas
+		! 			A Derechas
+		* / %		A Izquierdas
+		+ -			A Izquierdas
+> >= < <= != ==		A Izquierdas
+		&& || 		A Izquierdas
+		=			A derechas
+
+
+sentencia_else: ELSE expresion '{' lista_sentencias '}'
+			| ELSE '(' expresion ')' '{' lista_sentencias '}'
+			;
+			
+sentencia_while: WHILE expresion '{' lista_sentencias '}'
+			| WHILE '(' expresion ')' '{' lista_sentencias '}'
+			;
+			
