@@ -157,8 +157,11 @@ definicion_variable: VAR identificadores tipo ';'			{ List<String> identificador
 					;
 					
 identificadores: ID											{ List<String> identificadores = new ArrayList<String>(); identificadores.add((String)$1); $$ = identificadores;}
-				| identificadores ',' ID					{ List<String> identificadores = (List<String>)$1; identificadores.add((String)$3); $$ = identificadores;}
+				| identificadores ',' ID					{ List<String> identificadores = (List<String>)$1; if (!identificadores.contains((String)$3)) {identificadores.add((String)$3);}
+																else{ new TipoError (lexico.getLinea(), lexico.getColumna(), "variable duplicada");}; $$ = identificadores;}
 				;
+				
+				
 					
 campo: identificadores tipo ';'								{ List<String> identificadores = (List<String>)$1; List<Campo> campos = new ArrayList<Campo>(); 
 															  	for (String id: identificadores) {campos.add(new Campo(lexico.getLinea(), lexico.getColumna(),id, (Tipo)$2 ));} $$ = campos;}
@@ -166,7 +169,7 @@ campo: identificadores tipo ';'								{ List<String> identificadores = (List<St
 				
 lista_campos: campo											{ $$ = $1;}   
 			| lista_campos campo 							{ List<Campo> camps = (List<Campo>)$1; List<Campo> camp = (List<Campo>) $2; 
-																for(Campo c: camp){camps.add(c);} $$ = camps;}
+																for(Campo c: camp){if (!camps.contains(c)){camps.add(c);}else {new TipoError (lexico.getLinea(), lexico.getColumna(), "campo duplicado");}} $$ = camps;}
 			;
 			
 

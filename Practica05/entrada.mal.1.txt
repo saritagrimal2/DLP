@@ -1,0 +1,11 @@
+/*
+	Manejador de errores
+	DLP 17/18
+*/
+
+var i, i int; // Error: variable duplicada
+
+// Main program
+func main() {
+	i = 0;
+}

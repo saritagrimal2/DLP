@@ -1,0 +1,15 @@
+/*
+	Manejador de errores
+	DLP 17/18
+*/
+
+var tuple struct{ 
+	key int;
+	value int;
+	key float32; // Error: campo duplicado
+} ;
+
+// Programa principal
+func main() {
+	tuple.key = 0;
+}

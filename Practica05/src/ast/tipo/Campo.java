@@ -1,7 +1,6 @@
 package ast.tipo;
 
 import ast.AbstractNodoAST;
-import ast.Identificador;
 
 public class Campo extends AbstractNodoAST{
 	
@@ -12,6 +11,24 @@ public class Campo extends AbstractNodoAST{
 		super(linea, columna);
 		this.identificador = identificador;
 		this.tipo = tipo;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Campo other = (Campo) obj;
+		if (identificador == null) {
+			if (other.identificador != null)
+				return false;
+		} else if (!identificador.equals(other.identificador))
+			return false;
+		return true;
 	}
 
 

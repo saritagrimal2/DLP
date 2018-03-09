@@ -4,18 +4,9 @@ import introspector.model.IntrospectorModel;
 import introspector.view.IntrospectorTree;
 import lexico.Lexico;
 import sintactico.Parser;
+import manejadorerrores.ME;
 
-/**
- * Prueba del analizador léxico.<br/>
- * Diseño de Lenguajes de Programación.<br/>
- * Escuela de Ingeniería Informática.<br/>
- * Universidad de Oviedo <br/>
- * 
- * @author Francisco Ortin
- */
- 
 public class Main {
-
 	public static void main(String args[]) throws IOException {
 	    if (args.length<1) {
 	        System.err.println("Necesito el archivo de entrada.");
@@ -35,10 +26,17 @@ public class Main {
 		Parser parser = new Parser(lexico);
 		// * "Parseamos"
 		parser.run();	
-		
-		// * Mostramos el AST
-		IntrospectorModel modelo=new IntrospectorModel("Programa",parser.getAST());
-		new IntrospectorTree("Introspector", modelo);
+				
+		// * Comprobamos si hubo errores
+		if(ME.getME().huboErrores()){
+			// * Mostramos los errores
+			ME.getME().mostrarErrores(System.err);
+		}
+		else{			
+			// * Mostramos el AST
+			IntrospectorModel modelo=new IntrospectorModel("Programa",parser.getAST());
+			new IntrospectorTree("Introspector", modelo);
+		}
 	}
 
 }

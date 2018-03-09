@@ -1,15 +1,13 @@
 package ast.tipo;
 
-import ast.NodoAST;
+import ast.AbstractNodoAST;
 
-public class TipoCaracter implements NodoAST, Tipo {
-	
-	private int linea;
-	private int columna;
+public class TipoCaracter extends AbstractNodoAST implements Tipo {
 	
 	private static TipoCaracter instance = new TipoCaracter();
 
 	private TipoCaracter() {
+		super(0,0);
 	}
 
 	public static TipoCaracter getInstance() {
@@ -21,16 +19,6 @@ public class TipoCaracter implements NodoAST, Tipo {
 	@Override
 	public String toString() {
 		return "TipoCaracter []";
-	}
-
-	@Override
-	public int getLinea() {
-		return linea;
-	}
-
-	@Override
-	public int getColumna() {
-		return columna;
 	}
 
 }

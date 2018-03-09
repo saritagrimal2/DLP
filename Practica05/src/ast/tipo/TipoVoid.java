@@ -1,15 +1,14 @@
 package ast.tipo;
 
-import ast.NodoAST;
+import ast.AbstractNodoAST;
 
-public class TipoVoid implements NodoAST, Tipo {
+public class TipoVoid extends AbstractNodoAST implements Tipo {
 	
-	private int linea;
-	private int columna;
 
 	private static TipoVoid instance = new TipoVoid();
 
 	private TipoVoid() {
+		super(0,0);
 	}
 
 	public static TipoVoid getInstance() {
@@ -24,13 +23,4 @@ public class TipoVoid implements NodoAST, Tipo {
 		return "TipoVoid []";
 	}
 
-	@Override
-	public int getLinea() {
-		return linea;
-	}
-
-	@Override
-	public int getColumna() {
-		return columna;
-	}
 }
