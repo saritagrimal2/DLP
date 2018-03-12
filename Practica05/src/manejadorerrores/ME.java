@@ -4,17 +4,15 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import ast.AbstractNodoAST;
 import ast.tipo.TipoError;
 
-public class ME extends AbstractNodoAST{
+public class ME{
 	
 	private List<TipoError> errores = new ArrayList<>();
 	
 	private static ME instance = new ME();
 
 	private ME() {
-		super(0,0);
 	}
 
 	public static ME getME() {
