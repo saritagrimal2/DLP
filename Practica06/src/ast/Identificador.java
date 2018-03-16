@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class Identificador extends NodoASTAbstracto implements Expresion {
+public class Identificador extends ExpresionAbstracta {
 
 	private String nombre;
 

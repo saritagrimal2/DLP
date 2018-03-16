@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class AccesoCampo extends NodoASTAbstracto implements Expresion{
+public class AccesoCampo extends ExpresionAbstracta{
 	
 	private Expresion expresion;
 	private String identificador;

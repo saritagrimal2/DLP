@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class Negacion extends NodoASTAbstracto implements Expresion {
+public class Negacion extends ExpresionAbstracta{
 
 	private Expresion expresion;
 

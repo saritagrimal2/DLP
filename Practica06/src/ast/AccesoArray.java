@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class AccesoArray extends NodoASTAbstracto implements Expresion{
+public class AccesoArray extends ExpresionAbstracta{
 	
 	private Expresion exp1;
 	private Expresion exp2;

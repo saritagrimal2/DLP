@@ -4,7 +4,7 @@ import java.util.List;
 
 import visitor.Visitor;
 
-public class InvocacionFuncionExp extends NodoASTAbstracto implements Expresion {
+public class InvocacionFuncionExp extends ExpresionAbstracta {
 
 	private Identificador identificador;
 	private List<Expresion> argumentos;

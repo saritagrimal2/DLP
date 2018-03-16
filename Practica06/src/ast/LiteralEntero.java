@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class LiteralEntero extends NodoASTAbstracto implements Expresion {
+public class LiteralEntero extends ExpresionAbstracta{
 
 	private int valor;
 

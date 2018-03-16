@@ -43,8 +43,6 @@ public abstract class VisitorAbstracto implements Visitor{
 		a.getExp1().aceptar(this, param);
 		//a.getOperador(); no lo hay que tener en cuenta
 		a.getExp2().aceptar(this, param);
-		
-		
 		return null;
 	}
 

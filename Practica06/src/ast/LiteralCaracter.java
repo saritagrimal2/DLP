@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class LiteralCaracter extends NodoASTAbstracto implements Expresion {
+public class LiteralCaracter extends ExpresionAbstracta {
 
 	private char valor;
 
