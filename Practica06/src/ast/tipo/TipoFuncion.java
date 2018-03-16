@@ -16,6 +16,14 @@ public class TipoFuncion extends NodoASTAbstracto implements Tipo {
 		this.tipoRetorno = tipoRetorno;
 		this.argumentos = argumentos;
 	}
+	
+	public Tipo getTipoRetorno() {
+		return tipoRetorno;
+	}
+
+	public List<DefVariable> getArgumentos() {
+		return argumentos;
+	}
 
 	@Override
 	public String toString() {

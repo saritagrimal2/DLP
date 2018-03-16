@@ -32,6 +32,17 @@ public class Campo extends NodoASTAbstracto{
 		return true;
 	}
 
+	
+	
+	public String getIdentificador() {
+		return identificador;
+	}
+
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
 
 	@Override
 	public String toString() {

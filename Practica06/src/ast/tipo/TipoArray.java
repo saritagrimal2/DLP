@@ -14,6 +14,14 @@ public class TipoArray extends NodoASTAbstracto implements Tipo {
 		this.tipo = tipo;
 	}
 
+	public int getTamaño() {
+		return tamaño;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
 	@Override
 	public String toString() {
 		return "TipoArray [tamaño=" + tamaño + ", tipo=" + tipo + "]";

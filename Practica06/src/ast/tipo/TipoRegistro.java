@@ -13,6 +13,10 @@ public class TipoRegistro extends NodoASTAbstracto implements Tipo {
 		super(linea, columna);
 		this.campos = campos;
 	}
+	
+	public List<Campo> getCampos() {
+		return campos;
+	}
 
 	@Override
 	public String toString() {
