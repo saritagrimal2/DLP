@@ -3,7 +3,7 @@ package ast;
 import ast.tipo.Tipo;
 import visitor.Visitor;
 
-public class Cast extends AbstractNodoAST implements Expresion {
+public class Cast extends NodoASTAbstracto implements Expresion {
 
 	private Tipo tipo;
 	private Expresion expresion;

@@ -1,3 +1,17 @@
-if 10 + 10 {
-	else {  }
+
+func f(e int) float32 {
+  return float32(e);
+}
+
+
+// * Main program
+func main() {
+  var i,a,j int ;
+  var v [10]float32;
+  
+  a = 0;
+  i = 0;
+  j = -i*a-2;  
+  v[int(v[j])] = a;
+  write('f', '(', 'i', ')', '=' ,f(i));
 }

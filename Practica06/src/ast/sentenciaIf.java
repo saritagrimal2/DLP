@@ -4,7 +4,7 @@ import java.util.List;
 
 import visitor.Visitor;
 
-public class sentenciaIf extends AbstractNodoAST implements Sentencia {
+public class sentenciaIf extends NodoASTAbstracto implements Sentencia {
 
 	private Expresion expresion;
 	private List<Sentencia> sentencias;

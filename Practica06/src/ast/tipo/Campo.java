@@ -1,9 +1,9 @@
 package ast.tipo;
 
-import ast.AbstractNodoAST;
+import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
-public class Campo extends AbstractNodoAST{
+public class Campo extends NodoASTAbstracto{
 	
 	private String identificador;
 	private Tipo tipo;

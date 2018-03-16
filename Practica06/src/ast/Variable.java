@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class Variable extends AbstractNodoAST implements Expresion{
+public class Variable extends NodoASTAbstracto implements Expresion{
 	
 	private String nombre;
 

@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class MenosUnario extends AbstractNodoAST implements Expresion {
+public class MenosUnario extends NodoASTAbstracto implements Expresion {
 
 	private Expresion expresion;
 

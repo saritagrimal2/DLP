@@ -1,10 +1,10 @@
 package ast.tipo;
 
-import ast.AbstractNodoAST;
+import ast.NodoASTAbstracto;
 import manejadorerrores.ME;
 import visitor.Visitor;
 
-public class TipoError extends AbstractNodoAST implements Tipo{
+public class TipoError extends NodoASTAbstracto implements Tipo{
 	
 	private String mensaje;
 

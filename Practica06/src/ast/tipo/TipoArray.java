@@ -1,9 +1,9 @@
 package ast.tipo;
 
-import ast.AbstractNodoAST;
+import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
-public class TipoArray extends AbstractNodoAST implements Tipo {
+public class TipoArray extends NodoASTAbstracto implements Tipo {
 	
 	private int tamaño;
 	private Tipo tipo;

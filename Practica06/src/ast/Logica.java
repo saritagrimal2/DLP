@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class Logica extends AbstractNodoAST implements Expresion {
+public class Logica extends NodoASTAbstracto implements Expresion {
 
 	private Expresion exp1, exp2;
 	private String operador;
@@ -35,4 +35,5 @@ public class Logica extends AbstractNodoAST implements Expresion {
 	public Object aceptar(Visitor visitor, Object param) {
 		return visitor.visitar(this, param);
 	}
+
 }

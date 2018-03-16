@@ -3,7 +3,7 @@ package ast;
 import ast.tipo.Tipo;
 import visitor.Visitor;
 
-public class DefVariable extends AbstractNodoAST implements Definicion, Sentencia{
+public class DefVariable extends NodoASTAbstracto implements Definicion, Sentencia{
 
 	private String identificador;
 	private Tipo tipo;

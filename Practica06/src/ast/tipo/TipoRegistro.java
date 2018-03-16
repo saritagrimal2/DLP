@@ -2,10 +2,10 @@ package ast.tipo;
 
 import java.util.List;
 
-import ast.AbstractNodoAST;
+import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
-public class TipoRegistro extends AbstractNodoAST implements Tipo {
+public class TipoRegistro extends NodoASTAbstracto implements Tipo {
 	
 	List<Campo> campos;
 

@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class Aritmetica extends AbstractNodoAST implements Expresion {
+public class Aritmetica extends NodoASTAbstracto implements Expresion {
 
 	private Expresion exp1, exp2;
 	private String operador;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import visitor.Visitor;
 
-public class InvocacionFuncionSent extends AbstractNodoAST implements Sentencia {
+public class InvocacionFuncionSent extends NodoASTAbstracto implements Sentencia {
 
 	private Identificador identificador;
 	private List<Expresion> argumentos;

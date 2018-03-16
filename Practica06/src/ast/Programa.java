@@ -7,7 +7,7 @@ import ast.tipo.TipoFuncion;
 import ast.tipo.TipoVoid;
 import visitor.Visitor;
 
-public class Programa extends AbstractNodoAST{
+public class Programa extends NodoASTAbstracto{
 	
 	private List<Definicion> definiciones;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import ast.tipo.Tipo;
 import visitor.Visitor;
 
-public class DefFuncion extends AbstractNodoAST implements Definicion {
+public class DefFuncion extends NodoASTAbstracto implements Definicion {
 
 	private String identificador;
 	private Tipo tipo;

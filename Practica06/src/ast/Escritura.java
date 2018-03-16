@@ -2,7 +2,7 @@ package ast;
 
 import visitor.Visitor;
 
-public class Escritura extends AbstractNodoAST implements Sentencia {
+public class Escritura extends NodoASTAbstracto implements Sentencia {
 
 	private Expresion expresion;
 
