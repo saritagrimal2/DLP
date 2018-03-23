@@ -2,6 +2,7 @@ package tablasimbolos;
 
 import java.util.*;
 import ast.Definicion;
+import ast.tipo.TipoError;
 
 public class TablaSimbolos {
 	

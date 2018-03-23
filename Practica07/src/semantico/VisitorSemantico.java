@@ -3,11 +3,13 @@ package semantico;
 import ast.AccesoArray;
 import ast.AccesoCampo;
 import ast.Aritmetica;
+import ast.Asignacion;
 import ast.Cast;
 import ast.Comparacion;
 import ast.Expresion;
 import ast.Identificador;
 import ast.InvocacionFuncionExp;
+import ast.Lectura;
 import ast.LiteralCaracter;
 import ast.LiteralEntero;
 import ast.LiteralReal;
@@ -16,8 +18,31 @@ import ast.MenosUnario;
 import ast.Negacion;
 import ast.Variable;
 import ast.tipo.Campo;
+import ast.tipo.TipoError;
 
 public class VisitorSemantico extends VisitorAbstracto{
+	
+	
+	@Override
+	public Object visitar(Lectura l, Object param) {
+		l.getExpresion().aceptar(this, param);
+		if (!l.getExpresion().getLValue()) {
+			new TipoError(0,0,"Se esperaba un Lvalue");
+		}
+		return null;
+	}
+
+
+	@Override
+	public Object visitar(Asignacion a, Object param) {
+		a.getExp1().aceptar(this, param);
+		a.getExp2().aceptar(this, param);
+		if (!a.getExp1().getLValue()) {
+			new TipoError(0,0,"Se esperaba un Lvalue");
+		}
+		return null;
+	}
+	
 	
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
@@ -125,7 +150,6 @@ public class VisitorSemantico extends VisitorAbstracto{
 		v.setLValue(true);
 		return null;
 	}
-
 
 
 }
