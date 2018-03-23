@@ -2,7 +2,9 @@ package semantico;
 
 import ast.DefFuncion;
 import ast.DefVariable;
+import ast.Identificador;
 import ast.Sentencia;
+import ast.Variable;
 import ast.tipo.TipoError;
 import tablasimbolos.TablaSimbolos;
 
@@ -14,7 +16,15 @@ public class VisitorIdentificador extends VisitorAbstracto{
 		tablaSimbolos = new TablaSimbolos();
 	}
 	
-
+	
+	@Override
+	public Object visitar(Identificador v, Object object) {
+		if (tablaSimbolos.buscar(v.getNombre()) == null) {
+			new TipoError(0,0, "variable o funcion no definida");
+		}
+		return null;
+	}
+	
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		

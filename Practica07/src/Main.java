@@ -8,6 +8,7 @@ import lexico.Lexico;
 import sintactico.Parser;
 import visitor.Visitor;
 import manejadorerrores.ME;
+import semantico.VisitorIdentificador;
 import semantico.VisitorSemantico;
 
 public class Main {
@@ -32,7 +33,8 @@ public class Main {
 		parser.run();	
 		
 		
-		Visitor v = new VisitorSemantico();
+		//Visitor v = new VisitorSemantico();
+		Visitor v = new VisitorIdentificador();
 		NodoAST nodoRaiz = parser.getAST();
 		nodoRaiz.aceptar(v, null);
 		
