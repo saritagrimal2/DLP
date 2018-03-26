@@ -7,7 +7,7 @@ import visitor.Visitor;
 public class TipoError extends NodoASTAbstracto implements Tipo{
 	
 	private String mensaje;
-
+	
 	public TipoError(int linea, int columna, String mensaje) {
 		super(linea, columna);
 		this.mensaje = mensaje;

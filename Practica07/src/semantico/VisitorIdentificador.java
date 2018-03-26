@@ -32,9 +32,9 @@ public class VisitorIdentificador extends VisitorAbstracto{
 		}
 			
 		tablaSimbolos.set();
+		f.getTipo().aceptar(this, param);
 		for (Sentencia s : f.getSentencias())
 			s.aceptar(this, param);
-		f.getTipo().aceptar(this, param);
 		tablaSimbolos.reset();
 		
 		return null;

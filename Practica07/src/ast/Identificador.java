@@ -5,6 +5,8 @@ import visitor.Visitor;
 public class Identificador extends ExpresionAbstracta {
 
 	private String nombre;
+	
+	private DefVariable defvariable;
 
 	public Identificador(int linea, int columna, String nombre) {
 		super(linea, columna);
@@ -13,6 +15,10 @@ public class Identificador extends ExpresionAbstracta {
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public DefVariable getDefvariable() {
+		return defvariable;
 	}
 
 	@Override

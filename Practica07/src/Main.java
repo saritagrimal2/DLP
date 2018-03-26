@@ -32,11 +32,11 @@ public class Main {
 		// * "Parseamos"
 		parser.run();	
 		
-		
-		//Visitor v = new VisitorSemantico();
-		Visitor v = new VisitorIdentificador();
+		Visitor vI = new VisitorIdentificador();
+		Visitor vS = new VisitorSemantico();
 		NodoAST nodoRaiz = parser.getAST();
-		nodoRaiz.aceptar(v, null);
+		nodoRaiz.aceptar(vI, null);
+		nodoRaiz.aceptar(vS, null);
 		
 				
 		// * Comprobamos si hubo errores
