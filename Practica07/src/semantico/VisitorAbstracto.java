@@ -24,7 +24,6 @@ import ast.Negacion;
 import ast.Programa;
 import ast.Return;
 import ast.Sentencia;
-import ast.Variable;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
 import ast.tipo.Campo;
@@ -251,11 +250,6 @@ public abstract class VisitorAbstracto implements Visitor {
 
 	@Override
 	public Object visitar(Identificador i, Object param) {
-		return null;
-	}
-
-	@Override
-	public Object visitar(Variable v, Object param) {
 		return null;
 	}
 

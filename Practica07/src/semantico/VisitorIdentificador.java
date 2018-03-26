@@ -4,7 +4,6 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Identificador;
 import ast.Sentencia;
-import ast.Variable;
 import ast.tipo.TipoError;
 import tablasimbolos.TablaSimbolos;
 

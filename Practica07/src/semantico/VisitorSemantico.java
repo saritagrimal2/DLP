@@ -16,8 +16,6 @@ import ast.LiteralReal;
 import ast.Logica;
 import ast.MenosUnario;
 import ast.Negacion;
-import ast.Variable;
-import ast.tipo.Campo;
 import ast.tipo.TipoError;
 
 public class VisitorSemantico extends VisitorAbstracto{
@@ -89,11 +87,6 @@ public class VisitorSemantico extends VisitorAbstracto{
 		return null;
 	}
 	
-	@Override
-	public Object visitar(Campo c, Object param) {
-		c.getTipo().aceptar(this, param);
-		return null;
-	}
 
 	@Override
 	public Object visitar(AccesoArray a, Object param) {
@@ -142,12 +135,6 @@ public class VisitorSemantico extends VisitorAbstracto{
 	@Override
 	public Object visitar(Identificador i, Object param) {
 		i.setLValue(true);
-		return null;
-	}
-	
-	@Override
-	public Object visitar(Variable v, Object param) {
-		v.setLValue(true);
 		return null;
 	}
 
