@@ -3,7 +3,7 @@ package ast.tipo;
 import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
-public class TipoArray extends NodoASTAbstracto implements Tipo {
+public class TipoArray extends TipoAbstracto {
 	
 	private int tamaño;
 	private Tipo tipo;

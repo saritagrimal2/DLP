@@ -27,6 +27,7 @@ import ast.Sentencia;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
 import ast.tipo.Campo;
+import ast.tipo.Tipo;
 import ast.tipo.TipoArray;
 import ast.tipo.TipoCaracter;
 import ast.tipo.TipoEntero;
@@ -63,6 +64,10 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(Return r, Object param) {
 		r.getExpresion().aceptar(this, param);
+		
+		Tipo t2 = (Tipo)param;//Necesito el TipoFuncion, (El tipo de retorno del tipo funcion)
+				//Lo tengo en definicion de funcion, se lo pasamos como parametro en ese object
+		r.getExpresion().getTipo().equivalente(t2);
 		return null;
 	}
 
@@ -140,7 +145,7 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		for (Sentencia s : f.getSentencias())
-			s.aceptar(this, param);
+			s.aceptar(this, f.getTipo());
 		f.getTipo().aceptar(this, param);
 		return null;
 	}

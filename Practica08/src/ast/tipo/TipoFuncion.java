@@ -6,7 +6,7 @@ import ast.NodoASTAbstracto;
 import ast.DefVariable;
 import visitor.Visitor;
 
-public class TipoFuncion extends NodoASTAbstracto implements Tipo {
+public class TipoFuncion extends TipoAbstracto {
 	
 	private Tipo tipoRetorno; 
 	private List<DefVariable> argumentos;

@@ -1,5 +1,0 @@
-// Lvalue required
-func main() {
-  var i int;
-  (i+2) = 3;
-}

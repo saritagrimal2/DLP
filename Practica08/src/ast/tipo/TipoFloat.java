@@ -3,7 +3,7 @@ package ast.tipo;
 import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
-public class TipoFloat extends NodoASTAbstracto implements Tipo{
+public class TipoFloat extends TipoAbstracto{
 	
 	private static TipoFloat instance = new TipoFloat();
 

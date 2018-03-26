@@ -1,5 +1,0 @@
-// Lvalue required
-func main() {
-  var i int;
-  read(i+2);
-}

@@ -4,7 +4,7 @@ import ast.NodoASTAbstracto;
 import manejadorerrores.ME;
 import visitor.Visitor;
 
-public class TipoError extends NodoASTAbstracto implements Tipo{
+public class TipoError extends TipoAbstracto{
 	
 	private String mensaje;
 	

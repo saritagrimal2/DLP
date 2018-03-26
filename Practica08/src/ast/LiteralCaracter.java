@@ -5,7 +5,8 @@ import visitor.Visitor;
 public class LiteralCaracter extends ExpresionAbstracta {
 
 	private char valor;
-
+//poner en constructor o donde sea el tipo
+	
 	public LiteralCaracter(int linea, int columna, char valor) {
 		super(linea, columna);
 		this.valor = valor;

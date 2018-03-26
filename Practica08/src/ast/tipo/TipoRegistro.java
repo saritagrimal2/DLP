@@ -5,7 +5,7 @@ import java.util.List;
 import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
-public class TipoRegistro extends NodoASTAbstracto implements Tipo {
+public class TipoRegistro extends TipoAbstracto {
 	
 	List<Campo> campos;
 

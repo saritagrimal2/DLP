@@ -1,5 +1,10 @@
-// Lvalue required
+var date struct  { 
+  day int;
+  month int;
+  day float32; // * Error 1
+};
+
 func main() {
-  var i int;
-  read(i+2);
+  read(date.year); // * Error 2
 }
+
