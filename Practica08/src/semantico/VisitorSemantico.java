@@ -83,7 +83,13 @@ public class VisitorSemantico extends VisitorAbstracto{
 	@Override
 	public Object visitar(AccesoCampo c, Object param) {
 		c.getExpresion().aceptar(this, param);
-		c.setLValue(true);
+		if (c.getExpresion().getLValue() == true) {
+			c.setLValue(true);
+		}else {
+			new TipoError(0,0,"Se esperaba un Lvalue");
+		}
+		
+		
 		return null;
 	}
 	
@@ -92,7 +98,11 @@ public class VisitorSemantico extends VisitorAbstracto{
 	public Object visitar(AccesoArray a, Object param) {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
-		a.setLValue(true);
+		if (a.getExp1().getLValue() == true) {
+			a.setLValue(true);
+		}else {
+			new TipoError(0,0,"Se esperaba un Lvalue");
+		}
 		return null;
 	}
 
