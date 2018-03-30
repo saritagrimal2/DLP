@@ -1,6 +1,5 @@
 package ast.tipo;
 
-import ast.NodoASTAbstracto;
 import manejadorerrores.ME;
 import visitor.Visitor;
 

@@ -12,66 +12,56 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
 	}
 	
 	@Override
 	public Tipo aritmetica() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
 	}
 
 	@Override
 	public Tipo comparacion(Tipo expresion) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
 	}
 
 	@Override
 	public Tipo comparacion() {
-		return this;
+		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
 	}
 
 	@Override
 	public Tipo logica(Tipo expresion) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
 	}
 
 	@Override
 	public Tipo cast(Tipo expresion) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
 	}
 
 	@Override
 	public Tipo corchetes(Tipo indice) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero");
 	}
 
 	@Override
 	public Tipo punto(String campo) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "Se debe acceder al tipo registro");
 	}
 
 	@Override
 	public Tipo parentises(List<Tipo> tipos) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "Se debe acceder al tipo funcion");
 	}
 
 	@Override
 	public Tipo equivalente(Tipo tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
 	}
 
 	@Override
 	public boolean esLogico() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

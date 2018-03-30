@@ -1,6 +1,5 @@
 package ast.tipo;
 
-import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
 public class TipoVoid extends TipoAbstracto {

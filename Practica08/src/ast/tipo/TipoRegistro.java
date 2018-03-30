@@ -2,7 +2,6 @@ package ast.tipo;
 
 import java.util.List;
 
-import ast.NodoASTAbstracto;
 import visitor.Visitor;
 
 public class TipoRegistro extends TipoAbstracto {
@@ -28,4 +27,13 @@ public class TipoRegistro extends TipoAbstracto {
 		return visitor.visitar(this, param);
 	}
 	
+	@Override
+	public Tipo punto(String campo) {
+		for (Campo c: campos) {
+			if (c.getIdentificador().equals(campo)) {
+				return c.getTipo();
+			}
+		}
+		return new TipoError(0,0,"El identificador del campo no existe");
+	}
 }

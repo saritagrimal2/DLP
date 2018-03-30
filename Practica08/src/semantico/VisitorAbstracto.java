@@ -145,7 +145,7 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		for (Sentencia s : f.getSentencias())
-			s.aceptar(this, f.getTipo());
+			s.aceptar(this, f.getTipo()); //le paso el tipo de retorno
 		f.getTipo().aceptar(this, param);
 		return null;
 	}

@@ -13,8 +13,8 @@ public interface Tipo extends NodoAST {
 	public Tipo logica(Tipo expresion);
 
 	public Tipo cast(Tipo expresion);
-	public Tipo corchetes(Tipo indice); //Solo admitimos enteros Es accesoArray
-	public Tipo punto(String campo); //AccesoCampo
+	public Tipo corchetes(Tipo indice); //Solo admitimos enteros. Es accesoArray
+	public Tipo punto(String campo); //Es AccesoCampo
 	public Tipo parentises(List<Tipo> tipos); //InvocacionFuncionExpr Devolvemos el tipo de retorno del tipoFuncin
 	
 	public Tipo equivalente(Tipo tipo); //Asignacion y tambien en la lectura y return se puede llamar tambien

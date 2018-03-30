@@ -18,35 +18,45 @@ import ast.MenosUnario;
 import ast.Negacion;
 import ast.tipo.TipoError;
 
-public class VisitorSemantico extends VisitorAbstracto{
-	
-	
+public class VisitorSemantico extends VisitorAbstracto {
+
 	@Override
 	public Object visitar(Lectura l, Object param) {
 		l.getExpresion().aceptar(this, param);
 		if (!l.getExpresion().getLValue()) {
-			new TipoError(0,0,"Se esperaba un Lvalue");
+			new TipoError(0, 0, "Se esperaba un Lvalue");
 		}
 		return null;
 	}
-
 
 	@Override
 	public Object visitar(Asignacion a, Object param) {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
 		if (!a.getExp1().getLValue()) {
-			new TipoError(0,0,"Se esperaba un Lvalue");
+			new TipoError(0, 0, "Se esperaba un Lvalue");
 		}
 		return null;
 	}
-	
-	
+
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
 		a.setLValue(false);
+
+//		a.getExp1().setTipo(a.getExp1().getTipo().aritmetica());
+//		a.getExp2().setTipo(a.getExp2().getTipo().aritmetica());
+//		a.setTipo(a.getTipo().aritmetica());
+		
+		
+//		a.getExp1().setTipo(TipoEntero.getInstance());
+//		a.getExp2().setTipo(TipoEntero.getInstance());
+//		a.setTipo(TipoEntero.getInstance());
+		
+		a.getTipo().aritmetica(a.getExp1().getTipo());
+		a.getTipo().aritmetica(a.getExp2().getTipo());
+
 		return null;
 	}
 
@@ -55,6 +65,7 @@ public class VisitorSemantico extends VisitorAbstracto{
 		c.getExp1().aceptar(this, param);
 		c.getExp2().aceptar(this, param);
 		c.setLValue(false);
+
 		return null;
 	}
 
@@ -85,14 +96,12 @@ public class VisitorSemantico extends VisitorAbstracto{
 		c.getExpresion().aceptar(this, param);
 		if (c.getExpresion().getLValue() == true) {
 			c.setLValue(true);
-		}else {
-			new TipoError(0,0,"Se esperaba un Lvalue");
+		} else {
+			new TipoError(0, 0, "Se esperaba un Lvalue");
 		}
-		
-		
+
 		return null;
 	}
-	
 
 	@Override
 	public Object visitar(AccesoArray a, Object param) {
@@ -100,8 +109,8 @@ public class VisitorSemantico extends VisitorAbstracto{
 		a.getExp2().aceptar(this, param);
 		if (a.getExp1().getLValue() == true) {
 			a.setLValue(true);
-		}else {
-			new TipoError(0,0,"Se esperaba un Lvalue");
+		} else {
+			new TipoError(0, 0, "Se esperaba un Lvalue");
 		}
 		return null;
 	}
@@ -117,7 +126,7 @@ public class VisitorSemantico extends VisitorAbstracto{
 	@Override
 	public Object visitar(InvocacionFuncionExp f, Object param) {
 		f.getIdentificador().aceptar(this, param);
-		for (Expresion e: f.getArgumentos()) {
+		for (Expresion e : f.getArgumentos()) {
 			e.aceptar(this, param);
 		}
 		f.setLValue(false);
@@ -147,6 +156,5 @@ public class VisitorSemantico extends VisitorAbstracto{
 		i.setLValue(true);
 		return null;
 	}
-
 
 }

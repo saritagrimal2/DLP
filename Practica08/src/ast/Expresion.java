@@ -8,5 +8,6 @@ public interface Expresion extends NodoAST{
 	public void setLValue(boolean lValue);
 	
 	public Tipo getTipo();
+	public void setTipo(Tipo tipo);
 	
 }

@@ -2,7 +2,6 @@ package ast.tipo;
 
 import java.util.List;
 
-import ast.NodoASTAbstracto;
 import ast.DefVariable;
 import visitor.Visitor;
 
@@ -33,5 +32,16 @@ public class TipoFuncion extends TipoAbstracto {
 	@Override
 	public Object aceptar(Visitor visitor, Object param) {
 		return visitor.visitar(this, param);
+	}
+	
+	@Override
+	public Tipo parentises(List<Tipo> tipos) {
+		
+		for (int i=0; i< tipos.size(); i++) {
+			if (tipos.get(i)!= argumentos.get(i).getTipo()) {
+				return new TipoError(0, 0, "El tipo del parametro no es compatible con el tipo del argumento");
+			}
+		}
+		return tipoRetorno;
 	}
 }

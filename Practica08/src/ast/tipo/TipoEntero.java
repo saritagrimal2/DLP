@@ -1,7 +1,5 @@
 package ast.tipo;
 
-import java.util.List;
-
 import visitor.Visitor;
 
 public class TipoEntero extends TipoAbstracto {
@@ -28,19 +26,84 @@ public class TipoEntero extends TipoAbstracto {
 		return visitor.visitar(this, param);
 	}
 
-	//implementar esto en tipo entero, caracter y real
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		if (expresion.equals(this)) {
+		if (expresion instanceof TipoEntero) {
 			return this;
+		} else if (expresion instanceof TipoError) {
+			return expresion;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
 		}
-		
-		//Si expresion es de tipo entero, return tipoEneto
-		//Si es tipo error, retornas expresion, no creas uno nuevo, retornas el que hay
-		//En las otras combinaciones, si que hay que crear un nuevo tipo error
-		return null;
 	}
-
 	
-
+	@Override
+	public Tipo aritmetica() {
+		return this;
+	}
+	
+	@Override
+	public Tipo comparacion(Tipo expresion) {
+		if (expresion instanceof TipoEntero) {
+			return this;
+		} else if (expresion instanceof TipoError) {
+			return expresion;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
+	
+	@Override
+	public Tipo comparacion() {
+		return this;
+	}
+	
+	@Override
+	public Tipo logica(Tipo expresion) {
+		if (expresion instanceof TipoEntero) {
+			return this;
+		} else if (expresion instanceof TipoError) {
+			return expresion;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
+	
+	@Override
+	public Tipo cast(Tipo expresion) {
+		if (expresion instanceof TipoEntero) {
+			return this;
+		} else if (expresion instanceof TipoError) {
+			return expresion;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
+	
+	@Override
+	public Tipo corchetes(Tipo indice) {
+		if (indice instanceof TipoEntero) {
+			return this;
+		} else if (indice instanceof TipoError) {
+			return indice;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
+	
+	@Override
+	public Tipo equivalente(Tipo tipo) {
+		if (tipo instanceof TipoEntero) {
+			return this;
+		} else if (tipo instanceof TipoError) {
+			return tipo;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
+	
+	@Override
+	public boolean esLogico() {
+		return true;
+	}
 }
