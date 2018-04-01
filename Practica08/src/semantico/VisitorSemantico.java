@@ -80,6 +80,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(MenosUnario m, Object param) {
 		m.getExpresion().aceptar(this, param);
 		m.setLValue(false);
+		
+		Tipo inferido = m.getExpresion().getTipo().aritmetica();
+		m.setTipo(inferido);
+		
 		return null;
 	}
 
