@@ -4,7 +4,6 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Identificador;
 import ast.Sentencia;
-import ast.tipo.Campo;
 import ast.tipo.TipoError;
 import tablasimbolos.TablaSimbolos;
 
@@ -25,15 +24,6 @@ public class VisitorIdentificador extends VisitorAbstracto{
 		return null;
 	}
 	
-//	@Override
-//	public Object visitar(Campo c, Object param) {
-//		if (tablaSimbolos.buscar(c.getIdentificador()) == null) {
-//			new TipoError(0,0, "campo no definido");
-//		}
-//		c.getTipo().aceptar(this, param);
-//		return null;
-//	}
-//	
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		

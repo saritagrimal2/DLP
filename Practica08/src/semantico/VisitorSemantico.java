@@ -16,6 +16,7 @@ import ast.LiteralReal;
 import ast.Logica;
 import ast.MenosUnario;
 import ast.Negacion;
+import ast.tipo.Tipo;
 import ast.tipo.TipoError;
 
 public class VisitorSemantico extends VisitorAbstracto {
@@ -44,19 +45,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
 		a.setLValue(false);
-
-//		a.getExp1().setTipo(a.getExp1().getTipo().aritmetica());
-//		a.getExp2().setTipo(a.getExp2().getTipo().aritmetica());
-//		a.setTipo(a.getTipo().aritmetica());
+			
+		Tipo inferido = a.getExp1().getTipo().aritmetica(a.getExp2().getTipo());
+		a.setTipo(inferido);
 		
-		
-//		a.getExp1().setTipo(TipoEntero.getInstance());
-//		a.getExp2().setTipo(TipoEntero.getInstance());
-//		a.setTipo(TipoEntero.getInstance());
-		
-		a.getTipo().aritmetica(a.getExp1().getTipo());
-		a.getTipo().aritmetica(a.getExp2().getTipo());
-
 		return null;
 	}
 
@@ -154,6 +146,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(Identificador i, Object param) {
 		i.setLValue(true);
+		i.setTipo(i.getDefinicion().getTipo());
 		return null;
 	}
 

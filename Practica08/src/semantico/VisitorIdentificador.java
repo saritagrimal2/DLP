@@ -17,10 +17,11 @@ public class VisitorIdentificador extends VisitorAbstracto{
 	
 	
 	@Override
-	public Object visitar(Identificador v, Object object) {
-		if (tablaSimbolos.buscar(v.getNombre()) == null) {
+	public Object visitar(Identificador i, Object param) {
+		if (tablaSimbolos.buscar(i.getNombre()) == null) {
 			new TipoError(0,0, "variable o funcion no definida");
 		}
+		i.setDefinicion(tablaSimbolos.buscar(i.getNombre()));
 		return null;
 	}
 	

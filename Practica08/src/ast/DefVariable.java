@@ -24,6 +24,18 @@ public class DefVariable extends NodoASTAbstracto implements Definicion, Sentenc
 	public Tipo getTipo() {
 		return tipo;
 	}
+	
+	@Override
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+		
+	}
+
+	@Override
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+		
+	}
 
 	public int getAmbito() {
 		return ambito;

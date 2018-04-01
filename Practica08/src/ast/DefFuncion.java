@@ -28,6 +28,18 @@ public class DefFuncion extends NodoASTAbstracto implements Definicion {
 	public Tipo getTipo() {
 		return tipo;
 	}
+	
+	@Override
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+		
+	}
+
+	@Override
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+		
+	}
 
 	public List<Sentencia> getSentencias() {
 		return sentencias;
@@ -52,5 +64,7 @@ public class DefFuncion extends NodoASTAbstracto implements Definicion {
 	public void setAmbito(int ambito) {
 		this.ambito = ambito;
 	}
+
+
 
 }

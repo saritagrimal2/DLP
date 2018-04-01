@@ -6,7 +6,7 @@ public class Identificador extends ExpresionAbstracta {
 
 	private String nombre;
 	
-	private DefVariable defvariable;
+	private Definicion definicion;
 
 	public Identificador(int linea, int columna, String nombre) {
 		super(linea, columna);
@@ -17,8 +17,8 @@ public class Identificador extends ExpresionAbstracta {
 		return nombre;
 	}
 
-	public DefVariable getDefvariable() {
-		return defvariable;
+	public Definicion getDefinicion() {
+		return definicion;
 	}
 
 	@Override

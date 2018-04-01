@@ -240,16 +240,19 @@ public abstract class VisitorAbstracto implements Visitor {
 
 	@Override
 	public Object visitar(LiteralEntero e, Object param) {
+		e.setTipo(TipoEntero.getInstance());
 		return null;
 	}
 
 	@Override
 	public Object visitar(LiteralCaracter c, Object param) {
+		c.setTipo(TipoCaracter.getInstance());
 		return null;
 	}
 
 	@Override
 	public Object visitar(LiteralReal r, Object param) {
+		r.setTipo(TipoFloat.getInstance());
 		return null;
 	}
 
