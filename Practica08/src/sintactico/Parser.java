@@ -1086,7 +1086,7 @@ break;
 case 58:
 //#line 171 "../../src/sintactico/sintactico.y"
 { List<Campo> camps = (List<Campo>)val_peek(1); List<Campo> camp = (List<Campo>) val_peek(0); 
-																for(Campo c: camp){if (!camps.contains(c)){camps.add(c);}else {new TipoError (lexico.getLinea(), lexico.getColumna(), "campo duplicado");}} yyval = camps;}
+																for(Campo c: camp){if (!camps.contains(c)){camps.add(c);}else {new TipoError (lexico.getLinea(), lexico.getColumna(), "[AccesoCampo] Campo duplicado.");}} yyval = camps;}
 break;
 case 59:
 //#line 176 "../../src/sintactico/sintactico.y"

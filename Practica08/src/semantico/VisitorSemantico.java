@@ -41,7 +41,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 		}
 
 		if (!w.getExpresion().getTipo().esLogico()) {
-			w.getExpresion().setTipo(new TipoError(0, 0, "No es tipo entero o caracter"));
+			w.getExpresion().setTipo(new TipoError(w.getExpresion().getLinea(), w.getExpresion().getColumna(), "[sentenciaWhile] No es expresión lógica."));
 		}
 
 		return null;
@@ -58,7 +58,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 		}
 
 		if (!i.getExpresion().getTipo().esLogico()) {
-			i.getExpresion().setTipo(new TipoError(0, 0, "No es tipo entero o caracter"));
+			i.getExpresion().setTipo(new TipoError(i.getExpresion().getLinea(),i.getExpresion().getColumna(), "[SentenciaIf] No es expresión lógica."));
 		}
 
 		return null;
@@ -71,6 +71,11 @@ public class VisitorSemantico extends VisitorAbstracto {
 		TipoFuncion t2 = (TipoFuncion) param;// Necesito el TipoFuncion, (El tipo de retorno del tipo funcion)
 		// Lo tengo en definicion de funcion, se lo pasamos como parametro en ese object
 		r.getExpresion().getTipo().equivalente(t2.getTipoRetorno());
+		
+		if (r.getExpresion().getTipo().equivalente(t2.getTipoRetorno())==null) {
+			new TipoError(r.getLinea(),r.getColumna(),"[Return] El tipo de la funcion no es compatible con el tipo de retorno.");
+		}
+		
 		return null;
 	}
 
@@ -78,7 +83,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Lectura l, Object param) {
 		l.getExpresion().aceptar(this, param);
 		if (!l.getExpresion().getLValue()) {
-			new TipoError(0, 0, "Se esperaba un Lvalue");
+			new TipoError(l.getLinea(),l.getColumna(), "[Lectura] Se esperaba un Lvalue.");
 		}
 
 		return null;
@@ -89,10 +94,14 @@ public class VisitorSemantico extends VisitorAbstracto {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
 		if (!a.getExp1().getLValue()) {
-			new TipoError(0, 0, "Se esperaba un Lvalue");
+			new TipoError(a.getLinea(),a.getColumna(), "[Asignacion] Se esperaba un Lvalue.");
 		}
 
 		a.getExp1().getTipo().equivalente(a.getExp2().getTipo());
+		
+		if (a.getExp1().getTipo().equivalente(a.getExp2().getTipo())==null) {
+			new TipoError(a.getLinea(),a.getColumna(),"[Asignacion] Los tipos de la asignacion deben de ser compatibles.");
+		}
 
 		return null;
 	}
@@ -105,6 +114,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = a.getExp1().getTipo().aritmetica(a.getExp2().getTipo());
 		a.setTipo(inferido);
+		
+		if (a.getTipo()==null) {
+			a.setTipo(new TipoError(a.getLinea(),a.getColumna(),"[Aritmetica] El tipo solo pueder ser entero o double y ser compatibles."));
+		}
 
 		return null;
 	}
@@ -117,6 +130,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = c.getExp1().getTipo().comparacion(c.getExp2().getTipo());
 		c.setTipo(inferido);
+		
+		if (c.getTipo()==null) {
+			c.setTipo(new TipoError(c.getLinea(),c.getColumna(),"[Comparacion] Las expresiones deben de ser del mismo tipo."));
+		}
 
 		return null;
 	}
@@ -129,6 +146,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = l.getExp1().getTipo().logica(l.getExp2().getTipo());
 		l.setTipo(inferido);
+		
+		if (l.getTipo()==null) {
+			l.setTipo(new TipoError(l.getLinea(),l.getColumna(),"[Logica] El tipo solo pueder ser entero o caracter y ser compatibles."));
+		}
 
 		return null;
 	}
@@ -140,6 +161,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = n.getExpresion().getTipo().logica();
 		n.setTipo(inferido);
+		
+		if (n.getTipo()==null) {
+			n.setTipo(new TipoError(n.getLinea(),n.getColumna(),"[Logica] El tipo solo pueder ser entero o caracter."));
+		}
 
 		return null;
 	}
@@ -151,6 +176,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = m.getExpresion().getTipo().aritmetica();
 		m.setTipo(inferido);
+		
+		if (m.getTipo()==null) {
+			m.setTipo(new TipoError(m.getLinea(),m.getColumna(),"[Aritmetica] El tipo solo pueder ser entero o double."));
+		}
 
 		return null;
 	}
@@ -161,11 +190,15 @@ public class VisitorSemantico extends VisitorAbstracto {
 		if (c.getExpresion().getLValue() == true) {
 			c.setLValue(true);
 		} else {
-			new TipoError(0, 0, "Se esperaba un Lvalue");
+			new TipoError(c.getLinea(),c.getColumna(), "[AccesoCampo] Se esperaba un Lvalue.");
 		}
 
 		Tipo inferido = c.getExpresion().getTipo().punto(c.getIdentificador());
 		c.setTipo(inferido);
+		
+		if (c.getTipo()==null) {
+			c.setTipo(new TipoError(c.getLinea(),c.getColumna(),"[AccesoCampo] No es posible acceder al campo del registro."));
+		}
 
 		return null;
 	}
@@ -177,11 +210,16 @@ public class VisitorSemantico extends VisitorAbstracto {
 		if (a.getExp1().getLValue() == true) {
 			a.setLValue(true);
 		} else {
-			new TipoError(0, 0, "Se esperaba un Lvalue");
+			new TipoError(a.getLinea(),a.getColumna(), "[AccesoArray] Se esperaba un Lvalue.");
 		}
 
 		Tipo inferido = a.getExp1().getTipo().corchetes(a.getExp2().getTipo());
 		a.setTipo(inferido);
+		
+		if (a.getTipo()==null) {
+			a.setTipo(new TipoError(a.getLinea(),a.getColumna(),"[AccesoArray] No se puede acceder al array."));
+		}
+
 
 		return null;
 	}
@@ -194,6 +232,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = c.getTipo().cast(c.getExpresion().getTipo());
 		c.setTipo(inferido);
+		
+		if (c.getTipo()==null) {
+			c.setTipo(new TipoError(c.getLinea(),c.getColumna(),"[Cast] No se puede realizar cast a la siguiente expresión."));
+		}
 
 		return null;
 	}
@@ -211,6 +253,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		Tipo inferido = f.getIdentificador().getTipo().parentises(tipos);
 		f.setTipo(inferido);
+		
+		if (f.getTipo()==null) {
+			f.setTipo(new TipoError(f.getLinea(),f.getColumna(),"[InvocacionFuncionExp] No se puede invocar la siguiente función."));
+		}
 
 		return null;
 	}
@@ -226,6 +272,10 @@ public class VisitorSemantico extends VisitorAbstracto {
 		}
 		
 		f.getIdentificador().getTipo().parentises(tipos);
+		
+		if (f.getIdentificador().getTipo().parentises(tipos)==null) {
+			new TipoError(f.getLinea(),f.getColumna(),"[InvocacionFuncionSent] No se puede invocar la siguiente función.");
+		}
 		
 		return null;
 	}

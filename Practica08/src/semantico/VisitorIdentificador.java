@@ -19,7 +19,7 @@ public class VisitorIdentificador extends VisitorAbstracto{
 	@Override
 	public Object visitar(Identificador i, Object param) {
 		if (tablaSimbolos.buscar(i.getNombre()) == null) {
-			new TipoError(0,0, "variable o funcion no definida");
+			new TipoError(i.getLinea(), i.getColumna(), "[Identificador] Variable o función no definida.");
 		}
 		i.setDefinicion(tablaSimbolos.buscar(i.getNombre()));
 		return null;
@@ -29,7 +29,7 @@ public class VisitorIdentificador extends VisitorAbstracto{
 	public Object visitar(DefFuncion f, Object param) {
 		
 		if(!tablaSimbolos.insertar(f)) {
-			new TipoError(0,0, "Funcion ya declarada");
+			new TipoError(f.getLinea(), f.getColumna(), "[DefFuncion] Función ya declarada.");
 		}
 			
 		tablaSimbolos.set();
@@ -44,7 +44,7 @@ public class VisitorIdentificador extends VisitorAbstracto{
 	@Override
 	public Object visitar(DefVariable v, Object param) {
 		if(!tablaSimbolos.insertar(v)) {
-			new TipoError(0,0, "Variable ya declarada");
+			new TipoError(v.getLinea(),v.getColumna(), "[DefVarible] Variable ya declarada.");
 		}
 		v.getTipo().aceptar(this, param);
 		

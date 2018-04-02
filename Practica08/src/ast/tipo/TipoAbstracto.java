@@ -12,52 +12,52 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double");
+		return null;
 	}
 	
 	@Override
 	public Tipo aritmetica() {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double");
+		return null;
 	}
 
 	@Override
 	public Tipo comparacion(Tipo expresion) {
-		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
+		return null;
 	}
 
 	@Override
 	public Tipo logica() {
-		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
+		return null;
 	}
 
 	@Override
 	public Tipo logica(Tipo expresion) {
-		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
+		return null;
 	}
 
 	@Override
 	public Tipo cast(Tipo expresion) {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
+		return null;
 	}
 
 	@Override
 	public Tipo corchetes(Tipo indice) {
-		return new TipoError(0, 0, "No se puede acceder al array");
+		return null;
 	}
 
 	@Override
 	public Tipo punto(String campo) {
-		return new TipoError(0, 0, "Se debe acceder al tipo registro");
+		return null;
 	}
 
 	@Override
 	public Tipo parentises(List<Tipo> tipos) {
-		return new TipoError(0, 0, "Se debe acceder al tipo funcion");
+		return null;
 	}
 
 	@Override
 	public Tipo equivalente(Tipo tipo) {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
+		return null;
 	}
 
 	@Override

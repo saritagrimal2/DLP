@@ -34,7 +34,7 @@ public class TipoFloat extends TipoAbstracto{
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
-			return new TipoError(0,0,"Tipo no compatible");
+			return null;
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class TipoFloat extends TipoAbstracto{
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
-			return new TipoError(0,0,"Tipo no compatible");
+			return null;
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class TipoFloat extends TipoAbstracto{
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
-			return new TipoError(0,0,"Tipo no compatible");
+			return null;
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class TipoFloat extends TipoAbstracto{
 		} else if (tipo instanceof TipoError) {
 			return tipo;
 		} else {
-			return new TipoError(0,0,"Tipo no compatible");
+			return null;
 		}
 	}
 	

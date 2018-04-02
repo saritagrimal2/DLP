@@ -151,7 +151,6 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(DefVariable v, Object param) {
 		v.getTipo().aceptar(this,param);
-		//v.getTipo().aceptar(this, v.getTipo()); // Le paso el tipo del identificador
 		return null;
 	}
 

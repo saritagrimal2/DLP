@@ -34,6 +34,6 @@ public class TipoRegistro extends TipoAbstracto {
 				return c.getTipo();
 			}
 		}
-		return new TipoError(0,0,"El identificador del campo no existe");
+		return null;
 	}
 }

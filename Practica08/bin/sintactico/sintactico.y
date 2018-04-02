@@ -169,7 +169,7 @@ campo: identificadores tipo ';'								{ List<String> identificadores = (List<St
 				
 lista_campos: campo											{ $$ = $1;}   
 			| lista_campos campo 							{ List<Campo> camps = (List<Campo>)$1; List<Campo> camp = (List<Campo>) $2; 
-																for(Campo c: camp){if (!camps.contains(c)){camps.add(c);}else {new TipoError (lexico.getLinea(), lexico.getColumna(), "campo duplicado");}} $$ = camps;}
+																for(Campo c: camp){if (!camps.contains(c)){camps.add(c);}else {new TipoError (lexico.getLinea(), lexico.getColumna(), "[AccesoCampo] Campo duplicado.");}} $$ = camps;}
 			;
 			
 

@@ -38,7 +38,7 @@ public class TipoArray extends TipoAbstracto {
 		} else if (indice instanceof TipoError) {
 			return indice;
 		} else {
-			return new TipoError(0,0,"Tipo no compatible, solo admite enteros");
+			return null;
 		}
 	}
 	

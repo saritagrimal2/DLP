@@ -15,7 +15,7 @@ public class TipoError extends TipoAbstracto{
 
 	@Override
 	public String toString() {
-		return "Error: " + mensaje;
+		return "Error: linea="+ this.getLinea() +" columna="+ this.getColumna() +" "+ mensaje;
 	}
 
 	@Override

@@ -40,11 +40,11 @@ public class TipoFuncion extends TipoAbstracto {
 			for (int i = 0; i < tipos.size(); i++) {
 
 				if (tipos.get(i) != argumentos.get(i).getTipo()) {
-					return new TipoError(0, 0, "El tipo del parametro no es compatible con el tipo del argumento");
+					return null;
 				}
 			}
 			return tipoRetorno;
 		}
-		return new TipoError(0, 0, "El numero de parametros no es compatible con el numero de argumentos");
+		return null;
 	}
 }
