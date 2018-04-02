@@ -81,9 +81,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 			new TipoError(0, 0, "Se esperaba un Lvalue");
 		}
 
-//		Tipo t2 = (Tipo) param;
-//		l.getExpresion().getTipo().equivalente(t2);
-
 		return null;
 	}
 
@@ -141,7 +138,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 		n.getExpresion().aceptar(this, param);
 		n.setLValue(false);
 
-		Tipo inferido = n.getExpresion().getTipo().comparacion();
+		Tipo inferido = n.getExpresion().getTipo().logica();
 		n.setTipo(inferido);
 
 		return null;
@@ -183,7 +180,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			new TipoError(0, 0, "Se esperaba un Lvalue");
 		}
 
-		Tipo inferido = a.getExp2().getTipo().corchetes(a.getExp1().getTipo());
+		Tipo inferido = a.getExp1().getTipo().corchetes(a.getExp2().getTipo());
 		a.setTipo(inferido);
 
 		return null;

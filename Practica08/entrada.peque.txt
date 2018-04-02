@@ -1,9 +1,9 @@
 
-var i [10]int;
+var v [10]int;
 
 func main() {
-  var a int;
+  var i int;
   i[0]=0;      // * Error 1
-//  v[3]=3.4;    // * Error 2
-//  v[1][2]='a'; // * Error 3
+  v[3]=3.4;    // * Error 2
+  v[1][2]='a'; // * Error 3
 }

@@ -39,7 +39,7 @@ public class TipoCaracter extends TipoAbstracto {
 	}
 	
 	@Override
-	public Tipo comparacion() {
+	public Tipo logica() {
 		return this;
 	}
 	

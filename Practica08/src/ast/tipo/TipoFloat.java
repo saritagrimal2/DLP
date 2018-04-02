@@ -43,22 +43,18 @@ public class TipoFloat extends TipoAbstracto{
 		return this;
 	}
 	
-//	@Override
-//	public Tipo comparacion(Tipo expresion) {
-//		if (expresion instanceof TipoFloat) {
-//			return this;
-//		} else if (expresion instanceof TipoError) {
-//			return expresion;
-//		} else {
-//			return new TipoError(0,0,"Tipo no compatible");
-//		}
-//	}
-//	
-//	@Override
-//	public Tipo comparacion() {
-//		return this;
-//	}
+	@Override
+	public Tipo comparacion(Tipo expresion) {
+		if (expresion instanceof TipoFloat) {
+			return this;
+		} else if (expresion instanceof TipoError) {
+			return expresion;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
 	
+
 	@Override
 	public Tipo cast(Tipo expresion) {
 		if (expresion instanceof TipoFloat) {

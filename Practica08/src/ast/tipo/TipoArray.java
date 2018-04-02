@@ -33,12 +33,12 @@ public class TipoArray extends TipoAbstracto {
 	
 	@Override
 	public Tipo corchetes(Tipo indice) {
-		if (indice instanceof TipoArray) {
+		if (indice instanceof TipoEntero) {
 			return this.tipo;
 		} else if (indice instanceof TipoError) {
 			return indice;
 		} else {
-			return new TipoError(0,0,"Tipo no compatible");
+			return new TipoError(0,0,"Tipo no compatible, solo admite enteros");
 		}
 	}
 	

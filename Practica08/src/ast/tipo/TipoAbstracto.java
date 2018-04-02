@@ -26,7 +26,7 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	}
 
 	@Override
-	public Tipo comparacion() {
+	public Tipo logica() {
 		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
 	}
 
@@ -42,7 +42,7 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 
 	@Override
 	public Tipo corchetes(Tipo indice) {
-		return new TipoError(0, 0, "El tipo no es tipo entero");
+		return new TipoError(0, 0, "No se puede acceder al array");
 	}
 
 	@Override

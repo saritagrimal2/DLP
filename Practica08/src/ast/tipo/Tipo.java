@@ -9,7 +9,7 @@ public interface Tipo extends NodoAST {
 	public Tipo aritmetica(Tipo expresion);
 	public Tipo aritmetica(); // Si es real devulvo real y asi con todos
 	public Tipo comparacion(Tipo expresion);
-	public Tipo comparacion();
+	public Tipo logica();
 	public Tipo logica(Tipo expresion);
 
 	public Tipo cast(Tipo expresion);

@@ -54,7 +54,7 @@ public class TipoEntero extends TipoAbstracto {
 	}
 	
 	@Override
-	public Tipo comparacion() {
+	public Tipo logica() {
 		return this;
 	}
 	
