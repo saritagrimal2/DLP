@@ -30,5 +30,17 @@ public class TipoArray extends TipoAbstracto {
 	public Object aceptar(Visitor visitor, Object param) {
 		return visitor.visitar(this, param);
 	}
+	
+	@Override
+	public Tipo corchetes(Tipo indice) {
+		if (indice instanceof TipoArray) {
+			return this.tipo;
+		} else if (indice instanceof TipoError) {
+			return indice;
+		} else {
+			return new TipoError(0,0,"Tipo no compatible");
+		}
+	}
+	
 
 }

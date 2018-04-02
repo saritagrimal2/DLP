@@ -27,7 +27,6 @@ import ast.Sentencia;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
 import ast.tipo.Campo;
-import ast.tipo.Tipo;
 import ast.tipo.TipoArray;
 import ast.tipo.TipoCaracter;
 import ast.tipo.TipoEntero;
@@ -46,6 +45,7 @@ public abstract class VisitorAbstracto implements Visitor {
 		for (Sentencia s : w.getSentencias()) {
 			s.aceptar(this, param);
 		}
+
 		return null;
 	}
 
@@ -58,16 +58,14 @@ public abstract class VisitorAbstracto implements Visitor {
 		for (Sentencia s : i.getSentencias()) {
 			s.aceptar(this, param);
 		}
+
 		return null;
 	}
 
 	@Override
 	public Object visitar(Return r, Object param) {
 		r.getExpresion().aceptar(this, param);
-		
-		Tipo t2 = (Tipo)param;//Necesito el TipoFuncion, (El tipo de retorno del tipo funcion)
-				//Lo tengo en definicion de funcion, se lo pasamos como parametro en ese object
-		r.getExpresion().getTipo().equivalente(t2);
+
 		return null;
 	}
 
@@ -145,18 +143,18 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		for (Sentencia s : f.getSentencias())
-			s.aceptar(this, f.getTipo()); //le paso el tipo de retorno
+			s.aceptar(this, f.getTipo()); // le paso el tipo de retorno
 		f.getTipo().aceptar(this, param);
 		return null;
 	}
 
 	@Override
 	public Object visitar(DefVariable v, Object param) {
-		v.getTipo().aceptar(this, param);
+		v.getTipo().aceptar(this,param);
+		//v.getTipo().aceptar(this, v.getTipo()); // Le paso el tipo del identificador
 		return null;
 	}
 
-	
 	@Override
 	public Object visitar(Lectura l, Object param) {
 		l.getExpresion().aceptar(this, param);
@@ -240,19 +238,16 @@ public abstract class VisitorAbstracto implements Visitor {
 
 	@Override
 	public Object visitar(LiteralEntero e, Object param) {
-		e.setTipo(TipoEntero.getInstance());
 		return null;
 	}
 
 	@Override
 	public Object visitar(LiteralCaracter c, Object param) {
-		c.setTipo(TipoCaracter.getInstance());
 		return null;
 	}
 
 	@Override
 	public Object visitar(LiteralReal r, Object param) {
-		r.setTipo(TipoFloat.getInstance());
 		return null;
 	}
 

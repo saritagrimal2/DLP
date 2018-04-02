@@ -1,12 +1,9 @@
-var integer int;
-var character char;
 
+var i [10]int;
 
 func main() {
-
-	integer = 1;
-	character = 'a';
-	
-	integer + caracter;
-  
+  var a int;
+  i[0]=0;      // * Error 1
+//  v[3]=3.4;    // * Error 2
+//  v[1][2]='a'; // * Error 3
 }

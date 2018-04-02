@@ -12,22 +12,22 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
+		return new TipoError(0, 0, "El tipo no es tipo entero, double");
 	}
 	
 	@Override
 	public Tipo aritmetica() {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
+		return new TipoError(0, 0, "El tipo no es tipo entero, double");
 	}
 
 	@Override
 	public Tipo comparacion(Tipo expresion) {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
+		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
 	}
 
 	@Override
 	public Tipo comparacion() {
-		return new TipoError(0, 0, "El tipo no es tipo entero, double o caracter");
+		return new TipoError(0, 0, "El tipo no es tipo entero o caracter");
 	}
 
 	@Override

@@ -80,16 +80,6 @@ public class TipoEntero extends TipoAbstracto {
 		}
 	}
 	
-	@Override
-	public Tipo corchetes(Tipo indice) {
-		if (indice instanceof TipoEntero) {
-			return this;
-		} else if (indice instanceof TipoError) {
-			return indice;
-		} else {
-			return new TipoError(0,0,"Tipo no compatible");
-		}
-	}
 	
 	@Override
 	public Tipo equivalente(Tipo tipo) {
