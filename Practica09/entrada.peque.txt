@@ -1,21 +1,29 @@
+// * Variable Globales
 var i int;
-var f float32;
+var r float32;
+var c char;
 
-var a struct  {
-  a int;
-};
-
-func u(c float32) int {
-  var real float32;
-  real = f;
-  write(5);
-  if (3){
-  	read(a.a);
-  }
-  return 5;
+// * Funciones
+func f(pi int, pr float32) int {
+  var lr float32;
+  var li int;
+  li = pi;
+  lr = pr;
+  return pi;
 }
 
+// * Programa principal
 func main() {
-  write(i); 
+  var pair struct { 
+    integer int;
+    character char;
+  };
+
+  i = 3;
+  c = 'a';
+  r = 3.8;
+  pair.integer = i;
+  pair.character = c;
+  f(i, r);
 }
 

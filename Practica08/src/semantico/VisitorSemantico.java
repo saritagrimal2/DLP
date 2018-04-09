@@ -120,7 +120,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Aritmetica a, Object param) {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
-		a.setLValue(false);
 
 		Tipo inferido = a.getExp1().getTipo().aritmetica(a.getExp2().getTipo());
 		a.setTipo(inferido);
@@ -129,6 +128,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 			a.setTipo(new TipoError(a.getLinea(), a.getColumna(),
 					"[Aritmetica] El tipo solo pueder ser entero o double y ser compatibles."));
 		}
+		
+		a.setLValue(false);
 
 		return null;
 	}
@@ -137,7 +138,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Comparacion c, Object param) {
 		c.getExp1().aceptar(this, param);
 		c.getExp2().aceptar(this, param);
-		c.setLValue(false);
 
 		if (c.getExp1().getTipo()!= null && c.getExp2().getTipo()!= null) {
 			Tipo inferido = c.getExp1().getTipo().comparacion(c.getExp2().getTipo());
@@ -149,6 +149,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 						"[Comparacion] Las expresiones deben de ser del mismo tipo."));
 			}
 		}
+		
+		c.setLValue(false);
 
 		return null;
 	}
@@ -157,8 +159,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Logica l, Object param) {
 		l.getExp1().aceptar(this, param);
 		l.getExp2().aceptar(this, param);
-		l.setLValue(false);
-
+		
 		Tipo inferido = l.getExp1().getTipo().logica(l.getExp2().getTipo());
 		l.setTipo(inferido);
 
@@ -166,6 +167,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 			l.setTipo(new TipoError(l.getLinea(), l.getColumna(),
 					"[Logica] El tipo solo pueder ser entero o caracter y ser compatibles."));
 		}
+		
+		l.setLValue(false);
 
 		return null;
 	}
@@ -173,7 +176,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(Negacion n, Object param) {
 		n.getExpresion().aceptar(this, param);
-		n.setLValue(false);
+		
 
 		Tipo inferido = n.getExpresion().getTipo().logica();
 		n.setTipo(inferido);
@@ -182,6 +185,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 			n.setTipo(
 					new TipoError(n.getLinea(), n.getColumna(), "[Logica] El tipo solo pueder ser entero o caracter."));
 		}
+		
+		n.setLValue(false);
 
 		return null;
 	}
@@ -189,7 +194,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(MenosUnario m, Object param) {
 		m.getExpresion().aceptar(this, param);
-		m.setLValue(false);
+		
 
 		Tipo inferido = m.getExpresion().getTipo().aritmetica();
 		m.setTipo(inferido);
@@ -198,6 +203,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 			m.setTipo(new TipoError(m.getLinea(), m.getColumna(),
 					"[Aritmetica] El tipo solo pueder ser entero o double."));
 		}
+		
+		m.setLValue(false);
 
 		return null;
 	}
@@ -249,7 +256,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Cast c, Object param) {
 		c.getExpresion().aceptar(this, param);
 		c.getTipo().aceptar(this, param);
-		c.setLValue(false);
+		
 
 		Tipo inferido = c.getTipoCast().cast(c.getExpresion().getTipo());
 		c.setTipo(inferido);
@@ -258,6 +265,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 			c.setTipo(new TipoError(c.getLinea(), c.getColumna(),
 					"[Cast] No se puede realizar cast a la siguiente expresión."));
 		}
+		
+		c.setLValue(false);
 
 		return null;
 	}
@@ -271,7 +280,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			e.aceptar(this, param);
 			tipos.add(e.getTipo());
 		}
-		f.setLValue(false);
+		
 
 		Tipo inferido = f.getIdentificador().getTipo().parentises(tipos);
 		f.setTipo(inferido);
@@ -280,6 +289,8 @@ public class VisitorSemantico extends VisitorAbstracto {
 			f.setTipo(new TipoError(f.getLinea(), f.getColumna(),
 					"[InvocacionFuncionExp] No se puede invocar la siguiente función."));
 		}
+		
+		f.setLValue(false);
 
 		return null;
 	}
@@ -306,31 +317,31 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 	@Override
 	public Object visitar(LiteralEntero e, Object param) {
-		e.setLValue(false);
 		e.setTipo(TipoEntero.getInstance());
+		e.setLValue(false);
 		return null;
 	}
 
 	@Override
 	public Object visitar(LiteralCaracter c, Object param) {
-		c.setLValue(false);
 		c.setTipo(TipoCaracter.getInstance());
+		c.setLValue(false);
 		return null;
 	}
 
 	@Override
 	public Object visitar(LiteralReal r, Object param) {
-		r.setLValue(false);
 		r.setTipo(TipoFloat.getInstance());
+		r.setLValue(false);
 		return null;
 	}
 
 	@Override
 	public Object visitar(Identificador i, Object param) {
-		i.setLValue(true);
 		if (i.getDefinicion() != null) {
 			i.setTipo(i.getDefinicion().getTipo());
 		}
+		i.setLValue(true);
 		return null;
 	}
 
