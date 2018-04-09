@@ -10,7 +10,7 @@ func main() {
   write(i && f); // * Error 1
   write(a >= 3); // * Error 2
   while f {     // * Error 3 No se puede usar como condicion (si admitimos caracter y entero) o operacion logica
-    if f {      // * Error 4
+    if (i<i) {      // * Error 4
       write(!f);   // * Error 5 (estamos usando negacion con float, registro o tipo array no se pude, pero si con caracter o entero)
  	}
   }

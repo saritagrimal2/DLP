@@ -5,17 +5,17 @@ import visitor.Visitor;
 
 public class Cast extends ExpresionAbstracta {
 
-	private Tipo tipo;
+	private Tipo tipoCast;
 	private Expresion expresion;
 
 	public Cast(int linea, int columna, Tipo tipo, Expresion expresion) {
 		super(linea, columna);
-		this.tipo = tipo;
+		this.tipoCast = tipo;
 		this.expresion = expresion;
 	}
 
-	public Tipo getTipo() {
-		return tipo;
+	public Tipo getTipoCast() {
+		return tipoCast;
 	}
 
 	public Expresion getExpresion() {
@@ -24,7 +24,7 @@ public class Cast extends ExpresionAbstracta {
 
 	@Override
 	public String toString() {
-		return "Cast [tipo=" + tipo + ", expresion=" + expresion + "]";
+		return "Cast [tipo=" + tipoCast + ", expresion=" + expresion + "]";
 	}
 
 	@Override
