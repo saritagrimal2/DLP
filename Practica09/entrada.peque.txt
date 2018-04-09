@@ -1,0 +1,21 @@
+var i int;
+var f float32;
+
+var a struct  {
+  a int;
+};
+
+func u(c float32) int {
+  var real float32;
+  real = f;
+  write(5);
+  if (3){
+  	read(a.a);
+  }
+  return 5;
+}
+
+func main() {
+  write(i); 
+}
+

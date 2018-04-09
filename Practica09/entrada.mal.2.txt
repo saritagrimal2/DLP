@@ -1,0 +1,10 @@
+var date struct  { 
+  day int;
+  month int;
+  day float32; // * Error 1
+};
+
+func main() {
+  read(date.year); // * Error 2
+}
+
