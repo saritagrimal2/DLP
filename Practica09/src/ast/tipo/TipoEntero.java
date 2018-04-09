@@ -96,4 +96,9 @@ public class TipoEntero extends TipoAbstracto {
 	public boolean esLogico() {
 		return true;
 	}
+	
+	@Override
+	public int numeroBytes() {
+		return 2;
+	}
 }

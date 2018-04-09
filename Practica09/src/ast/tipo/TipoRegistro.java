@@ -36,4 +36,13 @@ public class TipoRegistro extends TipoAbstracto {
 		}
 		return null;
 	}
+	
+	@Override
+	public int numeroBytes() {
+		int acumulado = 0;
+		for (Campo c: campos) {
+			acumulado += c.getTipo().numeroBytes();
+		}
+		return acumulado;
+	}
 }

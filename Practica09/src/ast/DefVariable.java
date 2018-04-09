@@ -8,6 +8,7 @@ public class DefVariable extends NodoASTAbstracto implements Definicion, Sentenc
 	private String identificador;
 	private Tipo tipo;
 	private int ambito=0;
+	private int offset=0;
 	
 	public DefVariable(int linea, int columna, String identificador, Tipo tipo) {
 		super(linea, columna);
@@ -44,12 +45,22 @@ public class DefVariable extends NodoASTAbstracto implements Definicion, Sentenc
 	public void setAmbito(int ambito) {
 		this.ambito = ambito;
 	}
+	
 
-	@Override
-	public String toString() {
-		return "DefVariable [identificador=" + identificador + ", tipo=" + tipo + "]";
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
 	}
 	
+	@Override
+	public String toString() {
+		return "DefVariable [identificador=" + identificador + ", tipo=" + tipo + ", ambito=" + ambito + ", offset="
+				+ offset + "]";
+	}
+
 	@Override
 	public Object aceptar(Visitor visitor, Object param) {
 		return visitor.visitar(this, param);

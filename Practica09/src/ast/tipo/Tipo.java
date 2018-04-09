@@ -22,5 +22,6 @@ public interface Tipo extends NodoAST {
 	
 	public boolean esLogico(); //Solo interviene el objeto impificito, en sentencia if y while.
 	//Por defecto vamos a retornar falso, en tipo entero y tipo caracter devolvemos true en el resto false.
-
+	
+	public int numeroBytes();
 }

@@ -1,9 +1,0 @@
-var integer int;
-var character char;
-var real, integer float32; // * Error 1
-
-func main() {
-  var character float32;
-  read(integer, i); // * Error 2
-  f();       // * Error 3
-}

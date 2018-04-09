@@ -42,5 +42,10 @@ public class TipoArray extends TipoAbstracto {
 		}
 	}
 	
+	@Override
+	public int numeroBytes() {
+		return tipo.numeroBytes() * tamaño;
+	}
+	
 
 }

@@ -77,4 +77,9 @@ public class TipoFloat extends TipoAbstracto{
 		}
 	}
 	
+	@Override
+	public int numeroBytes() {
+		return 4;
+	}
+	
 }

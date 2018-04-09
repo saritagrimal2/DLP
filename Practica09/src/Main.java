@@ -2,6 +2,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import ast.NodoAST;
+import generacionCodigo.visitorOffset;
 import introspector.model.IntrospectorModel;
 import introspector.view.IntrospectorTree;
 import lexico.Lexico;
@@ -34,9 +35,11 @@ public class Main {
 		
 		Visitor vI = new VisitorIdentificador();
 		Visitor vS = new VisitorSemantico();
+		Visitor vO = new visitorOffset();
 		NodoAST nodoRaiz = parser.getAST();
 		nodoRaiz.aceptar(vI, null);
 		nodoRaiz.aceptar(vS, null);
+		nodoRaiz.aceptar(vO, null);
 		
 				
 		// * Comprobamos si hubo errores

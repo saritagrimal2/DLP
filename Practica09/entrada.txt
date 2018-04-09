@@ -1,22 +1,31 @@
-// * Variables globales
-var i,n int;
+
+// * Variable Globales
+var i int;
+var r float32;
 var c char;
-var record struct {
-  intField int;
-  realField float32;
-};
 
 // * Funciones
-func f(a int, c float32) int {
-  var real float32;
-  real = c;
-  i = a;
-  return n;
+func f(pi int, pr float32) int {
+  var lr float32;
+  var li int;
+  li = pi;
+  lr = pr;
+  return pi;
 }
 
 // * Programa principal
 func main() {
-  var i int;
-  var r float32;
-  write(i, f(n,r), record.intField, record.realField);
+  var pair struct { 
+    integer int;
+    character char;
+  };
+
+  i = 3;
+  c = 'a';
+  r = 3.8;
+  pair.integer = i;
+  pair.character = c;
+  f(i, r);
 }
+
+
