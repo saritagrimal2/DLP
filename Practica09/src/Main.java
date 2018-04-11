@@ -2,7 +2,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import ast.NodoAST;
-import generacionCodigo.visitorOffset;
+import generacioncodigo.visitorOffset;
 import introspector.model.IntrospectorModel;
 import introspector.view.IntrospectorTree;
 import lexico.Lexico;
