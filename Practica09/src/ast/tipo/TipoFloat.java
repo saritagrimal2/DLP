@@ -59,6 +59,10 @@ public class TipoFloat extends TipoAbstracto{
 	public Tipo cast(Tipo expresion) {
 		if (expresion instanceof TipoFloat) {
 			return this;
+		}else if (expresion instanceof TipoEntero) {
+			return this;
+		}else if (expresion instanceof TipoCaracter) {
+			return this;
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {

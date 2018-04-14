@@ -143,7 +143,7 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		for (Sentencia s : f.getSentencias())
-			s.aceptar(this, f.getTipo()); // le paso el tipo de retorno
+			s.aceptar(this, param); 
 		f.getTipo().aceptar(this, param);
 		return null;
 	}
@@ -222,7 +222,7 @@ public abstract class VisitorAbstracto implements Visitor {
 	@Override
 	public Object visitar(Cast c, Object param) {
 		c.getExpresion().aceptar(this, param);
-		c.getTipo().aceptar(this, param);
+		c.getTipoCast().aceptar(this, param);
 		return null;
 	}
 

@@ -9,6 +9,7 @@ import ast.Aritmetica;
 import ast.Asignacion;
 import ast.Cast;
 import ast.Comparacion;
+import ast.DefFuncion;
 import ast.Expresion;
 import ast.Identificador;
 import ast.InvocacionFuncionExp;
@@ -67,6 +68,15 @@ public class VisitorSemantico extends VisitorAbstracto {
 		}
 		return null;
 	}
+	
+	@Override
+	public Object visitar(DefFuncion f, Object param) {
+		for (Sentencia s : f.getSentencias())
+			s.aceptar(this, f.getTipo()); // le paso el tipo de retorno
+		f.getTipo().aceptar(this, param);
+		return null;
+	}
+
 
 	@Override
 	public Object visitar(Return r, Object param) {
@@ -255,7 +265,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(Cast c, Object param) {
 		c.getExpresion().aceptar(this, param);
-		c.getTipo().aceptar(this, param);
+		c.getTipoCast().aceptar(this, param);
 		
 
 		Tipo inferido = c.getTipoCast().cast(c.getExpresion().getTipo());

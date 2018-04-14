@@ -10,6 +10,7 @@ func f(pi int, pr float32) int {
   var li int;
   li = pi;
   lr = pr;
+  lr = float32(2);
   return pi;
 }
 
