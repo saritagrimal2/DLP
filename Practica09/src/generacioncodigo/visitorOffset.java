@@ -14,7 +14,7 @@ public class visitorOffset extends VisitorAbstracto {
 
 	private int offsetGlobal = 0;
 	private int offsetLocal = 0;
-	private int offsetParam = 4; // Reserva memoria para unas cosas de la funcion
+	private int offsetParam = 4; 
 
 	@Override
 	public Object visitar(DefVariable v, Object param) {
@@ -29,7 +29,7 @@ public class visitorOffset extends VisitorAbstracto {
 
 		} else {
 			
-			if ((boolean)param == false) {
+			if ((boolean)param) {
 				//Parametros
 				v.setOffset(offsetParam);
 				offsetParam += v.getTipo().numeroBytes();
@@ -47,10 +47,11 @@ public class visitorOffset extends VisitorAbstracto {
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		for (Sentencia s : f.getSentencias())
-			s.aceptar(this, true);
+			s.aceptar(this, false);
 		f.getTipo().aceptar(this, param);
 
-		offsetLocal = 0; // Hay que resetear el valor cuando visitas funcion
+		offsetLocal = 0; 
+		offsetParam = 4;
 
 		return null;
 	}
@@ -60,38 +61,37 @@ public class visitorOffset extends VisitorAbstracto {
 		f.getTipoRetorno().aceptar(this, param);
 		
 		for (int i = f.getArgumentos().size()-1; i>=0; i--) {
-			f.getArgumentos().get(i).aceptar(this, false);
+			f.getArgumentos().get(i).aceptar(this, true);
 		}
 		
-		offsetParam = 0;
 		return null;
 	}
 
-	@Override
-	public Object visitar(InvocacionFuncionSent f, Object param) {
-		f.getIdentificador().aceptar(this, param);
-		for (Expresion e : f.getArgumentos()) {
-			e.aceptar(this, param);
-		}
-		offsetParam = 0;
-		return null;
-	}
-
-	@Override
-	public Object visitar(InvocacionFuncionExp f, Object param) {
-		f.getIdentificador().aceptar(this, param);
-		for (Expresion e : f.getArgumentos()) {
-			e.aceptar(this, param);
-		}
-		offsetParam = 0;
-		return null;
-	}
-
-	@Override
-	public Object visitar(Cast c, Object param) {
-		c.getExpresion().aceptar(this, param);
-		c.getTipoCast().aceptar(this, param);
-		return null;
-	}
+//	@Override
+//	public Object visitar(InvocacionFuncionSent f, Object param) {
+//		f.getIdentificador().aceptar(this, param);
+//		for (Expresion e : f.getArgumentos()) {
+//			e.aceptar(this, param);
+//		}
+//		offsetParam = 0;
+//		return null;
+//	}
+//
+//	@Override
+//	public Object visitar(InvocacionFuncionExp f, Object param) {
+//		f.getIdentificador().aceptar(this, param);
+//		for (Expresion e : f.getArgumentos()) {
+//			e.aceptar(this, param);
+//		}
+//		offsetParam = 0;
+//		return null;
+//	}
+//
+//	@Override
+//	public Object visitar(Cast c, Object param) {
+//		c.getExpresion().aceptar(this, param);
+//		c.getTipoCast().aceptar(this, param);
+//		return null;
+//	}
 
 }
