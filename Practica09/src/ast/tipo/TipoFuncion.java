@@ -47,4 +47,15 @@ public class TipoFuncion extends TipoAbstracto {
 		}
 		return null;
 	}
+	
+	@Override
+	public int numeroBytes() {
+		if (tipoRetorno instanceof TipoVoid) {
+			return 0;
+		}else if (tipoRetorno instanceof TipoError) {
+			throw new IllegalStateException();
+		}else {
+			return tipoRetorno.numeroBytes();
+		}
+	}
 }
