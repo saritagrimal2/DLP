@@ -1,65 +1,79 @@
-Un programa es una secuencia de variables y definiciones de funciones.
+Salto de Carro	Delimitador de Instrucciones.
 
-programa: lista_definiciones FUNC MAIN '(' ')' '{' lista_sentencias '}'
+'			Comentario hasta final de l√≠nea.
 
-La sintaxis de la definiciÛn de una variable es la palabra reservada var 
-seguido de una lista, con al menos un elemento, de identificadores separados por comas
-y un tipo.
+Instrucciones Push
+	pushb <ASCII_code>		Apila el caracter (1 byte) en la pila
+	push[i] <int_constant> 	Apila el entero (2 bytes) en la pila
+	pushf <real_constant> 	Apila el n√∫mero real (4 bytes) en la pila
+	pusha <int_constant> 	Apila la direcci√≥n (entero, 2 bytes) en la pila
+	push[a] bp 				Apila el valor del registro bp (2 bytes)
+
+Instrucciones load y store
+	loadb, load[i], loadf		Desapila una direccion de memoria de la pila (2 bytes). 
+								A continuaci√≥n, apila en la pila el contenido (1, 2 or 4 bytes) de la direccion extraida en el paso anterior.
+	storeb, store[i], storef	Desapila de la pila 1, 2 o 4 bytes. 
+								A continuaci√≥n, desapila de la pila una direcci√≥n de memoria (2 bytes). 
+								Se sustituye el contenido de la direcci√≥nn de memoria con el valor extraido en el primer paso.
+
+Instrucciones pop y dup
+	popb, pop[i], popf 	Desapila 1, 2 o 4 bytes, respectivamente, de la pila
+	dupb, dup[i], dupf 	Duplica 1, 2 o 4 bytes, respectivamente, del tope de la pila
+
+Instrucciones aritmeticas. 
+	Desapilan dos operandos, realizan la operacion y apilan el resultado.
+	add[i], addf 	Para suma
+	sub[i], subf 	Para resta
+	mul[i], mulf 	Para multiplicacion
+	div[i], divf 	Para division
+	mod[i], modf 	Para modulo
+
+Instrucciones de comparacion. 
+	Desapilan dos operandos, realizan la operacion y apilan el resultado.
+	gt[i], gtf 		Para comparaci√≥n "mayor que"
+	lt[i], ltf 		Para comparaci√≥n "menor que"
+	ge[i], gef 		Para comparaci√≥n "mayor o igual que"
+	le[i], lef 		Para comparaci√≥n "menor o igual que"
+	eq[i], eqf 		Para comparaci√≥n "igual que"
+	ne[i], nef 		Para comparaci√≥n "no igual que"
+
+Instrucciones logicas. 
+	Desapilan dos operandos, realizan la operacion y apilan el resultado.
+	and 			Para la operacion logica "and"
+	or 				Para la operacion logica "or"
+	not				Para la operacion logica unaria "not"
+
+Intrudcciones input y output
+	outb, out[i], outf 	Desapila un valor de la pila y lo muestra en la consola
+	inb, in[i], inf 	Lee un valor por teclado y lo apila en la pila
+
+Instrucciones de conversion
+	b2i 	Desapila un caracter y lo apila como entero.
+	i2f 	Desapila un entero y lo apila como un n√∫mero real.
+	f2i 	Desapila un n√∫mero real y lo apila como entero.
+	i2b 	Desapila un entero y lo apila como car√°cter.
+	
+Instruciones de salto
+	<id>:			Define una etiqueta para realizar saltos e invocaciones (a funciones).
+	jmp <label>		(en un if else, cuando estas al final de la rama del verdadero) Salta (incondicionalmente) a la etiqueta especificada como parametro.
+	jz <label>		(despues del if o while en la rama de lo no verdadesro) Toma un entero de la pila y salta a la etiqueta si el valor extraido es cero.
+	jnz <label>		Toma un entero de la pila y salta a la etiqueta si el valor extraido no es cero.
+
+Funciones
+	<id>:					Define una etiqueta para saltos e invocaciones (funciones)
+	call <id> 				(es como un salto)Invoca la funcion <id>
+	enter <int_constant> 	(Para las variables locales)Reserva <int_constant> bytes en el tope de la pila
+	ret 					Retorna desde la invocaci√≥n a una funci√≥n
+		<int_constant>,		La primera constante indica los bytes a devolver;
+	    <int_constant>, 	la segunda, el numero total de bytes de las variables locales; 
+        <int_constant> 		y la √∫ltima, el numero total de bytes de los parametros.				
+
+Finalizaci√≥n del programa		
+	halt 	Termina la ejecuci√≥n del programa
+
+Informacion de debug
+	#source <string_constant> 	Permite al IDE de MAPL asociaciar el codigo ensamblador con el c√≥digo en alto nivel.
+	#line <INT_CONSTANT> 		Permite al IDE de MAPL asociaciar el codigo ensamblador con la correspondiente sentencia en alto nivel.
+				
 
 
-definicion_variable: VAR identificadores tipo ';'
-identificadores:...
-tipo:...
- 
-Las definiciones de variables terminan mediante el caracter ';'
-Las funciones se definen especificando la palabra reservada func, el identificador de
-la funciÛn, una lista de parametros separados por comas entre '(' y ')' y el tipo
-de retorno. 
-El tipo de retorno y de los par·metros debe ser de tipo simple (no se permiten 
-ni arrays ni registros). El cuerpo de la funcion va entre '{' y '}'.
-El cuerpo de las funciones son secuencias de definiciones de variables seguidos 
-por una secuencia de sentencias. En ambos casos terminan con el caracter ';'
-La funcion "main" debe estar la ˙ltima, no retorna nada y no tiene par·metros.
-Los tipos simples son "int", "float32" y "char". Los arrays se pueden crear con el
- constructor de tipos "[]", siguiendo la sintaxis Go:
- var nombre_variable [t] tipo; (t es una contante entera, el tamÒo del array)
-el tamaÒo t se especifica con un entero (como en C).
-Se usa el constructor de tipos "struct" para la creacion de registros. Los 
-registros no tienen identificador, y los campos son declarados como variables 
-dentro de '{' '}'. No se permite la definicion de tipos (p.e. typedef)
-Una escritura es la palabra reservada "write" seguida de una lista de expresiones
- separadas por comas entre '(' y ')'.
-Una lectura es la palabra reservada "read" seguida de una lista de expresiones 
-separadas por comas entre '(' y ')'.
-Una asignaciÛn est· compuesta por dos expresiones separadas por el operador '='.
-La sentencia condicional "if"-"else" y la sentencia iterativa "while" siguen la 
-sintaxis del lenguaje C. Los '(' y ')' son opcionales.
-Se permite la sentencia 'return' <expresion> (la expresion es obligatoria).
-La invocaciÛn a una funciÛn ser· una nueva expresiÛn cuando retorne un valor.
-Un procedimiento (funciÛn sin tipo de retorno) ser· siempre sentencia.
-La conversiÛn explÌcita a tipos simples (cast) se realizar· utilizando la sintaxis
- del lenguaje Go: tipo '(' expresiÛn ')'
-Las expresiones est·n formadas por:
-- Constantes enteras, reales y caracter sin signo.
-- Identificadores
-- Los siguientes operadores aplicados a una o dos expresiones (por orden de precedencia descendente):
-		( )			Sin asociatividad
-		 .			A Izquierdas
-		[]			Sin asociatividad
-		- (unario)	A Derechas
-		! 			A Derechas
-		* / %		A Izquierdas
-		+ -			A Izquierdas
-> >= < <= != ==		A Izquierdas
-		&& || 		A Izquierdas
-		=			A derechas
-
-
-sentencia_else: ELSE expresion '{' lista_sentencias '}'
-			| ELSE '(' expresion ')' '{' lista_sentencias '}'
-			;
-			
-sentencia_while: WHILE expresion '{' lista_sentencias '}'
-			| WHILE '(' expresion ')' '{' lista_sentencias '}'
-			;
-			

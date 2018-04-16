@@ -25,6 +25,22 @@ public class TipoCaracter extends TipoAbstracto {
 	public Object aceptar(Visitor visitor, Object param) {
 		return visitor.visitar(this, param);
 	}
+	
+	@Override
+	public Tipo aritmetica(Tipo expresion) {
+		if (expresion instanceof TipoCaracter) {
+			return this;
+		} else if (expresion instanceof TipoError) {
+			return expresion;
+		} else {
+			return null;
+		}
+	}
+	
+	@Override
+	public Tipo aritmetica() {
+		return this;
+	}
 
 	
 	@Override

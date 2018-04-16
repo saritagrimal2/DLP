@@ -46,13 +46,11 @@ public class visitorOffset extends VisitorAbstracto {
 
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
+		offsetLocal = 0; 
+		offsetParam = 4;
 		for (Sentencia s : f.getSentencias())
 			s.aceptar(this, false);
 		f.getTipo().aceptar(this, param);
-
-		offsetLocal = 0; 
-		offsetParam = 4;
-
 		return null;
 	}
 	
