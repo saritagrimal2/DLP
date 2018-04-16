@@ -1,0 +1,32 @@
+
+// * Variable Globales
+var i int;
+var r float32;
+var c char;
+
+// * Funciones
+func f(pi int, pr float32) int {
+  var lr float32;
+  var li int;
+  li = pi;
+  lr = pr;
+  lr = float32(2);
+  return pi;
+}
+
+// * Programa principal
+func main() {
+  var pair struct { 
+    integer int;
+    character char;
+  };
+
+  i = 3;
+  c = 'a';
+  r = 3.8;
+  pair.integer = i;
+  pair.character = c;
+  f(i, r);
+}
+
+
