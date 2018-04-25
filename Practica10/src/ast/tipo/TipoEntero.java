@@ -105,4 +105,5 @@ public class TipoEntero extends TipoAbstracto {
 	public int numeroBytes() {
 		return 2;
 	}
+	
 }

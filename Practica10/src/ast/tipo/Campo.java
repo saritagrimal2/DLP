@@ -7,6 +7,7 @@ public class Campo extends NodoASTAbstracto{
 	
 	private String identificador;
 	private Tipo tipo;
+	private int offset=0;
 	
 	public Campo(int linea, int columna, String identificador, Tipo tipo) {
 		super(linea, columna);
@@ -41,6 +42,14 @@ public class Campo extends NodoASTAbstracto{
 
 	public Tipo getTipo() {
 		return tipo;
+	}
+	
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
 	}
 
 

@@ -1,13 +1,11 @@
 package generacioncodigo;
 
-import ast.Cast;
 import ast.DefFuncion;
 import ast.DefVariable;
-import ast.Expresion;
-import ast.InvocacionFuncionExp;
-import ast.InvocacionFuncionSent;
 import ast.Sentencia;
+import ast.tipo.Campo;
 import ast.tipo.TipoFuncion;
+import ast.tipo.TipoRegistro;
 import semantico.VisitorAbstracto;
 
 public class visitorOffset extends VisitorAbstracto {
@@ -64,32 +62,18 @@ public class visitorOffset extends VisitorAbstracto {
 		
 		return null;
 	}
+	
 
-//	@Override
-//	public Object visitar(InvocacionFuncionSent f, Object param) {
-//		f.getIdentificador().aceptar(this, param);
-//		for (Expresion e : f.getArgumentos()) {
-//			e.aceptar(this, param);
-//		}
-//		offsetParam = 0;
-//		return null;
-//	}
-//
-//	@Override
-//	public Object visitar(InvocacionFuncionExp f, Object param) {
-//		f.getIdentificador().aceptar(this, param);
-//		for (Expresion e : f.getArgumentos()) {
-//			e.aceptar(this, param);
-//		}
-//		offsetParam = 0;
-//		return null;
-//	}
-//
-//	@Override
-//	public Object visitar(Cast c, Object param) {
-//		c.getExpresion().aceptar(this, param);
-//		c.getTipoCast().aceptar(this, param);
-//		return null;
-//	}
+	@Override
+	public Object visitar(TipoRegistro r, Object param) {
+		int offsetCampo = 0;
+		for (Campo c : r.getCampos()) {
+			c.aceptar(this, param);
+			c.setOffset(offsetCampo);
+			offsetCampo+= c.getTipo().numeroBytes();
+		}
+		return null;
+	}
+
 
 }

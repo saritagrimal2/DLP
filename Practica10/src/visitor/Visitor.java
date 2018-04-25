@@ -1,5 +1,7 @@
 package visitor;
 
+import java.io.IOException;
+
 import ast.AccesoArray;
 import ast.AccesoCampo;
 import ast.Aritmetica;

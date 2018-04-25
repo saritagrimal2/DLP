@@ -86,4 +86,9 @@ public class TipoFloat extends TipoAbstracto{
 		return 4;
 	}
 	
+	@Override
+	public char sufijo() {
+		return 'f';
+	}
+	
 }

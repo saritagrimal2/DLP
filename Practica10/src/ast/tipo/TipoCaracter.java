@@ -105,5 +105,10 @@ public class TipoCaracter extends TipoAbstracto {
 	public int numeroBytes() {
 		return 1;
 	}
+	
+	@Override
+	public char sufijo() {
+		return 'b';
+	}
 
 }

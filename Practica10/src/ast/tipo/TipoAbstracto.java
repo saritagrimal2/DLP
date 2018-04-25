@@ -69,5 +69,10 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	public int numeroBytes() {
 		return 0;
 	}
+	
+	@Override
+	public char sufijo() {
+		return 0;
+	}
 
 }
