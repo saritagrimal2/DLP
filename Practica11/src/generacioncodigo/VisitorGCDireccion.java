@@ -2,6 +2,7 @@ package generacioncodigo;
 
 import ast.DefVariable;
 import ast.Identificador;
+import ast.tipo.TipoEntero;
 
 public class VisitorGCDireccion extends AbstractGC{
 	
@@ -19,8 +20,8 @@ public class VisitorGCDireccion extends AbstractGC{
 			gc.pusha(dv.getOffset());
 		}else {
 			gc.pushabp();
-			gc.push(i.getTipo(), dv.getOffset());
-			gc.add(i.getTipo());
+			gc.push(TipoEntero.getInstance(), dv.getOffset());
+			gc.add(TipoEntero.getInstance());
 		}
 
 		return null;

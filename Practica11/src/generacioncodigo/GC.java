@@ -86,6 +86,25 @@ public class GC {
 		writeFile(salida);
 	}
 	
+	public void aritmetica(String operador, Tipo tipo) {
+		String op = "";
+		if (operador.equals("+")) {
+			op = "add";
+		} else if (operador.equals("-")) {
+			op = "sub";
+		} else if (operador.equals("*")) {
+			op = "mul";
+		}else if (operador.equals("/")) {
+			op = "div";
+		}else if (operador.equals("%")) {
+			op = "mod";
+		}
+		
+		String salida = "\t" + op + tipo.sufijo();
+		writeFile(salida);
+	}
+
+	
 //	Instrucciones de comparacion
 	public void gt(Tipo tipo) {
 		String salida ="\tgt" + tipo.sufijo();
@@ -117,6 +136,26 @@ public class GC {
 		writeFile(salida);
 	}
 	
+	public void comparacion(String operador, Tipo tipo) {
+		String op = "";
+		if (operador == ">") {
+			op = "gt";
+		} else if (operador.equals("<")) {
+			op = "lt";
+		} else if (operador.equals(">=")) {
+			op = "ge";
+		}else if (operador.equals("<=")) {
+			op = "le";
+		}else if (operador.equals("==")) {
+			op = "eq";
+		}else if (operador.equals("!=")) {
+			op = "ne";
+		}
+		
+		String salida = "\t" + op + tipo.sufijo();
+		writeFile(salida);
+	}
+	
 //	Instrucciones logicas
 	public void and() {
 		String salida ="\tand";
@@ -130,6 +169,20 @@ public class GC {
 	
 	public void not() {
 		String salida ="\tnot";
+		writeFile(salida);
+	}
+	
+	public void logica(String operador) {
+		String op = "";
+		if (operador.equals("&&")) {
+			op = "and";
+		} else if (operador.equals("||")) {
+			op = "or";
+		} else if (operador.equals("!")) {
+			op = "not";
+		}
+		
+		String salida = "\t" + op;
 		writeFile(salida);
 	}
 	
@@ -165,10 +218,29 @@ public class GC {
 		writeFile(salida);
 	}
 	
+	public void convertir (Tipo tipo) {
+		if (tipo.sufijo() == 'b') {
+			String salida ="\tb2i";
+			writeFile(salida);
+		}
+	}
+	
 //	Instruciones de salto
-	public void etiqueta(String id)  {
-		String salida =" " + id + ":";
+	public void etiqueta(String valor)  {
+		String salida =" " + valor + ":";
 		writeFile(salida);
+	}
+	
+	public void etiqueta(int num)  {
+		String salida =" etiqueta" + num + ":";
+		writeFile(salida);
+	}
+	
+	
+	public int getEtiquetas(int n) {
+		int aux = 0;
+		aux += n;
+		return aux;
 	}
 	
 	public void jmp(String label)  {

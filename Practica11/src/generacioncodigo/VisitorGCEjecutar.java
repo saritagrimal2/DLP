@@ -10,6 +10,7 @@ import ast.Escritura;
 import ast.Lectura;
 import ast.Programa;
 import ast.Sentencia;
+import ast.tipo.TipoEntero;
 import ast.tipo.TipoFuncion;
 import ast.tipo.TipoVoid;
 
@@ -69,7 +70,13 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public Object visitar(Asignacion a, Object param) {
 		a.getExp1().aceptar(direccion, param);
 		a.getExp2().aceptar(valor, param);
-		gc.store(a.getExp1().getTipo());
+		
+		if (a.getExp2().getTipo().sufijo() == 'b') {
+			gc.store(TipoEntero.getInstance());
+		}else {
+			gc.store(a.getExp1().getTipo());
+		}
+		
 		return null;
 	}
 
@@ -78,11 +85,11 @@ public class VisitorGCEjecutar extends AbstractGC {
 
 		gc.etiqueta(f.getIdentificador());
 		
-		//Calcular offset total de locales
+		//Calcular numbytes total de locales
 		int local = 0;
 		for (Sentencia s : f.getSentencias()) {
 			if (s instanceof DefVariable) {
-				local += ((DefVariable) s).getOffset();
+				local += ((DefVariable) s).getTipo().numeroBytes();
 			}
 		}
 		
@@ -94,10 +101,10 @@ public class VisitorGCEjecutar extends AbstractGC {
 			}
 		}
 		
-		//Calcular offset total de parametros
+		//Calcular numbytes total de parametros
 		int p = 0;
 		for (DefVariable v: ((TipoFuncion)f.getTipo()).getArgumentos()) {
-			p += v.getOffset();
+			p += v.getTipo().numeroBytes();
 		}
 		
 		

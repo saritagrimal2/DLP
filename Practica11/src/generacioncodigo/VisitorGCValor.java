@@ -7,6 +7,7 @@ import ast.LiteralCaracter;
 import ast.LiteralEntero;
 import ast.LiteralReal;
 import ast.Logica;
+import ast.tipo.TipoEntero;
 
 public class VisitorGCValor extends AbstractGC{
 	
@@ -46,19 +47,14 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
 		a.getExp1().aceptar(this, param);
-		//gc.convertir(a.getExp1().getTipo(), a.get)
+		gc.convertir(a.getExp1().getTipo());
 		a.getExp2().aceptar(this, param);
+		gc.convertir(a.getExp2().getTipo());
 		
-		if (a.getOperador().equals("+") ) {
-			gc.add(a.getTipo());
-		} else if (a.getOperador().equals("-") ) {
-			gc.sub(a.getTipo());
-		} else if (a.getOperador().equals("*")) {
-			gc.mul(a.getTipo());
-		} else if (a.getOperador().equals("/")) {
-			gc.div(a.getTipo());
-		} else if (a.getOperador().equals("%")) {
-			gc.mod(a.getTipo());
+		if (a.getTipo().sufijo() == 'b') {
+			gc.aritmetica(a.getOperador(), TipoEntero.getInstance());
+		} else {
+			gc.aritmetica(a.getOperador(), a.getTipo());
 		}
 		
 		return null;
@@ -67,21 +63,11 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Comparacion c, Object param) {
 		c.getExp1().aceptar(this, param);
+		gc.convertir(c.getExp1().getTipo());
 		c.getExp2().aceptar(this, param);
+		gc.convertir(c.getExp2().getTipo());
 		
-		if (c.getOperador().equals(">")) {
-			gc.gt(c.getTipo());
-		}else if (c.getOperador().equals("<")) {
-			gc.lt(c.getTipo());
-		}else if (c.getOperador().equals(">=")) {
-			gc.ge(c.getTipo());
-		}else if (c.getOperador().equals("<=")) {
-			gc.le(c.getTipo());
-		}else if (c.getOperador().equals("==")) {
-			gc.eq(c.getTipo());
-		}else if (c.getOperador().equals("!=")) {
-			gc.ne(c.getTipo());
-		}
+		gc.comparacion(c.getOperador(), c.getTipo());
 		
 		return null;
 	}
@@ -91,13 +77,7 @@ public class VisitorGCValor extends AbstractGC{
 		l.getExp1().aceptar(this, param);
 		l.getExp2().aceptar(this, param);
 		
-		if (l.getOperador().equals("&&")) {
-			gc.and();
-		}else if (l.getOperador().equals("||")) {
-			gc.or();
-		}else if(l.getOperador().equals("!")) {
-			gc.not();
-		}
+		gc.logica(l.getOperador());
 		
 		return null;
 	}
