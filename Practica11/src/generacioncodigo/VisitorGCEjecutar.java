@@ -37,7 +37,6 @@ public class VisitorGCEjecutar extends AbstractGC {
 			if (d instanceof DefVariable) {
 				d.aceptar(this, param);
 			}
-			d.aceptar(this, param);
 		}
 
 		gc.call("main");
@@ -62,11 +61,6 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public Object visitar(Lectura l, Object param){
 		l.getExpresion().aceptar(direccion, param);
 		gc.in(l.getExpresion().getTipo());
-//		try {
-//			System.in.read();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		gc.store(l.getExpresion().getTipo());
 		return null;
 	}

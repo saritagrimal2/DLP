@@ -46,6 +46,7 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
 		a.getExp1().aceptar(this, param);
+		//gc.convertir(a.getExp1().getTipo(), a.get)
 		a.getExp2().aceptar(this, param);
 		
 		if (a.getOperador().equals("+") ) {

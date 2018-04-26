@@ -106,4 +106,9 @@ public class TipoEntero extends TipoAbstracto {
 		return 2;
 	}
 	
+	@Override
+	public char sufijo() {
+		return 'i';
+	}
+	
 }

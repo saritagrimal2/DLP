@@ -1,0 +1,66 @@
+
+// * Global variables
+var i,n,j int;
+var c char;
+
+var pair struct { 
+	integer int;
+	character char;
+};
+
+// * Functions
+func p() {}
+
+func f(r float32, e int) int {
+	var real float32;
+	var c char;
+	real = float32(pair.character)+float32(pair.integer)+r+float32(e);
+	c='0';
+	return int(c);
+}
+
+var matrix [10][10]int;
+
+func fill(row int, value int, increment int) {
+	var i,inc int;
+	i=0;
+	inc=increment;
+	while i<10 {
+		matrix[row][i]=value+inc; 
+		i=i+1;
+		inc=inc+increment;
+	}
+}
+
+func show(row int) {
+	var i int;
+	i=0;
+	while i<10 {
+		write ('(', row, ',', i, ')', ':', matrix[row][i], ' ');
+		i=i+1;
+	}
+	write ('\n');
+}
+
+
+// * Main program
+func main() {
+	var i int;
+
+	p(); // * Invocation (procedure) as statement
+	i=0;
+	pair.character='0';
+	pair.integer=int('0');
+	write (f(float32(i),int(pair.character)), '\n'); // Invocation as expression
+
+	f(1.3, 2); // * Invocation (function) as statement
+
+	i=0;
+	j=0;
+	while i<10 {
+		fill(i, j, 1); 
+		show(i);
+		i=i+1;
+		j=i*10;
+	}
+}

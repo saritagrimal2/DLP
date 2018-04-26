@@ -19,186 +19,186 @@ public class GC {
 	
 //	Instruciones Push
 	public void push(Tipo tipo, int valor)  {
-		String salida ="push" + tipo.sufijo() + " " + valor;
+		String salida ="\tpush" + tipo.sufijo() + "\t" + valor;
 		writeFile(salida);
 	}
 	
 	public void pushf(Tipo tipo, double valor)  {
-		String salida ="push" + tipo.sufijo() + " " + valor;
+		String salida ="\tpush" + tipo.sufijo() + "\t" + valor;
 		writeFile(salida);
 	}
 	
 	public void pusha(int direccion)  {
-		String salida ="pusha " + direccion;
+		String salida ="\tpusha\t" + direccion;
 		writeFile(salida);
 	}
 	
 	public void pushabp() {
-		String salida ="pushabp";
+		String salida ="\tpush\tbp";
 		writeFile(salida);
 	}
 	
 //	Instrucciones load y store
 	public void load(Tipo tipo) {
-		String salida ="load" + tipo.sufijo();
+		String salida ="\tload" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void store(Tipo tipo) {
-		String salida ="store" + tipo.sufijo();
+		String salida ="\tstore" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 //	Instrucciones pop y dup
 	public void pop(Tipo tipo) {
-		String salida ="pop" + tipo.sufijo();
+		String salida ="\tpop" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void dup(Tipo tipo) {
-		String salida ="dup" + tipo.sufijo();
+		String salida ="\tdup" + tipo.sufijo();
 		writeFile(salida);
 	}
 
 //	Instrucciones aritmeticas
 	public void add(Tipo tipo)  {
-		String salida ="add" + tipo.sufijo();
+		String salida ="\tadd" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void sub(Tipo tipo){
-		String salida ="sub" + tipo.sufijo();
+		String salida ="\tsub" + tipo.sufijo();
 		writeFile(salida);
 	}
 
 	public void mul(Tipo tipo){
-		String salida ="mul" + tipo.sufijo();
+		String salida ="\tmul" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void div(Tipo tipo){
-		String salida ="div" + tipo.sufijo();
+		String salida ="\tdiv" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void mod(Tipo tipo) {
-		String salida ="mod" + tipo.sufijo();
+		String salida ="\tmod" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 //	Instrucciones de comparacion
 	public void gt(Tipo tipo) {
-		String salida ="gt" + tipo.sufijo();
+		String salida ="\tgt" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void lt(Tipo tipo) {
-		String salida ="lt" + tipo.sufijo();
+		String salida ="\tlt" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void ge(Tipo tipo) {
-		String salida ="ge" + tipo.sufijo();
+		String salida ="\tge" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void le(Tipo tipo) {
-		String salida ="le" + tipo.sufijo();
+		String salida ="\tle" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void eq(Tipo tipo) {
-		String salida ="eq" + tipo.sufijo();
+		String salida ="\teq" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void ne(Tipo tipo) {
-		String salida ="ne" + tipo.sufijo();
+		String salida ="\tne" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 //	Instrucciones logicas
 	public void and() {
-		String salida ="and";
+		String salida ="\tand";
 		writeFile(salida);
 	}
 	
 	public void or() {
-		String salida ="or";
+		String salida ="\tor";
 		writeFile(salida);
 	}
 	
 	public void not() {
-		String salida ="not";
+		String salida ="\tnot";
 		writeFile(salida);
 	}
 	
 //	Instrucciones input y output 
 	public void out(Tipo tipo)  {
-		String salida ="out" + tipo.sufijo();
+		String salida ="\tout" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 	public void in(Tipo tipo)  {
-		String salida ="in" + tipo.sufijo();
+		String salida ="\tin" + tipo.sufijo();
 		writeFile(salida);
 	}
 	
 //	Instrucciones de conversion
 	public void b2i()  {
-		String salida ="b2i";
+		String salida ="\tb2i";
 		writeFile(salida);
 	}
 	
 	public void i2f()  {
-		String salida ="i2f";
+		String salida ="\ti2f";
 		writeFile(salida);
 	}
 	
 	public void f2i()  {
-		String salida ="f2i";
+		String salida ="\tf2i";
 		writeFile(salida);
 	}
 	
 	public void i2b()  {
-		String salida ="i2b";
+		String salida ="\ti2b";
 		writeFile(salida);
 	}
 	
 //	Instruciones de salto
 	public void etiqueta(String id)  {
-		String salida ="<" + id + ">";
+		String salida =" " + id + ":";
 		writeFile(salida);
 	}
 	
 	public void jmp(String label)  {
-		String salida ="jmp <" + label + ">";
+		String salida ="\tjmp " + label + ":";
 		writeFile(salida);
 	}
 	
 	public void jz(String label)  {
-		String salida ="jz <" + label + ">";
+		String salida ="\tjz " + label + ":";
 		writeFile(salida);
 	}
 	
 	public void jnz(String label)  {
-		String salida ="jnz <" + label + ">";
+		String salida ="\tjnz " + label + ":";
 		writeFile(salida);
 	}
 	
 //	Funciones
 	public void call(String id)  {
-		String salida ="call <" + id + ">";
+		String salida ="call " + id;
 		writeFile(salida);
 	}
 	
 	public void enter(int constante)  {
-		String salida ="enter <" + constante + ">";
+		String salida ="\tenter\t" + constante;
 		writeFile(salida);
 	}
 	
 	public void ret(int consReturn, int consLocal, int consParam)  {
-		String salida ="ret <" + consReturn + ">" + "<" + consLocal + ">" + "<" + consParam + ">";
+		String salida ="\tret " + consReturn + ", " + consLocal + ", " + consParam;
 		writeFile(salida);
 	}
 	
@@ -210,12 +210,12 @@ public class GC {
 	
 //	Informacion de debug
 	public void source(String constante)  {
-		String salida ="#source <"+ constante +">";
+		String salida ="#source \""+ constante +"\"";
 		writeFile(salida);
 	}
 	
 	public void line(int constante)  {
-		String salida ="#line	"+ constante;
+		String salida ="#line\t"+ constante;
 		writeFile(salida);
 	}
 	

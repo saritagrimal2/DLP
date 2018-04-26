@@ -1,23 +1,11 @@
 // * Variable Globales
 var i int;
-var r float32;
-var c char;
 
-// * Funciones
-func f(pi int, pr float32) int {
-  var lr float32;
-  var li int;
-  li = pi;
-  lr = pr;
-  return pi;
-}
 
 // * Programa principal
 func main() {
 
   i = 3;
-  c = 'a';
-  r = 3.8;
 
 }
 
