@@ -1,0 +1,20 @@
+var v [10]float32;
+
+// * Main program
+func main() {
+	var value float32;
+	var i,j int;
+	var w [4][5]int;
+	
+	read(value);
+		
+	i=0;	
+	while (i<10) {
+		v[2]=value; // * lvalue
+		write(i,':',v[1], ' ');
+		i=i+1;
+	}
+	write('\n');
+
+}
+	

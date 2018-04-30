@@ -1,0 +1,24 @@
+#source "entrada.peque.txt"
+call main
+halt
+ main:
+	enter	48
+	push	bp
+	pushi	-4
+	addi
+	inf
+	storef
+	push	bp
+	pushi	-6
+	addi
+	pushi	0
+	storei
+ etiqueta0:
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	10
+	lti
+	jz 1:
+	pusha	0
