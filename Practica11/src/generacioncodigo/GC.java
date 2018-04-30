@@ -87,21 +87,17 @@ public class GC {
 	}
 	
 	public void aritmetica(String operador, Tipo tipo) {
-		String op = "";
 		if (operador.equals("+")) {
-			op = "add";
+			add(tipo);
 		} else if (operador.equals("-")) {
-			op = "sub";
+			sub(tipo);
 		} else if (operador.equals("*")) {
-			op = "mul";
+			mul(tipo);
 		}else if (operador.equals("/")) {
-			op = "div";
+			div(tipo);
 		}else if (operador.equals("%")) {
-			op = "mod";
+			mod(tipo);
 		}
-		
-		String salida = "\t" + op + tipo.sufijo();
-		writeFile(salida);
 	}
 
 	
@@ -137,23 +133,19 @@ public class GC {
 	}
 	
 	public void comparacion(String operador, Tipo tipo) {
-		String op = "";
 		if (operador == ">") {
-			op = "gt";
+			gt(tipo);
 		} else if (operador.equals("<")) {
-			op = "lt";
+			lt(tipo);
 		} else if (operador.equals(">=")) {
-			op = "ge";
+			ge(tipo);
 		}else if (operador.equals("<=")) {
-			op = "le";
+			le(tipo);
 		}else if (operador.equals("==")) {
-			op = "eq";
+			eq(tipo);
 		}else if (operador.equals("!=")) {
-			op = "ne";
+			ne(tipo);
 		}
-		
-		String salida = "\t" + op + tipo.sufijo();
-		writeFile(salida);
 	}
 	
 //	Instrucciones logicas
@@ -173,17 +165,13 @@ public class GC {
 	}
 	
 	public void logica(String operador) {
-		String op = "";
 		if (operador.equals("&&")) {
-			op = "and";
+			and();
 		} else if (operador.equals("||")) {
-			op = "or";
+			or();
 		} else if (operador.equals("!")) {
-			op = "not";
+			not();
 		}
-		
-		String salida = "\t" + op;
-		writeFile(salida);
 	}
 	
 //	Instrucciones input y output 
@@ -218,12 +206,23 @@ public class GC {
 		writeFile(salida);
 	}
 	
-	public void convertir (Tipo tipo) {
-		if (tipo.sufijo() == 'b') {
-			String salida ="\tb2i";
-			writeFile(salida);
-		}
-	}
+//	public void convertir (Tipo tipoE1, Tipo tipoE2) {
+//		switch (tipoE1.sufijo()) {
+//			case 'i': 
+//				if (tipoE2.sufijo() == 'b') {
+//					i2b();
+//				}else if(tipoE2.sufijo() == 'f') {
+//					i2f();
+//				}
+//			case 'b': 
+//				if (tipoE2.sufijo() == 'f') {
+//					b2i();
+//					i2f();
+//				}else if(tipoE2.sufijo() == 'i') {
+//					b2i();
+//				}
+//		}
+//	}
 	
 //	Instruciones de salto
 	public void etiqueta(String valor)  {
@@ -239,16 +238,15 @@ public class GC {
 	
 	public int getEtiquetas(int n) {
 		int aux = 0;
-		aux += n;
 		return aux;
 	}
 	
-	public void jmp(String label)  {
+	public void jmp(int label)  {
 		String salida ="\tjmp " + label + ":";
 		writeFile(salida);
 	}
 	
-	public void jz(String label)  {
+	public void jz(int label)  {
 		String salida ="\tjz " + label + ":";
 		writeFile(salida);
 	}

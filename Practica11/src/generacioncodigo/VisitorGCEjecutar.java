@@ -1,6 +1,5 @@
 package generacioncodigo;
 
-import java.io.IOException;
 
 import ast.Asignacion;
 import ast.DefFuncion;
@@ -10,7 +9,8 @@ import ast.Escritura;
 import ast.Lectura;
 import ast.Programa;
 import ast.Sentencia;
-import ast.tipo.TipoEntero;
+import ast.sentenciaIf;
+import ast.sentenciaWhile;
 import ast.tipo.TipoFuncion;
 import ast.tipo.TipoVoid;
 
@@ -24,7 +24,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public VisitorGCEjecutar(String fentrada, String fSalida) {
 		this.fentrada = fentrada;
 		gc = new GC(fSalida);
-		direccion = new VisitorGCDireccion(gc);
+		direccion = new VisitorGCDireccion(valor, gc);
 		valor = new VisitorGCValor(direccion, gc);
 	}	 
 	
@@ -71,11 +71,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		a.getExp1().aceptar(direccion, param);
 		a.getExp2().aceptar(valor, param);
 		
-		if (a.getExp2().getTipo().sufijo() == 'b') {
-			gc.store(TipoEntero.getInstance());
-		}else {
-			gc.store(a.getExp1().getTipo());
-		}
+		gc.store(a.getExp1().getTipo());
 		
 		return null;
 	}
@@ -113,6 +109,40 @@ public class VisitorGCEjecutar extends AbstractGC {
 		}else {
 			gc.ret(f.getTipo().numeroBytes(), local, p);
 		}
+
+		return null;
+	}
+	
+	@Override
+	public Object visitar(sentenciaWhile w, Object param) {
+		int etiqueta = gc.getEtiquetas(2);
+		gc.etiqueta(etiqueta);
+		w.getExpresion().aceptar(valor, param);
+		gc.jz(etiqueta+1);
+		
+		for (Sentencia s: w.getSentencias()) {
+			s.aceptar(this, param);
+		}
+		gc.jmp(etiqueta);
+		gc.etiqueta(etiqueta+1);
+
+		return null;
+	}
+
+	@Override
+	public Object visitar(sentenciaIf i, Object param) {
+		int etiqueta = gc.getEtiquetas(2);
+		i.getExpresion().aceptar(valor, param);
+		gc.jz(etiqueta);
+		for (Sentencia s: i.getSentencias()) {
+			s.aceptar(this, param);
+		}
+		gc.jmp(etiqueta+1);
+		gc.etiqueta(etiqueta);
+		for (Sentencia s: i.getSentenciaElse()) {
+			s.aceptar(this, param);
+		}
+		gc.etiqueta(etiqueta+1);
 
 		return null;
 	}

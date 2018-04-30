@@ -1,9 +1,0 @@
-#source "entrada.peque.txt"
-call main
-halt
- main:
-	enter	0
-	pusha	0
-	pushi	3
-	storei
-	ret 0, 0, 0
