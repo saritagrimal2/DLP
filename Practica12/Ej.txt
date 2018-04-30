@@ -37,3 +37,10 @@ ejecutar[[Asignacion: sentencia -> exp_1 exp_2]]
 	valor[[exp2]]
 	<store>
 
+
+
+----ejecutar[[return:sentencia -> expresion]] (defFuncion)
+		valor[[expresion]]
+		gc.ret (defFuncion.getTamTipoRet, defFuncion.getTamVarLocales, defFuncion.getTamParam)
+
+----ejecutar[[sentencia]](defFuncion)

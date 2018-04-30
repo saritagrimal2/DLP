@@ -45,4 +45,14 @@ public class TipoRegistro extends TipoAbstracto {
 		}
 		return acumulado;
 	}
+	
+	@Override
+	public Campo get(String nombre) {
+		for (Campo c: campos) {
+			if (nombre.equals(c.getIdentificador())) {
+				return c;
+			}
+		}
+		return null;
+	}
 }

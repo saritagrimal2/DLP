@@ -8,6 +8,7 @@ import ast.tipo.Tipo;
 public class GC {
 	
 	private FileWriter fsalida;
+	private int etiqueta = 0;
 
 	public GC(String salida) {
 		try {
@@ -237,7 +238,8 @@ public class GC {
 	
 	
 	public int getEtiquetas(int n) {
-		int aux = 0;
+		int aux = this.etiqueta;
+		aux += n;
 		return aux;
 	}
 	

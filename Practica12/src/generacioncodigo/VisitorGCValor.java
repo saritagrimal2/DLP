@@ -48,8 +48,13 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
 		a.getExp1().aceptar(this, param);
+		if (a.getExp1().getTipo().sufijo() =='b') {
+			gc.b2i();
+		}
 		a.getExp2().aceptar(this, param);
-		
+		if (a.getExp2().getTipo().sufijo() =='b') {
+			gc.b2i();
+		}
 		gc.aritmetica(a.getOperador(), a.getTipo());
 		
 		return null;
@@ -58,8 +63,13 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Comparacion c, Object param) {
 		c.getExp1().aceptar(this, param);
+		if (c.getExp1().getTipo().sufijo() =='b') {
+			gc.b2i();
+		}
 		c.getExp2().aceptar(this, param);
-		
+		if (c.getExp2().getTipo().sufijo() =='b') {
+			gc.b2i();
+		}
 		gc.comparacion(c.getOperador(), c.getTipo());
 		
 		return null;

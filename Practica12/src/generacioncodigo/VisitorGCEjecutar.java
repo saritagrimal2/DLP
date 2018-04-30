@@ -24,7 +24,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public VisitorGCEjecutar(String fentrada, String fSalida) {
 		this.fentrada = fentrada;
 		gc = new GC(fSalida);
-		direccion = new VisitorGCDireccion(valor, gc);
+		direccion = new VisitorGCDireccion(gc);
 		valor = new VisitorGCValor(direccion, gc);
 	}	 
 	

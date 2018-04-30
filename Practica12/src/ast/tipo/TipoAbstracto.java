@@ -74,5 +74,10 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	public char sufijo() {
 		return 0;
 	}
+	
+	@Override
+	public Campo get(String nombre) {
+		return null;
+	}
 
 }

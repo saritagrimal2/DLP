@@ -2,23 +2,30 @@
 call main
 halt
  main:
-	enter	48
+	enter	2
 	push	bp
-	pushi	-4
+	pushi	-1
 	addi
-	inf
-	storef
+	pushb	97
+	storeb
 	push	bp
-	pushi	-6
+	pushi	-2
 	addi
-	pushi	0
-	storei
- etiqueta0:
+	pushb	98
+	storeb
 	push	bp
-	pushi	-6
+	pushi	-1
 	addi
-	loadi
-	pushi	10
-	lti
-	jz 1:
-	pusha	0
+	push	bp
+	pushi	-1
+	addi
+	loadb
+	b2i
+	push	bp
+	pushi	-2
+	addi
+	loadb
+	b2i
+	addi
+	storeb
+	ret 0, 2, 0

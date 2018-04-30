@@ -31,4 +31,6 @@ public interface Tipo extends NodoAST {
 	public int numeroBytes();
 
 	public char sufijo();
+	
+	public Campo get(String identificador);
 }
