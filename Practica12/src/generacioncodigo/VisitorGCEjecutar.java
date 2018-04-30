@@ -18,6 +18,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 
 	private String fentrada;
 	private VisitorGCValor valor;
+
 	private VisitorGCDireccion direccion;
 	private GC gc;
 
@@ -26,6 +27,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		gc = new GC(fSalida);
 		direccion = new VisitorGCDireccion(gc);
 		valor = new VisitorGCValor(direccion, gc);
+		direccion.setValor(valor);
 	}	 
 	
 
@@ -37,6 +39,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		for (Definicion d : p.getDefinicones()) {
 			if (d instanceof DefVariable) {
 				d.aceptar(this, param);
+				gc.comentarioGlobales(d);
 			}
 		}
 

@@ -1,31 +1,121 @@
 #source "entrada.peque.txt"
+ '	 var c char (offset 0)
+ '	 var a int (offset 1)
+ '	 var r float32 (offset 3)
 call main
 halt
  main:
-	enter	2
-	push	bp
-	pushi	-1
-	addi
+	enter	4
+	pusha	0
 	pushb	97
 	storeb
+	pusha	0
+	loadb
+	outb
+	pushb	10
+	outb
 	push	bp
 	pushi	-2
 	addi
-	pushb	98
-	storeb
+	pushi	1
+	storei
 	push	bp
-	pushi	-1
+	pushi	-4
 	addi
-	push	bp
-	pushi	-1
-	addi
-	loadb
+	pushb	48
 	b2i
+	pushi	3
+	muli
+	storei
 	push	bp
 	pushi	-2
 	addi
-	loadb
+	loadi
+	outi
+	pushb	32
+	outb
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	outi
+	pushb	10
+	outb
+	pusha	3
+	inf
+	storef
+	pushi	2
+	i2f
+	pusha	3
+	loadf
+	mulf
+	outf
+	pushb	10
+	outb
+	pushi	3
+	i2f
+	pushf	4.5
+	subf
+	outf
+	pushb	32
+	outb
+	pushb	48
+	b2i
+	i2f
+	pushf	48.0
+	divf
+	outf
+	pushb	32
+	outb
+	pushb	48
+	b2i
+	pushb	49
+	b2i
+	modi
+	outi
+	pushb	32
+	outb
+	pushb	48
+	b2i
+	pushb	49
 	b2i
 	addi
-	storeb
-	ret 0, 2, 0
+	outi
+	pushb	10
+	outb
+	pushi	1
+	pushi	2
+	lti
+	outi
+	pushb	32
+	outb
+	pushi	4
+	pushi	3
+	gei
+	outi
+	pushb	32
+	outb
+	pushi	5
+	pushi	5
+	eqi
+	outi
+	pushb	32
+	outb
+	pushi	1
+	pushi	2
+	and
+	outi
+	pushb	32
+	outb
+	pushi	0
+	pushi	3
+	or
+	outi
+	pushb	32
+	outb
+	pushi	0
+	not
+	outi
+	pushb	10
+	outb
+	ret 0, 4, 0

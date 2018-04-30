@@ -18,7 +18,7 @@ public class TipoCaracter extends TipoAbstracto {
 
 	@Override
 	public String toString() {
-		return "TipoCaracter []";
+		return "char";
 	}
 	
 	@Override

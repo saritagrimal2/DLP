@@ -19,7 +19,7 @@ public class TipoFloat extends TipoAbstracto{
 
 	@Override
 	public String toString() {
-		return "TipoFloat []";
+		return "float32";
 	}
 	
 	@Override

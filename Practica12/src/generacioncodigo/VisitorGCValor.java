@@ -3,12 +3,14 @@ package generacioncodigo;
 import ast.AccesoArray;
 import ast.AccesoCampo;
 import ast.Aritmetica;
+import ast.Cast;
 import ast.Comparacion;
 import ast.Identificador;
 import ast.LiteralCaracter;
 import ast.LiteralEntero;
 import ast.LiteralReal;
 import ast.Logica;
+import ast.Negacion;
 
 public class VisitorGCValor extends AbstractGC{
 	
@@ -55,6 +57,8 @@ public class VisitorGCValor extends AbstractGC{
 		if (a.getExp2().getTipo().sufijo() =='b') {
 			gc.b2i();
 		}
+		//Cuando son char, el tipo de aritmetca será de tipo entero
+		//Cambiado en clase TipoCaracter
 		gc.aritmetica(a.getOperador(), a.getTipo());
 		
 		return null;
@@ -86,6 +90,13 @@ public class VisitorGCValor extends AbstractGC{
 	}
 	
 	@Override
+	public Object visitar(Negacion n, Object param) {
+		n.getExpresion().aceptar(this, param);
+		gc.not();
+		return null;
+	}
+	
+	@Override
 	public Object visitar(AccesoArray a, Object param) {
 		a.aceptar(direccion, param);
 		gc.load(a.getTipo());
@@ -96,6 +107,13 @@ public class VisitorGCValor extends AbstractGC{
 	public Object visitar(AccesoCampo c, Object param) {
 		c.aceptar(direccion, param);
 		gc.load(c.getTipo());
+		return null;
+	}
+	
+	@Override
+	public Object visitar(Cast c, Object param) {
+		c.getExpresion().aceptar(this, param);
+		gc.cast(c.getExpresion().getTipo(), c.getTipoCast());
 		return null;
 	}
 	

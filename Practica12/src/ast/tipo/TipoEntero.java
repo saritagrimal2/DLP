@@ -18,7 +18,7 @@ public class TipoEntero extends TipoAbstracto {
 
 	@Override
 	public String toString() {
-		return "TipoEntero []";
+		return "int";
 	}
 	
 	@Override

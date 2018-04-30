@@ -3,7 +3,12 @@ package generacioncodigo;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import ast.DefVariable;
+import ast.Definicion;
 import ast.tipo.Tipo;
+import ast.tipo.TipoCaracter;
+import ast.tipo.TipoEntero;
+import ast.tipo.TipoFloat;
 
 public class GC {
 	
@@ -170,9 +175,7 @@ public class GC {
 			and();
 		} else if (operador.equals("||")) {
 			or();
-		} else if (operador.equals("!")) {
-			not();
-		}
+		} 
 	}
 	
 //	Instrucciones input y output 
@@ -207,6 +210,21 @@ public class GC {
 		writeFile(salida);
 	}
 	
+	public void cast(Tipo tipoExp, Tipo tipoCast ) {
+		if (tipoExp.equals(TipoCaracter.getInstance()) && tipoCast.equals(TipoEntero.getInstance()) ) {
+			b2i();
+		}else if(tipoExp.equals(TipoEntero.getInstance()) && tipoCast.equals(TipoFloat.getInstance())) {
+			i2f();
+		}else if(tipoExp.equals(TipoFloat.getInstance()) && tipoCast.equals(TipoEntero.getInstance())) {
+			f2i();
+		}else if(tipoExp.equals(TipoEntero.getInstance()) && tipoCast.equals(TipoCaracter.getInstance())) {
+			i2b();
+		}else if(tipoExp.equals(TipoCaracter.getInstance()) && tipoCast.equals(TipoFloat.getInstance())) {
+			b2i();
+			i2f();
+		}
+	}
+	
 //	public void convertir (Tipo tipoE1, Tipo tipoE2) {
 //		switch (tipoE1.sufijo()) {
 //			case 'i': 
@@ -239,22 +257,22 @@ public class GC {
 	
 	public int getEtiquetas(int n) {
 		int aux = this.etiqueta;
-		aux += n;
+		this.etiqueta += n;
 		return aux;
 	}
 	
 	public void jmp(int label)  {
-		String salida ="\tjmp " + label + ":";
+		String salida ="\tjmp " + "etiqueta" + label;
 		writeFile(salida);
 	}
 	
 	public void jz(int label)  {
-		String salida ="\tjz " + label + ":";
+		String salida ="\tjz " +  "etiqueta" +label;
 		writeFile(salida);
 	}
 	
 	public void jnz(String label)  {
-		String salida ="\tjnz " + label + ":";
+		String salida ="\tjnz " +  "etiqueta" +label;
 		writeFile(salida);
 	}
 	
@@ -291,6 +309,13 @@ public class GC {
 		writeFile(salida);
 	}
 	
+	public void comentarioGlobales(Definicion d) {
+		String salida =" '\t var "+ d.getIdentificador() + " " + d.getTipo() 
+						+ " (offset " + ((DefVariable) d).getOffset()+")";
+		writeFile(salida);
+		
+	}
+	
 //	 Metodo que escribe
 	 public void writeFile(String value) {
 	  try {
@@ -300,6 +325,8 @@ public class GC {
 	   e.printStackTrace();
 	  }
 	 }
+
+
 	
 	
 }

@@ -9,6 +9,11 @@ import ast.tipo.TipoEntero;
 public class VisitorGCDireccion extends AbstractGC{
 	
 	private GC gc;
+	private VisitorGCValor valor;
+	
+	public void setValor(VisitorGCValor valor) {
+		this.valor = valor;
+	}
 
 	public VisitorGCDireccion(GC gc) {
 		this.gc = gc;
@@ -18,7 +23,7 @@ public class VisitorGCDireccion extends AbstractGC{
 	public Object visitar(Identificador i, Object param) {
 		
 		DefVariable dv = (DefVariable) i.getDefinicion();
-		if(dv.getOffset() == 0) {
+		if(dv.getAmbito() == 0) {
 			gc.pusha(dv.getOffset());
 		}else {
 			gc.pushabp();
@@ -32,7 +37,7 @@ public class VisitorGCDireccion extends AbstractGC{
 	@Override
 	public Object visitar(AccesoArray a, Object param) {
 		a.getExp1().aceptar(this, param);
-		//a.getExp2().aceptar(valor, param);
+		a.getExp2().aceptar(valor, param);
 		gc.push(TipoEntero.getInstance(), a.getTipo().numeroBytes());
 		gc.mul(TipoEntero.getInstance());
 		gc.add(TipoEntero.getInstance()); 
