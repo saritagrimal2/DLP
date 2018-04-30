@@ -1,28 +1,47 @@
-var c char;
-var a int;
-var r float32;
+var v [10]float32;
 
+// * Main program
 func main() {
- var a, i int;
- 
- c='a';
- write(c,'\n');
+	var value float32;
+	var i,j int;
+	var w [4][5]int;
+	var date struct { 
+		day int;
+		month, year int;
+	};
+	
+	read(date.day); // * lvalue
+	date.year = int('a'); 
+	date.month = date.day*date.year%12+1;
+	write(date.day, '\n', date.month, '\n', float32(date.year), '\n');
+	
+	read(value);
+		
+	i=0;	
+	while (i<10) {
+		v[i]=value; // * lvalue
+		write(i,':',v[i], ' ');
+		if (i%2) {
+			write('o','d','d','\n');
+		}
+		else { 
+			write('e','v','e','n','\n');
+		}
+		i=i+1;
+	}
+	write('\n');
 
- a=1;
- i=int('0')*3;
- write(a, ' ', i, '\n');
-  
- read (r);
- write(float32(2)*r, '\n');
- 
- write(float32(3)-4.5, ' ', 
-            float32('0')/48.0, ' ',
-            '0'%'1', ' ',
-            '0'+'1', '\n');
- write (1<2, ' ',
-       4>=3, ' ',
-       5==5, ' ',
-       1&&2, ' ',
-       0||3, ' ',
-       !0, '\n');
+	i=0;
+	while (i<4) {
+		j=0;
+		while (j<5) {
+			w[i][j]=i+j;
+			write(w[i][j], ' ');
+			j=j+1;
+		}
+		write('\n');
+		i=i+1;
+	}
+
 }
+	

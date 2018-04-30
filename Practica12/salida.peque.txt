@@ -1,121 +1,265 @@
 #source "entrada.peque.txt"
- '	 var c char (offset 0)
- '	 var a int (offset 1)
- '	 var r float32 (offset 3)
+ '	 var v TipoArray [tamaño=10, tipo=float32] (offset 0)
 call main
 halt
  main:
-	enter	4
-	pusha	0
+	enter	54
+	push	bp
+	pushi	-54
+	addi
+	pushi	0
+	addi
+	ini
+	storei
+	push	bp
+	pushi	-54
+	addi
+	pushi	4
+	addi
 	pushb	97
-	storeb
-	pusha	0
-	loadb
-	outb
-	pushb	10
-	outb
-	push	bp
-	pushi	-2
-	addi
-	pushi	1
-	storei
-	push	bp
-	pushi	-4
-	addi
-	pushb	48
 	b2i
-	pushi	3
-	muli
 	storei
 	push	bp
-	pushi	-2
+	pushi	-54
+	addi
+	pushi	2
+	addi
+	push	bp
+	pushi	-54
+	addi
+	pushi	0
 	addi
 	loadi
-	outi
-	pushb	32
-	outb
 	push	bp
-	pushi	-4
+	pushi	-54
+	addi
+	pushi	4
+	addi
+	loadi
+	muli
+	pushi	12
+	modi
+	pushi	1
+	addi
+	storei
+	push	bp
+	pushi	-54
+	addi
+	pushi	0
 	addi
 	loadi
 	outi
 	pushb	10
 	outb
-	pusha	3
+	push	bp
+	pushi	-54
+	addi
+	pushi	2
+	addi
+	loadi
+	outi
+	pushb	10
+	outb
+	push	bp
+	pushi	-54
+	addi
+	pushi	4
+	addi
+	loadi
+	i2f
+	outf
+	pushb	10
+	outb
+	push	bp
+	pushi	-4
+	addi
 	inf
 	storef
-	pushi	2
-	i2f
-	pusha	3
-	loadf
-	mulf
-	outf
-	pushb	10
-	outb
-	pushi	3
-	i2f
-	pushf	4.5
-	subf
-	outf
-	pushb	32
-	outb
-	pushb	48
-	b2i
-	i2f
-	pushf	48.0
-	divf
-	outf
-	pushb	32
-	outb
-	pushb	48
-	b2i
-	pushb	49
-	b2i
-	modi
-	outi
-	pushb	32
-	outb
-	pushb	48
-	b2i
-	pushb	49
-	b2i
+	push	bp
+	pushi	-6
 	addi
-	outi
-	pushb	10
-	outb
-	pushi	1
-	pushi	2
+	pushi	0
+	storei
+ etiqueta0:
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	10
 	lti
-	outi
-	pushb	32
-	outb
+	jz etiqueta1
+	pusha	0
+	push	bp
+	pushi	-6
+	addi
+	loadi
 	pushi	4
-	pushi	3
-	gei
+	muli
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadf
+	storef
+	push	bp
+	pushi	-6
+	addi
+	loadi
 	outi
+	pushb	58
+	outb
+	pusha	0
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	4
+	muli
+	addi
+	loadf
+	outf
 	pushb	32
 	outb
-	pushi	5
-	pushi	5
-	eqi
-	outi
-	pushb	32
-	outb
-	pushi	1
+	push	bp
+	pushi	-6
+	addi
+	loadi
 	pushi	2
-	and
-	outi
-	pushb	32
+	modi
+	jz etiqueta2
+	pushb	111
 	outb
-	pushi	0
-	pushi	3
-	or
-	outi
-	pushb	32
+	pushb	100
 	outb
-	pushi	0
-	not
-	outi
+	pushb	100
+	outb
 	pushb	10
 	outb
-	ret 0, 4, 0
+	jmp etiqueta3
+ etiqueta2:
+	pushb	101
+	outb
+	pushb	118
+	outb
+	pushb	101
+	outb
+	pushb	110
+	outb
+	pushb	10
+	outb
+ etiqueta3:
+	push	bp
+	pushi	-6
+	addi
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta0
+ etiqueta1:
+	pushb	10
+	outb
+	push	bp
+	pushi	-6
+	addi
+	pushi	0
+	storei
+ etiqueta4:
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	4
+	lti
+	jz etiqueta5
+	push	bp
+	pushi	-8
+	addi
+	pushi	0
+	storei
+ etiqueta6:
+	push	bp
+	pushi	-8
+	addi
+	loadi
+	pushi	5
+	lti
+	jz etiqueta7
+	push	bp
+	pushi	-48
+	addi
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	10
+	muli
+	addi
+	push	bp
+	pushi	-8
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	push	bp
+	pushi	-8
+	addi
+	loadi
+	addi
+	storei
+	push	bp
+	pushi	-48
+	addi
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	10
+	muli
+	addi
+	push	bp
+	pushi	-8
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
+	pushb	32
+	outb
+	push	bp
+	pushi	-8
+	addi
+	push	bp
+	pushi	-8
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta6
+ etiqueta7:
+	pushb	10
+	outb
+	push	bp
+	pushi	-6
+	addi
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta4
+ etiqueta5:
+	ret 0, 54, 0
