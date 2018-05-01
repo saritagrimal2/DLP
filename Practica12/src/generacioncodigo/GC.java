@@ -222,6 +222,9 @@ public class GC {
 		}else if(tipoExp.equals(TipoCaracter.getInstance()) && tipoCast.equals(TipoFloat.getInstance())) {
 			b2i();
 			i2f();
+		}else if(tipoExp.equals(TipoFloat.getInstance()) && tipoCast.equals(TipoCaracter.getInstance())) {
+			f2i();
+			i2b();
 		}
 	}
 	
