@@ -1,358 +1,532 @@
-
-#source "entrada.peque.txt"
-
-	' * var v [10, float32] (offset 0)
-
-' Invocation to the main function
-	call main
-	halt
-
-
- main:
-	'  * Parameters
-	'  * Local variables
-	' * var value float32 (offset -4)
-	' * var i int (offset -6)
-	' * var j int (offset -8)
-	' * var w [4, [5, int]] (offset -48)
-	' * var date ((day x int)x(month x int)x(year x int)) (offset -54)
-	enter 54
-	'  * Function body
-
-#line 13
+#source "entrada.txt"
+ '	 var pair TipoRegistro [campos=[Campo [identificador=integer, tipo=int], Campo [identificador=character, tipo=char]]] (offset 0)
+ '	 var acme TipoArray [tamaño=2, tipo=TipoRegistro [campos=[Campo [identificador=employees, tipo=TipoArray [tamaño=2, tipo=TipoRegistro [campos=[Campo [identificador=age, tipo=int]]]]]]]] (offset 3)
+ '	 var fibonacci TipoArray [tamaño=8, tipo=TipoArray [tamaño=3, tipo=int]] (offset 11)
+call main
+halt
+ p:
+	enter	0
+	ret 0, 0, 0
+ f:
+	enter	7
 	push	bp
-	push	-54
+	pushi	-4
 	addi
-	push	0
-	addi
-	ini
-	storei
-
-#line 14
 	push	bp
-	push	-54
+	pushi	6
 	addi
-	push	4
+	loadf
+	pushf	10.0
+	mulf
+	storef
+	push	bp
+	pushi	-5
 	addi
-	pushb	97
+	pushb	48
+	storeb
+	push	bp
+	pushi	4
+	addi
+	loadi
+	pushi	256
+	lti
+	jz etiqueta0
+	push	bp
+	pushi	-5
+	addi
+	push	bp
+	pushi	4
+	addi
+	loadi
+	i2b
+	storeb
+	push	bp
+	pushi	-7
+	addi
+	push	bp
+	pushi	-5
+	addi
+	loadb
 	b2i
 	storei
-
-#line 15
+	jmp etiqueta1
+ etiqueta0:
 	push	bp
-	push	-54
-	addi
-	push	2
+	pushi	-7
 	addi
 	push	bp
-	push	-54
+	pushi	-4
 	addi
-	push	0
+	loadf
+	f2i
+	storei
+ etiqueta1:
+	push	bp
+	pushi	-7
 	addi
 	loadi
-	push	bp
-	push	-54
-	addi
-	push	4
-	addi
-	loadi
+	ret 2, 7, 6
+ initialize:
+	enter	2
+	pusha	11
+	pushi	0
+	pushi	6
 	muli
-	push	12
-	modi
-	push	1
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	pushi	0
+	storei
+	pusha	11
+	pushi	0
+	pushi	6
+	muli
+	addi
+	pushi	1
+	pushi	2
+	muli
+	addi
+	pushi	1
+	storei
+	pusha	11
+	pushi	0
+	pushi	6
+	muli
+	addi
+	pushi	2
+	pushi	2
+	muli
+	addi
+	pushi	1
+	storei
+	push	bp
+	pushi	-2
+	addi
+	pushi	1
+	storei
+ etiqueta2:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	8
+	lti
+	jz etiqueta3
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	6
+	muli
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	subi
+	pushi	6
+	muli
+	addi
+	pushi	1
+	pushi	2
+	muli
+	addi
+	loadi
+	storei
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	6
+	muli
+	addi
+	pushi	1
+	pushi	2
+	muli
+	addi
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	subi
+	pushi	6
+	muli
+	addi
+	pushi	2
+	pushi	2
+	muli
+	addi
+	loadi
+	storei
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	6
+	muli
+	addi
+	pushi	2
+	pushi	2
+	muli
+	addi
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	6
+	muli
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	loadi
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	6
+	muli
+	addi
+	pushi	1
+	pushi	2
+	muli
+	addi
+	loadi
 	addi
 	storei
-
-#line 16
 	push	bp
-	push	-54
+	pushi	-2
 	addi
-	push	0
+	push	bp
+	pushi	-2
 	addi
 	loadi
-	outi
-
-#line 16
-	pushb	10
-	outb
-
-#line 16
+	pushi	1
+	addi
+	storei
+	jmp etiqueta2
+ etiqueta3:
+	ret 0, 2, 0
+ main:
+	enter	4
+call p
 	push	bp
-	push	-54
+	pushi	-2
 	addi
-	push	2
+	pushi	0
+	storei
+	pusha	0
+	pushi	2
 	addi
-	loadi
-	outi
-
-#line 16
-	pushb	10
-	outb
-
-#line 16
+	pushb	48
+	storeb
+	pusha	0
+	pushi	0
+	addi
+	pushb	48
+	b2i
+	storei
 	push	bp
-	push	-54
-	addi
-	push	4
+	pushi	-2
 	addi
 	loadi
 	i2f
-	outf
-
-#line 16
-	pushb	10
-	outb
-
-#line 18
-	push	bp
-	push	-4
-	addi
-	inf
-	storef
-
-#line 20
-	push	bp
-	push	-6
-	addi
-	push	0
-	storei
-
-#line 31
-label_0:
-	push	bp
-	push	-6
-	addi
-	loadi
-	push	10
-	lti
-	jz	label_1
-
-#line 22
 	pusha	0
-	push	bp
-	push	-6
+	pushi	2
 	addi
-	loadi
-	push	4
-	muli
-	addi
-	push	bp
-	push	-4
-	addi
-	loadf
-	storef
-
-#line 23
-	push	bp
-	push	-6
-	addi
-	loadi
+	loadb
+	b2i
+call f
 	outi
-
-#line 23
-	pushb	58
-	outb
-
-#line 23
-	pusha	0
-	push	bp
-	push	-6
-	addi
-	loadi
-	push	4
-	muli
-	addi
-	loadf
-	outf
-
-#line 23
-	pushb	32
-	outb
-
-#line 29
-	push	bp
-	push	-6
-	addi
-	loadi
-	push	2
-	modi
-	jz	label_2
-
-#line 25
-	pushb	111
-	outb
-
-#line 25
-	pushb	100
-	outb
-
-#line 25
-	pushb	100
-	outb
-
-#line 25
 	pushb	10
 	outb
-	jmp	label_3
-label_2:
-
-#line 28
-	pushb	101
-	outb
-
-#line 28
-	pushb	118
-	outb
-
-#line 28
-	pushb	101
-	outb
-
-#line 28
-	pushb	110
-	outb
-
-#line 28
-	pushb	10
-	outb
-label_3:
-
-#line 30
+	pushf	1.3
+	pushi	2
+call f
+	popi
+call initialize
 	push	bp
-	push	-6
+	pushi	-2
 	addi
-	push	bp
-	push	-6
-	addi
-	loadi
-	push	1
-	addi
+	pushi	0
 	storei
-	jmp	label_0
-label_1:
-
-#line 32
-	pushb	10
-	outb
-
-#line 34
+ etiqueta4:
 	push	bp
-	push	-6
-	addi
-	push	0
-	storei
-
-#line 44
-label_4:
-	push	bp
-	push	-6
+	pushi	-2
 	addi
 	loadi
-	push	4
+	pushi	8
 	lti
-	jz	label_5
-
-#line 36
+	jz etiqueta5
+	pushb	40
+	outb
 	push	bp
-	push	-8
-	addi
-	push	0
-	storei
-
-#line 41
-label_6:
-	push	bp
-	push	-8
+	pushi	-2
 	addi
 	loadi
-	push	5
-	lti
-	jz	label_7
-
-#line 38
-	push	bp
-	push	-48
+	pushi	1
 	addi
+	outi
+	pushb	41
+	outb
+	pusha	11
 	push	bp
-	push	-6
+	pushi	-2
 	addi
 	loadi
-	push	10
+	pushi	6
 	muli
 	addi
-	push	bp
-	push	-8
-	addi
-	loadi
-	push	2
-	muli
-	addi
-	push	bp
-	push	-6
-	addi
-	loadi
-	push	bp
-	push	-8
-	addi
-	loadi
-	addi
-	storei
-
-#line 39
-	push	bp
-	push	-48
-	addi
-	push	bp
-	push	-6
-	addi
-	loadi
-	push	10
-	muli
-	addi
-	push	bp
-	push	-8
-	addi
-	loadi
-	push	2
+	pushi	0
+	pushi	2
 	muli
 	addi
 	loadi
 	outi
-
-#line 39
-	pushb	32
+	pushb	43
 	outb
-
-#line 40
+	pusha	11
 	push	bp
-	push	-8
-	addi
-	push	bp
-	push	-8
+	pushi	-2
 	addi
 	loadi
-	push	1
+	pushi	6
+	muli
 	addi
-	storei
-	jmp	label_6
-label_7:
-
-#line 42
+	pushi	1
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
+	pushb	61
+	outb
+	pusha	11
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	6
+	muli
+	addi
+	pushi	2
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
 	pushb	10
 	outb
-
-#line 43
 	push	bp
-	push	-6
+	pushi	-2
 	addi
 	push	bp
-	push	-6
+	pushi	-2
 	addi
 	loadi
-	push	1
+	pushi	1
 	addi
 	storei
-	jmp	label_4
-label_5:
-
-	 ret 0, 54, 0
+	jmp etiqueta4
+ etiqueta5:
+	pusha	3
+	pushi	1
+	pushi	4
+	muli
+	addi
+	pushi	0
+	addi
+	pushi	1
+	pushi	2
+	muli
+	addi
+	pushi	0
+	addi
+	pushi	56
+	storei
+	pusha	3
+	pushi	1
+	pushi	4
+	muli
+	addi
+	pushi	0
+	addi
+	pushi	1
+	pushi	2
+	muli
+	addi
+	pushi	0
+	addi
+	loadi
+	outi
+	pushb	10
+	outb
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+ etiqueta6:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	2
+	lti
+	jz etiqueta7
+	push	bp
+	pushi	-4
+	addi
+	pushi	0
+	storei
+ etiqueta8:
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	pushi	2
+	lti
+	jz etiqueta9
+	pusha	3
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	4
+	muli
+	addi
+	pushi	0
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	pushi	0
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	addi
+	storei
+	push	bp
+	pushi	-4
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta8
+ etiqueta9:
+	push	bp
+	pushi	-2
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta6
+ etiqueta7:
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+ etiqueta10:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	2
+	lti
+	jz etiqueta11
+	push	bp
+	pushi	-4
+	addi
+	pushi	0
+	storei
+ etiqueta12:
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	pushi	2
+	lti
+	jz etiqueta13
+	pusha	3
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	4
+	muli
+	addi
+	pushi	0
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	pushi	0
+	addi
+	loadi
+	outi
+	pushb	32
+	outb
+	push	bp
+	pushi	-4
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta12
+ etiqueta13:
+	push	bp
+	pushi	-2
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp etiqueta10
+ etiqueta11:
+	ret 0, 4, 0

@@ -5,7 +5,9 @@ import ast.AccesoCampo;
 import ast.Aritmetica;
 import ast.Cast;
 import ast.Comparacion;
+import ast.Expresion;
 import ast.Identificador;
+import ast.InvocacionFuncionExp;
 import ast.LiteralCaracter;
 import ast.LiteralEntero;
 import ast.LiteralReal;
@@ -116,6 +118,16 @@ public class VisitorGCValor extends AbstractGC{
 		gc.cast(c.getExpresion().getTipo(), c.getTipoCast());
 		return null;
 	}
+	
+	@Override
+	public Object visitar(InvocacionFuncionExp f, Object param) {
+		for (Expresion e : f.getArgumentos()) {
+			e.aceptar(this, param);
+		}
+		gc.call(f.getIdentificador().getNombre());
+		return null;
+	}
+	
 	
 
 

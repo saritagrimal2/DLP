@@ -6,8 +6,11 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Definicion;
 import ast.Escritura;
+import ast.Expresion;
+import ast.InvocacionFuncionSent;
 import ast.Lectura;
 import ast.Programa;
+import ast.Return;
 import ast.Sentencia;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
@@ -80,37 +83,20 @@ public class VisitorGCEjecutar extends AbstractGC {
 	}
 
 	@Override
-	public Object visitar(DefFuncion f, Object param) {
+	public Object visitar(DefFuncion df, Object param) {
 
-		gc.etiqueta(f.getIdentificador());
+		gc.etiqueta(df.getIdentificador());
 		
-		//Calcular numbytes total de locales
-		int local = 0;
-		for (Sentencia s : f.getSentencias()) {
-			if (s instanceof DefVariable) {
-				local += ((DefVariable) s).getTipo().numeroBytes();
-			}
-		}
+		gc.enter(df.numeroBytesLocales());
 		
-		gc.enter(local);
-		
-		for (Sentencia s : f.getSentencias()) {
+		for (Sentencia s : df.getSentencias()) {
 			if (!(s instanceof DefVariable)) {
-				s.aceptar(this, param);
+				s.aceptar(this, df);
 			}
 		}
 		
-		//Calcular numbytes total de parametros
-		int p = 0;
-		for (DefVariable v: ((TipoFuncion)f.getTipo()).getArgumentos()) {
-			p += v.getTipo().numeroBytes();
-		}
-		
-		
-		if (f.getTipo() instanceof TipoVoid) {
-			gc.ret(0, local, p);
-		}else {
-			gc.ret(f.getTipo().numeroBytes(), local, p);
+		if (((TipoFuncion) df.getTipo()).getTipoRetorno() instanceof TipoVoid){
+			gc.ret(0, df.numeroBytesLocales(), df.numeroBytesParam());
 		}
 
 		return null;
@@ -120,11 +106,11 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public Object visitar(sentenciaWhile w, Object param) {
 		int etiqueta = gc.getEtiquetas(2);
 		gc.etiqueta(etiqueta);
-		w.getExpresion().aceptar(valor, param);
+		w.getExpresion().aceptar(valor,(DefFuncion) param);
 		gc.jz(etiqueta+1);
 		
 		for (Sentencia s: w.getSentencias()) {
-			s.aceptar(this, param);
+			s.aceptar(this, (DefFuncion)param);
 		}
 		gc.jmp(etiqueta);
 		gc.etiqueta(etiqueta+1);
@@ -135,19 +121,44 @@ public class VisitorGCEjecutar extends AbstractGC {
 	@Override
 	public Object visitar(sentenciaIf i, Object param) {
 		int etiqueta = gc.getEtiquetas(2);
-		i.getExpresion().aceptar(valor, param);
+		i.getExpresion().aceptar(valor, (DefFuncion)param);
 		gc.jz(etiqueta);
 		for (Sentencia s: i.getSentencias()) {
-			s.aceptar(this, param);
+			s.aceptar(this,(DefFuncion) param);
 		}
 		gc.jmp(etiqueta+1);
 		gc.etiqueta(etiqueta);
 		for (Sentencia s: i.getSentenciaElse()) {
-			s.aceptar(this, param);
+			s.aceptar(this, (DefFuncion)param);
 		}
 		gc.etiqueta(etiqueta+1);
 
 		return null;
 	}
+	
+	@Override
+	public Object visitar(InvocacionFuncionSent f, Object param) {
+		for (Expresion e : f.getArgumentos()) {
+			e.aceptar(valor, param);
+		}
+		gc.call(f.getIdentificador().getNombre());
+		if (((TipoFuncion) f.getIdentificador().getTipo()).getTipoRetorno() != TipoVoid.getInstance() ) {
+			gc.pop(((TipoFuncion) f.getIdentificador().getTipo()).getTipoRetorno());
+		}
+		return null;
+	}
+	
+	@Override
+	public Object visitar(Return r, Object param) {
+		r.getExpresion().aceptar(valor, param);
+		
+		DefFuncion df = (DefFuncion) param;
+	
+		gc.ret(((TipoFuncion) df.getTipo()).getTipoRetorno().numeroBytes(), 
+				df.numeroBytesLocales(), df.numeroBytesParam());
+
+		return null;
+	}
+
 
 }

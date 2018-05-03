@@ -3,6 +3,7 @@ package ast;
 import java.util.List;
 
 import ast.tipo.Tipo;
+import ast.tipo.TipoFuncion;
 import visitor.Visitor;
 
 public class DefFuncion extends NodoASTAbstracto implements Definicion {
@@ -63,6 +64,25 @@ public class DefFuncion extends NodoASTAbstracto implements Definicion {
 	@Override
 	public void setAmbito(int ambito) {
 		this.ambito = ambito;
+	}
+
+	public int numeroBytesLocales() {
+		int local = 0;
+		for (Sentencia s : getSentencias()) {
+			if (s instanceof DefVariable) {
+				local += ((DefVariable) s).getTipo().numeroBytes();
+			}
+		}
+		
+		return local;
+	}
+
+	public int  numeroBytesParam() {
+		int p = 0;
+		for (DefVariable v: ((TipoFuncion)getTipo()).getArgumentos()) {
+			p += v.getTipo().numeroBytes();
+		}
+		return p;
 	}
 
 
