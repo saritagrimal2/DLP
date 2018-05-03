@@ -22,21 +22,16 @@ public class visitorOffset extends VisitorAbstracto {
 		if (v.getAmbito() == 0) {
 			v.setOffset(offsetGlobal);
 			offsetGlobal += v.getTipo().numeroBytes();
-
-			System.out.println("Nombre: " + v.getIdentificador() + " offset: " + v.getOffset());
-
 		} else {
 			
 			if ((boolean)param) {
 				//Parametros
 				v.setOffset(offsetParam);
 				offsetParam += v.getTipo().numeroBytes();
-				System.out.println("Nombre: " + v.getIdentificador() + " offset: " + v.getOffset());
 			} else {
 				// Variables locales
 				offsetLocal -= v.getTipo().numeroBytes();
 				v.setOffset(offsetLocal);
-				System.out.println("Nombre: " + v.getIdentificador() + " offset: " + v.getOffset());
 			}
 		}
 		return null;
