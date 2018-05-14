@@ -71,7 +71,7 @@ public class TipoFloat extends TipoAbstracto{
 	}
 	
 	@Override
-	public Tipo equivalente(Tipo tipo) {
+	public Tipo promocionaA(Tipo tipo) {
 		if (tipo instanceof TipoFloat) {
 			return this;
 		} else if (tipo instanceof TipoError) {
@@ -91,4 +91,8 @@ public class TipoFloat extends TipoAbstracto{
 		return 'f';
 	}
 	
+	@Override
+	public Tipo superTipo(Tipo expresion) {
+		return this;
+	}
 }

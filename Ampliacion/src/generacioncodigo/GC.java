@@ -228,23 +228,25 @@ public class GC {
 		}
 	}
 	
-//	public void convertir (Tipo tipoE1, Tipo tipoE2) {
-//		switch (tipoE1.sufijo()) {
-//			case 'i': 
-//				if (tipoE2.sufijo() == 'b') {
-//					i2b();
-//				}else if(tipoE2.sufijo() == 'f') {
-//					i2f();
-//				}
-//			case 'b': 
-//				if (tipoE2.sufijo() == 'f') {
-//					b2i();
-//					i2f();
-//				}else if(tipoE2.sufijo() == 'i') {
-//					b2i();
-//				}
-//		}
-//	}
+	public void convertir(Tipo tipoE1, Tipo tipoE) {
+		switch (tipoE1.sufijo()) {
+		case 'i':
+			if (tipoE.sufijo() == 'b') {
+				i2b();
+			} else if (tipoE.sufijo() == 'f') {
+				i2f();
+			}
+			break;
+		case 'b':
+			if (tipoE.sufijo() == 'f') {
+				b2i();
+				i2f();
+			} else if (tipoE.sufijo() == 'i') {
+				b2i();
+			}
+			break;
+		}
+	}
 	
 //	Instruciones de salto
 	public void etiqueta(String valor)  {

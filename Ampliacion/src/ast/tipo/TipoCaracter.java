@@ -86,13 +86,11 @@ public class TipoCaracter extends TipoAbstracto {
 	}
 	
 	@Override
-	public Tipo equivalente(Tipo tipo) {
+	public Tipo promocionaA(Tipo tipo) {
 		if (tipo instanceof TipoCaracter) {
 			return this;
-		} else if (tipo instanceof TipoError) {
-			return tipo;
 		} else {
-			return null;
+			return tipo;
 		}
 	}
 	
@@ -109,6 +107,17 @@ public class TipoCaracter extends TipoAbstracto {
 	@Override
 	public char sufijo() {
 		return 'b';
+	}
+	
+	@Override
+	public Tipo superTipo(Tipo expresion) {
+		if (expresion instanceof TipoEntero) {
+			return TipoEntero.getInstance();
+		} else if (expresion instanceof TipoFloat) {
+			return TipoFloat.getInstance();
+		} else {
+			return this;
+		}
 	}
 
 }

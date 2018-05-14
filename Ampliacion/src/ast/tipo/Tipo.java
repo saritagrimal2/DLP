@@ -24,7 +24,7 @@ public interface Tipo extends NodoAST {
 
 	public Tipo parentises(List<Tipo> tipos);
 
-	public Tipo equivalente(Tipo tipo);
+	public Tipo promocionaA(Tipo tipo);
 
 	public boolean esLogico();
 
@@ -33,4 +33,6 @@ public interface Tipo extends NodoAST {
 	public char sufijo();
 	
 	public Campo get(String identificador);
+	
+	public Tipo superTipo (Tipo expresion);
 }

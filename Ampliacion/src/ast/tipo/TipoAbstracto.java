@@ -56,7 +56,7 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	}
 
 	@Override
-	public Tipo equivalente(Tipo tipo) {
+	public Tipo promocionaA(Tipo tipo) {
 		return null;
 	}
 
@@ -77,6 +77,11 @@ public abstract class TipoAbstracto extends NodoASTAbstracto implements Tipo {
 	
 	@Override
 	public Campo get(String nombre) {
+		return null;
+	}
+	
+	@Override
+	public Tipo superTipo(Tipo expresion) {
 		return null;
 	}
 

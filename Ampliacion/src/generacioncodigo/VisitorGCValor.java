@@ -13,6 +13,7 @@ import ast.LiteralEntero;
 import ast.LiteralReal;
 import ast.Logica;
 import ast.Negacion;
+import ast.tipo.Tipo;
 
 public class VisitorGCValor extends AbstractGC{
 	
@@ -52,13 +53,9 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
 		a.getExp1().aceptar(this, param);
-		if (a.getExp1().getTipo().sufijo() =='b') {
-			gc.b2i();
-		}
+		gc.convertir(a.getExp1().getTipo(), a.getTipo());
 		a.getExp2().aceptar(this, param);
-		if (a.getExp2().getTipo().sufijo() =='b') {
-			gc.b2i();
-		}
+		gc.convertir(a.getExp2().getTipo(), a.getTipo());
 		//Cuando son char, el tipo de aritmetca será de tipo entero
 		//Cambiado en clase TipoCaracter
 		gc.aritmetica(a.getOperador(), a.getTipo());
@@ -68,14 +65,11 @@ public class VisitorGCValor extends AbstractGC{
 
 	@Override
 	public Object visitar(Comparacion c, Object param) {
+		Tipo superTipo = c.getExp1().getTipo().superTipo(c.getExp2().getTipo());
 		c.getExp1().aceptar(this, param);
-		if (c.getExp1().getTipo().sufijo() =='b') {
-			gc.b2i();
-		}
+		gc.convertir(c.getExp1().getTipo(), superTipo);
 		c.getExp2().aceptar(this, param);
-		if (c.getExp2().getTipo().sufijo() =='b') {
-			gc.b2i();
-		}
+		gc.convertir(c.getExp2().getTipo(), superTipo);
 		gc.comparacion(c.getOperador(), c.getTipo());
 		
 		return null;

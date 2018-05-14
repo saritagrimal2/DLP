@@ -74,7 +74,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public Object visitar(Asignacion a, Object param) {
 		a.getExp1().aceptar(direccion, param);
 		a.getExp2().aceptar(valor, param);
-		
+		gc.convertir(a.getExp2().getTipo(), a.getExp1().getTipo());
 		gc.store(a.getExp1().getTipo());
 		
 		return null;
@@ -164,8 +164,8 @@ public class VisitorGCEjecutar extends AbstractGC {
 	@Override
 	public Object visitar(Return r, Object param) {
 		r.getExpresion().aceptar(valor, param);
-		
 		DefFuncion df = (DefFuncion) param;
+		gc.convertir(r.getExpresion().getTipo(), ((TipoFuncion) df.getTipo()).getTipoRetorno());
 		gc.comentarioReturn();
 		gc.ret(((TipoFuncion) df.getTipo()).getTipoRetorno().numeroBytes(), 
 				df.numeroBytesLocales(), df.numeroBytesParam());

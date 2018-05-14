@@ -68,7 +68,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Object visitar(DefFuncion f, Object param) {
 		for (Sentencia s : f.getSentencias())
@@ -77,19 +77,17 @@ public class VisitorSemantico extends VisitorAbstracto {
 		return null;
 	}
 
-
 	@Override
 	public Object visitar(Return r, Object param) {
 		r.getExpresion().aceptar(this, param);
-		
-		if (r.getExpresion().getTipo()!= null) {
+
+		if (r.getExpresion().getTipo() != null) {
 			TipoFuncion t2 = (TipoFuncion) param;// Necesito el TipoFuncion, (El tipo de retorno del tipo funcion)
 			// Lo tengo en definicion de funcion, se lo pasamos como parametro en ese object
-			r.getExpresion().getTipo().equivalente(t2.getTipoRetorno());
+			r.getExpresion().getTipo().promocionaA(t2.getTipoRetorno());
 
-			if (r.getExpresion().getTipo().equivalente(t2.getTipoRetorno()) == null) {
-				new TipoError(r.getLinea(), r.getColumna(),
-						"[Return] El tipo de la funcion no es compatible con el tipo de retorno.");
+			if (r.getExpresion().getTipo().promocionaA(t2.getTipoRetorno()) == null) {
+				new TipoError(r.getLinea(), r.getColumna(), "[Return] No se puede promocionar ese tipo.");
 			}
 		}
 
@@ -110,15 +108,14 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Asignacion a, Object param) {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
-		
-		if (a.getExp1().getTipo() != null && a.getExp2().getTipo()!= null) {
-			a.getExp1().getTipo().equivalente(a.getExp2().getTipo());
 
-			if (a.getExp1().getTipo().equivalente(a.getExp2().getTipo()) == null) {
-				new TipoError(a.getLinea(), a.getColumna(),
-						"[Asignacion] Los tipos de la asignacion deben de ser compatibles.");
+		if (a.getExp1().getTipo() != null && a.getExp2().getTipo() != null) {
+			a.getExp2().getTipo().promocionaA(a.getExp1().getTipo());
+
+			if (a.getExp2().getTipo().promocionaA(a.getExp1().getTipo()) == null) {
+				new TipoError(a.getLinea(), a.getColumna(), "[Asignacion] No se puede promocionar ese tipo.");
 			}
-			
+
 			if (!a.getExp1().getLValue()) {
 				new TipoError(a.getLinea(), a.getColumna(), "[Asignacion] Se esperaba un Lvalue.");
 			}
@@ -136,9 +133,9 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (a.getTipo() == null) {
 			a.setTipo(new TipoError(a.getLinea(), a.getColumna(),
-					"[Aritmetica] El tipo solo pueder ser entero o double y ser compatibles."));
+					"[Aritmetica] Las expresiones deben de ser del mismo tipo."));
 		}
-		
+
 		a.setLValue(false);
 
 		return null;
@@ -149,17 +146,16 @@ public class VisitorSemantico extends VisitorAbstracto {
 		c.getExp1().aceptar(this, param);
 		c.getExp2().aceptar(this, param);
 
-		if (c.getExp1().getTipo()!= null && c.getExp2().getTipo()!= null) {
+		if (c.getExp1().getTipo() != null && c.getExp2().getTipo() != null) {
 			Tipo inferido = c.getExp1().getTipo().comparacion(c.getExp2().getTipo());
 			c.setTipo(inferido);
-			
-			
+
 			if (c.getTipo() == null) {
 				c.setTipo(new TipoError(c.getLinea(), c.getColumna(),
 						"[Comparacion] Las expresiones deben de ser del mismo tipo."));
 			}
 		}
-		
+
 		c.setLValue(false);
 
 		return null;
@@ -169,7 +165,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Logica l, Object param) {
 		l.getExp1().aceptar(this, param);
 		l.getExp2().aceptar(this, param);
-		
+
 		Tipo inferido = l.getExp1().getTipo().logica(l.getExp2().getTipo());
 		l.setTipo(inferido);
 
@@ -177,7 +173,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			l.setTipo(new TipoError(l.getLinea(), l.getColumna(),
 					"[Logica] El tipo solo pueder ser entero o caracter y ser compatibles."));
 		}
-		
+
 		l.setLValue(false);
 
 		return null;
@@ -186,7 +182,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(Negacion n, Object param) {
 		n.getExpresion().aceptar(this, param);
-		
 
 		Tipo inferido = n.getExpresion().getTipo().logica();
 		n.setTipo(inferido);
@@ -195,7 +190,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			n.setTipo(
 					new TipoError(n.getLinea(), n.getColumna(), "[Logica] El tipo solo pueder ser entero o caracter."));
 		}
-		
+
 		n.setLValue(false);
 
 		return null;
@@ -204,7 +199,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(MenosUnario m, Object param) {
 		m.getExpresion().aceptar(this, param);
-		
 
 		Tipo inferido = m.getExpresion().getTipo().aritmetica();
 		m.setTipo(inferido);
@@ -213,7 +207,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			m.setTipo(new TipoError(m.getLinea(), m.getColumna(),
 					"[Aritmetica] El tipo solo pueder ser entero o double."));
 		}
-		
+
 		m.setLValue(false);
 
 		return null;
@@ -223,7 +217,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(AccesoCampo c, Object param) {
 		c.getExpresion().aceptar(this, param);
 
-
 		Tipo inferido = c.getExpresion().getTipo().punto(c.getIdentificador());
 		c.setTipo(inferido);
 
@@ -231,7 +224,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			c.setTipo(new TipoError(c.getLinea(), c.getColumna(),
 					"[AccesoCampo] No es posible acceder al campo del registro."));
 		}
-		
+
 		if (c.getExpresion().getLValue() == true) {
 			c.setLValue(true);
 		} else {
@@ -245,14 +238,14 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(AccesoArray a, Object param) {
 		a.getExp1().aceptar(this, param);
 		a.getExp2().aceptar(this, param);
-		
+
 		Tipo inferido = a.getExp1().getTipo().corchetes(a.getExp2().getTipo());
 		a.setTipo(inferido);
 
 		if (a.getTipo() == null) {
 			a.setTipo(new TipoError(a.getLinea(), a.getColumna(), "[AccesoArray] No se puede acceder al array."));
 		}
-		
+
 		if (a.getExp1().getLValue() == true) {
 			a.setLValue(true);
 		} else {
@@ -266,7 +259,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 	public Object visitar(Cast c, Object param) {
 		c.getExpresion().aceptar(this, param);
 		c.getTipoCast().aceptar(this, param);
-		
 
 		Tipo inferido = c.getTipoCast().cast(c.getExpresion().getTipo());
 		c.setTipo(inferido);
@@ -275,7 +267,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			c.setTipo(new TipoError(c.getLinea(), c.getColumna(),
 					"[Cast] No se puede realizar cast a la siguiente expresión."));
 		}
-		
+
 		c.setLValue(false);
 
 		return null;
@@ -290,7 +282,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 			e.aceptar(this, param);
 			tipos.add(e.getTipo());
 		}
-		
 
 		Tipo inferido = f.getIdentificador().getTipo().parentises(tipos);
 		f.setTipo(inferido);
@@ -299,7 +290,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 			f.setTipo(new TipoError(f.getLinea(), f.getColumna(),
 					"[InvocacionFuncionExp] No se puede invocar la siguiente función."));
 		}
-		
+
 		f.setLValue(false);
 
 		return null;
