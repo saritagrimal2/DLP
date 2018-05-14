@@ -253,7 +253,7 @@ public class GC {
 	}
 	
 	public void etiqueta(int num)  {
-		String salida =" etiqueta" + num + ":";
+		String salida ="label_" + num + ":";
 		writeFile(salida);
 	}
 	
@@ -265,23 +265,23 @@ public class GC {
 	}
 	
 	public void jmp(int label)  {
-		String salida ="\tjmp " + "etiqueta" + label;
+		String salida ="\tjmp " + "label_" + label;
 		writeFile(salida);
 	}
 	
 	public void jz(int label)  {
-		String salida ="\tjz " +  "etiqueta" +label;
+		String salida ="\tjz " +  "label_" +label;
 		writeFile(salida);
 	}
 	
 	public void jnz(String label)  {
-		String salida ="\tjnz " +  "etiqueta" +label;
+		String salida ="\tjnz " +  "label_" +label;
 		writeFile(salida);
 	}
 	
 //	Funciones
 	public void call(String id)  {
-		String salida ="call " + id;
+		String salida ="\tcall\t" + id;
 		writeFile(salida);
 	}
 	
@@ -297,7 +297,7 @@ public class GC {
 	
 //	Finalizacion del programa
 	public void halt()  {
-		String salida ="halt";
+		String salida ="\thalt";
 		writeFile(salida);
 	}
 	
@@ -312,11 +312,35 @@ public class GC {
 		writeFile(salida);
 	}
 	
-	public void comentarioGlobales(Definicion d) {
-		String salida =" '\t var "+ d.getIdentificador() + " " + d.getTipo() 
+	public void comentarioVariables(Definicion d) {
+		String salida ="\t' * var "+ d.getIdentificador() + " " + d.getTipo() 
 						+ " (offset " + ((DefVariable) d).getOffset()+")";
 		writeFile(salida);
-		
+	}
+	
+	
+	public void comentarioParametros() {
+		writeFile("\t' * Parameters");
+	}
+	
+	public void comentarioLocales() {
+		writeFile("\t' * Local variables");
+	}
+	
+	public void comentarioCuerpoFuncion() {
+		writeFile("\t' * Function body");
+	}
+	
+	public void comentarioReturnVoid() {
+		writeFile("\t' Void Return");
+	}
+	
+	public void comentarioReturn() {
+		writeFile("\t' Return");
+	}
+	
+	public void comentarioMain() {
+		writeFile(" ' Invocation to the main function");
 	}
 	
 //	 Metodo que escribe

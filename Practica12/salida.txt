@@ -1,23 +1,55 @@
 #source "entrada.txt"
- '	 var pair TipoRegistro [campos=[Campo [identificador=integer, tipo=int], Campo [identificador=character, tipo=char]]] (offset 0)
- '	 var acme TipoArray [tamaño=2, tipo=TipoRegistro [campos=[Campo [identificador=employees, tipo=TipoArray [tamaño=2, tipo=TipoRegistro [campos=[Campo [identificador=age, tipo=int]]]]]]]] (offset 3)
- '	 var fibonacci TipoArray [tamaño=8, tipo=TipoArray [tamaño=3, tipo=int]] (offset 11)
-call main
-halt
+	' * var i int (offset 0)
+	' * var n int (offset 2)
+	' * var j int (offset 4)
+	' * var c char (offset 6)
+	' * var pair [(integer x int), (character x char)] (offset 7)
+	' * var matrix [10, [10, int]] (offset 10)
+ ' Invocation to the main function
+	call	main
+	halt
  p:
+	' * Parameters
+	' * Local variables
 	enter	0
+	' * Function body
+	' Void Return
 	ret 0, 0, 0
  f:
-	enter	7
+	' * Parameters
+	' * var r float32 (offset 6)
+	' * var e int (offset 4)
+	' * Local variables
+	' * var real float32 (offset -4)
+	' * var c char (offset -5)
+	enter	5
+	' * Function body
 	push	bp
 	pushi	-4
 	addi
+	pusha	7
+	pushi	2
+	addi
+	loadb
+	b2i
+	i2f
+	pusha	7
+	pushi	0
+	addi
+	loadi
+	i2f
+	addf
 	push	bp
 	pushi	6
 	addi
 	loadf
-	pushf	10.0
-	mulf
+	addf
+	push	bp
+	pushi	4
+	addi
+	loadi
+	i2f
+	addf
 	storef
 	push	bp
 	pushi	-5
@@ -25,191 +57,152 @@ halt
 	pushb	48
 	storeb
 	push	bp
-	pushi	4
-	addi
-	loadi
-	pushi	256
-	lti
-	jz etiqueta0
-	push	bp
-	pushi	-5
-	addi
-	push	bp
-	pushi	4
-	addi
-	loadi
-	i2b
-	storeb
-	push	bp
-	pushi	-7
-	addi
-	push	bp
 	pushi	-5
 	addi
 	loadb
 	b2i
-	storei
-	jmp etiqueta1
- etiqueta0:
+	' Return
+	ret 2, 5, 6
+ fill:
+	' * Parameters
+	' * var row int (offset 8)
+	' * var value int (offset 6)
+	' * var increment int (offset 4)
+	' * Local variables
+	' * var i int (offset -2)
+	' * var inc int (offset -4)
+	enter	4
+	' * Function body
 	push	bp
-	pushi	-7
+	pushi	-2
+	addi
+	pushi	0
+	storei
+	push	bp
+	pushi	-4
+	addi
+	push	bp
+	pushi	4
+	addi
+	loadi
+	storei
+label_0:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	10
+	lti
+	jz label_1
+	pusha	10
+	push	bp
+	pushi	8
+	addi
+	loadi
+	pushi	20
+	muli
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	push	bp
+	pushi	6
+	addi
+	loadi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	addi
+	storei
+	push	bp
+	pushi	-2
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	push	bp
+	pushi	-4
 	addi
 	push	bp
 	pushi	-4
 	addi
-	loadf
-	f2i
-	storei
- etiqueta1:
+	loadi
 	push	bp
-	pushi	-7
+	pushi	4
 	addi
 	loadi
-	ret 2, 7, 6
- initialize:
+	addi
+	storei
+	jmp label_0
+label_1:
+	' Void Return
+	ret 0, 4, 6
+ show:
+	' * Parameters
+	' * var row int (offset 4)
+	' * Local variables
+	' * var i int (offset -2)
 	enter	2
-	pusha	11
-	pushi	0
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	pushi	0
-	storei
-	pusha	11
-	pushi	0
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pushi	1
-	storei
-	pusha	11
-	pushi	0
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	pushi	1
-	storei
+	' * Function body
 	push	bp
 	pushi	-2
 	addi
-	pushi	1
+	pushi	0
 	storei
- etiqueta2:
+label_2:
 	push	bp
 	pushi	-2
 	addi
 	loadi
-	pushi	8
+	pushi	10
 	lti
-	jz etiqueta3
-	pusha	11
+	jz label_3
+	pushb	40
+	outb
+	push	bp
+	pushi	4
+	addi
+	loadi
+	outi
+	pushb	44
+	outb
 	push	bp
 	pushi	-2
 	addi
 	loadi
-	pushi	6
+	outi
+	pushb	41
+	outb
+	pushb	58
+	outb
+	pusha	10
+	push	bp
+	pushi	4
+	addi
+	loadi
+	pushi	20
 	muli
 	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	pusha	11
 	push	bp
 	pushi	-2
 	addi
 	loadi
-	pushi	1
-	subi
-	pushi	6
-	muli
-	addi
-	pushi	1
 	pushi	2
 	muli
 	addi
 	loadi
-	storei
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	subi
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	loadi
-	storei
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	loadi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	loadi
-	addi
-	storei
+	outi
+	pushb	32
+	outb
 	push	bp
 	pushi	-2
 	addi
@@ -220,23 +213,30 @@ halt
 	pushi	1
 	addi
 	storei
-	jmp etiqueta2
- etiqueta3:
-	ret 0, 2, 0
+	jmp label_2
+label_3:
+	pushb	10
+	outb
+	' Void Return
+	ret 0, 2, 2
  main:
-	enter	4
-call p
+	' * Parameters
+	' * Local variables
+	' * var i int (offset -2)
+	enter	2
+	' * Function body
+	call	p
 	push	bp
 	pushi	-2
 	addi
 	pushi	0
 	storei
-	pusha	0
+	pusha	7
 	pushi	2
 	addi
 	pushb	48
 	storeb
-	pusha	0
+	pusha	7
 	pushi	0
 	addi
 	pushb	48
@@ -247,92 +247,48 @@ call p
 	addi
 	loadi
 	i2f
-	pusha	0
+	pusha	7
 	pushi	2
 	addi
 	loadb
 	b2i
-call f
+	call	f
 	outi
 	pushb	10
 	outb
 	pushf	1.3
 	pushi	2
-call f
+	call	f
 	popi
-call initialize
 	push	bp
 	pushi	-2
 	addi
 	pushi	0
 	storei
- etiqueta4:
+	pusha	4
+	pushi	0
+	storei
+label_4:
 	push	bp
 	pushi	-2
 	addi
 	loadi
-	pushi	8
+	pushi	10
 	lti
-	jz etiqueta5
-	pushb	40
-	outb
+	jz label_5
 	push	bp
 	pushi	-2
 	addi
+	loadi
+	pusha	4
 	loadi
 	pushi	1
-	addi
-	outi
-	pushb	41
-	outb
-	pusha	11
+	call	fill
 	push	bp
 	pushi	-2
 	addi
 	loadi
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	loadi
-	outi
-	pushb	43
-	outb
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	loadi
-	outi
-	pushb	61
-	outb
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	loadi
-	outi
-	pushb	10
-	outb
+	call	show
 	push	bp
 	pushi	-2
 	addi
@@ -343,190 +299,15 @@ call initialize
 	pushi	1
 	addi
 	storei
-	jmp etiqueta4
- etiqueta5:
-	pusha	3
-	pushi	1
-	pushi	4
+	pusha	4
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	10
 	muli
-	addi
-	pushi	0
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	pushi	56
 	storei
-	pusha	3
-	pushi	1
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	loadi
-	outi
-	pushb	10
-	outb
-	push	bp
-	pushi	-2
-	addi
-	pushi	0
-	storei
- etiqueta6:
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	2
-	lti
-	jz etiqueta7
-	push	bp
-	pushi	-4
-	addi
-	pushi	0
-	storei
- etiqueta8:
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	lti
-	jz etiqueta9
-	pusha	3
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	addi
-	storei
-	push	bp
-	pushi	-4
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp etiqueta8
- etiqueta9:
-	push	bp
-	pushi	-2
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp etiqueta6
- etiqueta7:
-	push	bp
-	pushi	-2
-	addi
-	pushi	0
-	storei
- etiqueta10:
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	2
-	lti
-	jz etiqueta11
-	push	bp
-	pushi	-4
-	addi
-	pushi	0
-	storei
- etiqueta12:
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	lti
-	jz etiqueta13
-	pusha	3
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	loadi
-	outi
-	pushb	32
-	outb
-	push	bp
-	pushi	-4
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp etiqueta12
- etiqueta13:
-	push	bp
-	pushi	-2
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp etiqueta10
- etiqueta11:
-	ret 0, 4, 0
+	jmp label_4
+label_5:
+	' Void Return
+	ret 0, 2, 0

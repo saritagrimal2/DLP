@@ -55,7 +55,7 @@ public class Campo extends NodoASTAbstracto{
 
 	@Override
 	public String toString() {
-		return "Campo [identificador=" + identificador + ", tipo=" + tipo + "]";
+		return "(" + identificador + " x " + tipo + ")";
 	}
 	
 	@Override

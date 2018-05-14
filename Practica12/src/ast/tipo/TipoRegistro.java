@@ -19,7 +19,7 @@ public class TipoRegistro extends TipoAbstracto {
 
 	@Override
 	public String toString() {
-		return "TipoRegistro [campos=" + campos + "]";
+		return campos.toString();
 	}
 
 	@Override

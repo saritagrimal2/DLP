@@ -36,19 +36,17 @@ public class VisitorGCEjecutar extends AbstractGC {
 
 	@Override
 	public Object visitar(Programa p, Object param) {
-
 		gc.source(fentrada);
 
 		for (Definicion d : p.getDefinicones()) {
 			if (d instanceof DefVariable) {
 				d.aceptar(this, param);
-				gc.comentarioGlobales(d);
+				gc.comentarioVariables(d);
 			}
 		}
-
+		gc.comentarioMain();
 		gc.call("main");
 		gc.halt();
-
 		for (Definicion d : p.getDefinicones()) {
 			if (d instanceof DefFuncion) {
 				d.aceptar(this, param);
@@ -84,11 +82,21 @@ public class VisitorGCEjecutar extends AbstractGC {
 
 	@Override
 	public Object visitar(DefFuncion df, Object param) {
-
 		gc.etiqueta(df.getIdentificador());
 		
-		gc.enter(df.numeroBytesLocales());
+		gc.comentarioParametros();
+		for (DefVariable d : ((TipoFuncion)df.getTipo()).getArgumentos()) {
+				gc.comentarioVariables(d);
+		}
+		gc.comentarioLocales();
+		for (Sentencia s : df.getSentencias()) {
+			if (s instanceof DefVariable) {
+				gc.comentarioVariables((Definicion) s);
+			}
+		}
 		
+		gc.enter(df.numeroBytesLocales());
+		gc.comentarioCuerpoFuncion();
 		for (Sentencia s : df.getSentencias()) {
 			if (!(s instanceof DefVariable)) {
 				s.aceptar(this, df);
@@ -96,6 +104,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		}
 		
 		if (((TipoFuncion) df.getTipo()).getTipoRetorno() instanceof TipoVoid){
+			gc.comentarioReturnVoid();
 			gc.ret(0, df.numeroBytesLocales(), df.numeroBytesParam());
 		}
 
@@ -153,7 +162,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		r.getExpresion().aceptar(valor, param);
 		
 		DefFuncion df = (DefFuncion) param;
-	
+		gc.comentarioReturn();
 		gc.ret(((TipoFuncion) df.getTipo()).getTipoRetorno().numeroBytes(), 
 				df.numeroBytesLocales(), df.numeroBytesParam());
 

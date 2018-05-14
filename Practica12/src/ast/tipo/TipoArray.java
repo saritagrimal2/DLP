@@ -23,7 +23,7 @@ public class TipoArray extends TipoAbstracto {
 
 	@Override
 	public String toString() {
-		return "TipoArray [tamaño=" + tamaño + ", tipo=" + tipo + "]";
+		return "[" + tamaño + ", " + tipo + "]";
 	}
 	
 	@Override
