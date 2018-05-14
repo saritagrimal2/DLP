@@ -31,6 +31,8 @@ public class TipoFloat extends TipoAbstracto{
 	public Tipo aritmetica(Tipo expresion) {
 		if (expresion instanceof TipoFloat) {
 			return this;
+		} else if (expresion instanceof TipoEntero) {
+			return this;
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
@@ -43,17 +45,17 @@ public class TipoFloat extends TipoAbstracto{
 		return this;
 	}
 	
-	@Override
-	public Tipo comparacion(Tipo expresion) {
-		if (expresion instanceof TipoFloat) {
-			return this;
-		} else if (expresion instanceof TipoError) {
-			return expresion;
-		} else {
-			return null;
-		}
-	}
-	
+//	@Override
+//	public Tipo comparacion(Tipo expresion) {
+//		if (expresion instanceof TipoFloat) {
+//			return TipoEntero.getInstance();
+//		} else if (expresion instanceof TipoError) {
+//			return expresion;
+//		} else {
+//			return null;
+//		}
+//	}
+//	
 
 	@Override
 	public Tipo cast(Tipo expresion) {

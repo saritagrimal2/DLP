@@ -39,21 +39,30 @@ public class Main {
 		Visitor vO = new visitorOffset();
 		Visitor vE = new VisitorGCEjecutar(args[0], args[1]);
 		NodoAST nodoRaiz = parser.getAST();
-		nodoRaiz.aceptar(vI, null);
-		nodoRaiz.aceptar(vS, null);
-		nodoRaiz.aceptar(vO, null);
-		nodoRaiz.aceptar(vE, null);
 		
-				
+		nodoRaiz.aceptar(vI, null);
 		// * Comprobamos si hubo errores
 		if(ME.getME().huboErrores()){
 			// * Mostramos los errores
 			ME.getME().mostrarErrores(System.err);
-		}
-		else{			
-			// * Mostramos el AST
-			IntrospectorModel modelo=new IntrospectorModel("Programa",parser.getAST());
-			new IntrospectorTree("Introspector", modelo);
+		}else{	
+			nodoRaiz.aceptar(vS, null);
+			if(ME.getME().huboErrores()){
+				// * Mostramos los errores
+				ME.getME().mostrarErrores(System.err);
+			}else {
+				nodoRaiz.aceptar(vO, null);
+				if(ME.getME().huboErrores()){
+					// * Mostramos los errores
+					ME.getME().mostrarErrores(System.err);
+				}else {
+					nodoRaiz.aceptar(vE, null);
+					// * Mostramos el AST
+					IntrospectorModel modelo=new IntrospectorModel("Programa",parser.getAST());
+					new IntrospectorTree("Introspector", modelo);
+				}
+			}
+
 		}
 	}
 

@@ -65,11 +65,13 @@ public class VisitorGCValor extends AbstractGC{
 
 	@Override
 	public Object visitar(Comparacion c, Object param) {
-		Tipo superTipo = c.getExp1().getTipo().superTipo(c.getExp2().getTipo());
+		//Tipo superTipo = c.getExp1().getTipo().superTipo(c.getExp2().getTipo());
 		c.getExp1().aceptar(this, param);
-		gc.convertir(c.getExp1().getTipo(), superTipo);
+		gc.convertir(c.getExp1().getTipo(), c.getTipo());
+		//gc.convertir(c.getExp1().getTipo(), superTipo);
 		c.getExp2().aceptar(this, param);
-		gc.convertir(c.getExp2().getTipo(), superTipo);
+		gc.convertir(c.getExp1().getTipo(), c.getTipo());
+		//gc.convertir(c.getExp2().getTipo(), superTipo);
 		gc.comparacion(c.getOperador(), c.getTipo());
 		
 		return null;

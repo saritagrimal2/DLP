@@ -7,120 +7,99 @@
 	halt
  f:
 	' * Parameters
-	' * var r float32 (offset 6)
 	' * var e int (offset 4)
 	' * Local variables
-	' * var real float32 (offset -4)
-	' * var c char (offset -5)
-	enter	5
+	enter	0
 	' * Function body
-#line	5
-	push	bp
-	pushi	-5
-	addi
-	pushb	48
-	storeb
-#line	6
-	push	bp
-	pushi	-5
-	addi
-	loadb
-	b2i
-	' Return
-	ret 2, 5, 6
- g:
-	' * Parameters
-	' * var r float32 (offset 6)
-	' * var e int (offset 4)
-	' * Local variables
-	' * var real float32 (offset -4)
-	' * var c char (offset -5)
-	enter	5
-	' * Function body
-#line	12
-	push	bp
-	pushi	-5
-	addi
-	pushb	48
-	storeb
-#line	13
-	push	bp
-	pushi	-5
-	addi
-	loadb
-	' Return
-	ret 1, 5, 6
- y:
-	' * Parameters
-	' * var r float32 (offset 6)
-	' * var e int (offset 4)
-	' * Local variables
-	' * var real float32 (offset -4)
-	' * var c char (offset -5)
-	enter	5
-	' * Function body
-#line	19
-	push	bp
-	pushi	-5
-	addi
-	pushb	48
-	storeb
-#line	20
-	push	bp
-	pushi	-5
-	addi
-	loadb
-	b2i
-	i2f
-	' Return
-	ret 4, 5, 6
- n:
-	' * Parameters
-	' * var r float32 (offset 6)
-	' * var e int (offset 4)
-	' * Local variables
-	' * var real float32 (offset -4)
-	' * var c char (offset -5)
-	enter	5
-	' * Function body
-#line	26
-	push	bp
-	pushi	-5
-	addi
-	pushb	48
-	storeb
-#line	27
+#line	3
 	push	bp
 	pushi	4
 	addi
 	loadi
 	i2f
 	' Return
-	ret 4, 5, 6
+	ret 4, 0, 2
  main:
 	' * Parameters
 	' * Local variables
-	enter	0
+	' * var i int (offset -2)
+	' * var a int (offset -4)
+	' * var j int (offset -6)
+	' * var v [10, float32] (offset -46)
+	enter	46
 	' * Function body
-#line	32
-	pushf	1.1
+#line	11
+	push	bp
+	pushi	-4
+	addi
+	pushi	0
+	storei
+#line	12
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+#line	13
+	push	bp
+	pushi	-6
+	addi
+	pushi	1
+	pushi	3
+	muli
+	pushi	2
+	subi
+	storei
+#line	14
+	push	bp
+	pushi	-46
+	addi
+	push	bp
+	pushi	-46
+	addi
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	4
+	muli
+	addi
+	loadf
+	f2i
+	pushi	4
+	muli
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	i2f
+	storef
+#line	15
+	pushb	102
+	outb
+#line	15
+	pushb	40
+	outb
+#line	15
+	pushb	105
+	outb
+#line	15
+	pushb	41
+	outb
+#line	15
+	pushb	61
+	outb
+#line	15
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	call	f
+	outf
+#line	16
 	pushi	1
 	call	f
-	popi
-#line	33
-	pushf	1.1
-	pushi	1
-	call	g
-	popb
-#line	34
-	pushf	1.1
-	pushi	1
-	call	y
-	popf
-#line	35
-	pushf	1.1
-	pushi	1
-	call	n
-	popf
+	outf
 	' Void Return
-	ret 0, 0, 0
+	ret 0, 46, 0

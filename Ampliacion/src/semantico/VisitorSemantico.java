@@ -133,7 +133,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (a.getTipo() == null) {
 			a.setTipo(new TipoError(a.getLinea(), a.getColumna(),
-					"[Aritmetica] Las expresiones deben de ser del mismo tipo."));
+					"[Aritmetica] Las expresiones no son de tipos compatibles."));
 		}
 
 		a.setLValue(false);

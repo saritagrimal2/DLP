@@ -30,7 +30,9 @@ public class TipoEntero extends TipoAbstracto {
 	public Tipo aritmetica(Tipo expresion) {
 		if (expresion instanceof TipoEntero) {
 			return this;
-		} else if (expresion instanceof TipoError) {
+		} else if (expresion instanceof TipoFloat) {
+			return expresion;
+		}else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
 			return null;

@@ -1,40 +1,18 @@
 
-func f(r float32, e int) int {
-	var real float32;
-	var c char;
-	c='0';
-	return c;
-}
-
-func g(r float32, e int) char {
-	var real float32;
-	var c char;
-	c='0';
-	return c;
-}
-
-func y(r float32, e int) float32 {
-	var real float32;
-	var c char;
-	c='0';
-	return c;
-}
-
-func n(r float32, e int) float32 {
-	var real float32;
-	var c char;
-	c='0';
-	return e;
+func f(e int) float32 {
+  return float32(e);
 }
 
 
+// * Main program
 func main() {
-	f(1.1,1);
-	g(1.1,1);
-	y(1.1,1);
-	n(1.1,1);
-
-
+  var i,a,j int ;
+  var v [10]float32;
+  a = 0;
+  i = 0;
+  j = -1*3-2;  
+  //v[int(v[j])] = a;
+  //write('f', '(', 'i', ')', '=' ,f(i));
+  write(f(1));
 }
-
 
