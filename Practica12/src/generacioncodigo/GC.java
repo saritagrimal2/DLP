@@ -303,7 +303,7 @@ public class GC {
 	
 //	Informacion de debug
 	public void source(String constante)  {
-		String salida ="#source \""+ constante +"\"";
+		String salida ="\n#source \""+ constante +"\""+ "\n";
 		writeFile(salida);
 	}
 	
@@ -340,7 +340,11 @@ public class GC {
 	}
 	
 	public void comentarioMain() {
-		writeFile(" ' Invocation to the main function");
+		writeFile("\n" + "' Invocation to the main function");
+	}
+	
+	public void comentarioLinea(int linea) {
+		writeFile("#line\t"+ linea);
 	}
 	
 //	 Metodo que escribe

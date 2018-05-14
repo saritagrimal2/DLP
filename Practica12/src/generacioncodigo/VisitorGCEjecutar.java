@@ -99,6 +99,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		gc.comentarioCuerpoFuncion();
 		for (Sentencia s : df.getSentencias()) {
 			if (!(s instanceof DefVariable)) {
+				gc.comentarioLinea(s.getLinea());
 				s.aceptar(this, df);
 			}
 		}
@@ -119,6 +120,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 		gc.jz(etiqueta+1);
 		
 		for (Sentencia s: w.getSentencias()) {
+			gc.comentarioLinea(s.getLinea());
 			s.aceptar(this, (DefFuncion)param);
 		}
 		gc.jmp(etiqueta);
@@ -133,11 +135,13 @@ public class VisitorGCEjecutar extends AbstractGC {
 		i.getExpresion().aceptar(valor, (DefFuncion)param);
 		gc.jz(etiqueta);
 		for (Sentencia s: i.getSentencias()) {
+			gc.comentarioLinea(s.getLinea());
 			s.aceptar(this,(DefFuncion) param);
 		}
 		gc.jmp(etiqueta+1);
 		gc.etiqueta(etiqueta);
 		for (Sentencia s: i.getSentenciaElse()) {
+			gc.comentarioLinea(s.getLinea());
 			s.aceptar(this, (DefFuncion)param);
 		}
 		gc.etiqueta(etiqueta+1);

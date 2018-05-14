@@ -1,3 +1,4 @@
+
 // * Global variables
 var i,n,j int;
 var c char;
