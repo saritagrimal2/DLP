@@ -353,11 +353,11 @@ public class VisitorSemantico extends VisitorAbstracto {
 		i.getExpresion().aceptar(this, param);
 		
 		if (TipoEntero.getInstance().promocionaA(i.getExpresion().getTipo()) == null) {
-			new TipoError(i.getLinea(), i.getColumna(), "[Incrementar] No se puede promocionar ese tipo.");
+			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] No se puede promocionar ese tipo.");
 		}
 		
 		if (!i.getExpresion().getLValue()) {
-			new TipoError(i.getLinea(), i.getColumna(), "[Incrementar] Se esperaba un Lvalue.");
+			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] Se esperaba un Lvalue.");
 		}
 
 		return null;

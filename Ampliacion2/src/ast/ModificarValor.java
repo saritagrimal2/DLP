@@ -24,7 +24,7 @@ public class ModificarValor extends NodoASTAbstracto implements Sentencia {
 
 	@Override
 	public String toString() {
-		return "Incrementar [exp=" + expresion + ", operador=" + operador + "]";
+		return "ModificarValor [exp=" + expresion + ", operador=" + operador + "]";
 	}
 
 	@Override
