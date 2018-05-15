@@ -1,0 +1,29 @@
+No se puede asignar ninguna operación aritmética a un tipo char, habría que hacer
+un cast a char de la aritmetica.
+**Promocion implícita de tipos en:
+	- Comparación
+	- Aritmética
+	- Asignación
+	- Retorno de una función
+	- Invocación de función como expresión
+	- Invocación de función como sentencia
+	
+**Añadir operador ++ / -- (Clase ModificarValor, solo vale para floats, enteros)
+
+**Añadir operador += / -= (Clase ModificarValor, solo vale para floats, enteros y caracteres)
+
+Añadir bucle for
+
+Pasar tipos complejos 
+
+Añadir la asignacion como expresion
+
+Añadir tipo boolean (true o false)
+
+Hacer el XOR
+
+Operador ternario
+
+else if
+
+switch

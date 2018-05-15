@@ -5,7 +5,7 @@ func main()  {
  c='a';
  
 
- c= c + 'a';
+ c+='b';
  
  
 }

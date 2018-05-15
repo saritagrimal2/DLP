@@ -113,7 +113,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (a.getExp1().getTipo() != null && a.getExp2().getTipo() != null) {
 			a.getExp2().getTipo().promocionaA(a.getExp1().getTipo());
-
+			
 			if (a.getExp2().getTipo().promocionaA(a.getExp1().getTipo()) == null) {
 				new TipoError(a.getLinea(), a.getColumna(), "[Asignacion] No se puede promocionar ese tipo.");
 			}
