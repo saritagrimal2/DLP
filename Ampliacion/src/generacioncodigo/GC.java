@@ -139,7 +139,7 @@ public class GC {
 	}
 	
 	public void comparacion(String operador, Tipo tipo) {
-		if (operador == ">") {
+		if (operador.equals(">")) {
 			gt(tipo);
 		} else if (operador.equals("<")) {
 			lt(tipo);

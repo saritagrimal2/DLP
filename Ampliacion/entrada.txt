@@ -1,10 +1,21 @@
-
-// * Global variables
 var i int;
+var f float32;
+var c char;
 
-func main() {
-	i = 0;
-	while i<10 {
-		i=i+1;
-	}
+func main(){
+
+	i = 1;
+	f = 1.0;
+	c= 'a';
+  
+  write( i == f );
+  write( i == c );
+  write( f == c );
+  write( i == i );
+  write( f == f );
+  write( c == c );
+
+
+
 }
+

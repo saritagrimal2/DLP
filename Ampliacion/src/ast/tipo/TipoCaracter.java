@@ -28,9 +28,12 @@ public class TipoCaracter extends TipoAbstracto {
 
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		if (expresion instanceof TipoCaracter) {
+		if (expresion instanceof TipoCaracter
+				|| expresion instanceof TipoEntero) {
 			return TipoEntero.getInstance();
-		} else if (expresion instanceof TipoError) {
+		} else if (expresion instanceof TipoFloat) {
+			return expresion;
+		}else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
 			return null;
@@ -44,7 +47,9 @@ public class TipoCaracter extends TipoAbstracto {
 
 	@Override
 	public Tipo comparacion(Tipo expresion) {
-		if (expresion instanceof TipoCaracter) {
+		if (expresion instanceof TipoCaracter 
+				|| expresion instanceof TipoEntero 
+				|| expresion instanceof TipoFloat ) {
 			return TipoEntero.getInstance();
 		} else if (expresion instanceof TipoError) {
 			return expresion;
@@ -112,10 +117,13 @@ public class TipoCaracter extends TipoAbstracto {
 	public Tipo superTipo(Tipo expresion) {
 		if (expresion instanceof TipoFloat) {
 			return TipoFloat.getInstance();
+		}else if (expresion instanceof TipoEntero 
+				|| expresion instanceof TipoCaracter ) {
+			return TipoEntero.getInstance();
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
-			return TipoEntero.getInstance();
+			return null;
 		}
 	}
 

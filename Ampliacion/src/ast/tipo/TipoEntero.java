@@ -7,7 +7,7 @@ public class TipoEntero extends TipoAbstracto {
 	private static TipoEntero instance = new TipoEntero();
 
 	private TipoEntero() {
-		super(0,0);
+		super(0, 0);
 	}
 
 	public static TipoEntero getInstance() {
@@ -20,7 +20,7 @@ public class TipoEntero extends TipoAbstracto {
 	public String toString() {
 		return "int";
 	}
-	
+
 	@Override
 	public Object aceptar(Visitor visitor, Object param) {
 		return visitor.visitar(this, param);
@@ -28,25 +28,27 @@ public class TipoEntero extends TipoAbstracto {
 
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		if (expresion instanceof TipoEntero) {
+		if (expresion instanceof TipoEntero || expresion instanceof TipoCaracter) {
 			return this;
 		} else if (expresion instanceof TipoFloat) {
 			return expresion;
-		}else if (expresion instanceof TipoError) {
+		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Tipo aritmetica() {
 		return this;
 	}
-	
+
 	@Override
 	public Tipo comparacion(Tipo expresion) {
-		if (expresion instanceof TipoEntero) {
+		if (expresion instanceof TipoEntero
+				|| expresion instanceof TipoCaracter
+				|| expresion instanceof TipoFloat) {
 			return this;
 		} else if (expresion instanceof TipoError) {
 			return expresion;
@@ -54,12 +56,12 @@ public class TipoEntero extends TipoAbstracto {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Tipo logica() {
 		return this;
 	}
-	
+
 	@Override
 	public Tipo logica(Tipo expresion) {
 		if (expresion instanceof TipoEntero) {
@@ -70,14 +72,14 @@ public class TipoEntero extends TipoAbstracto {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Tipo cast(Tipo expresion) {
 		if (expresion instanceof TipoEntero) {
 			return this;
 		} else if (expresion instanceof TipoFloat) {
 			return this;
-		}else if (expresion instanceof TipoCaracter) {
+		} else if (expresion instanceof TipoCaracter) {
 			return this;
 		} else if (expresion instanceof TipoError) {
 			return expresion;
@@ -85,13 +87,12 @@ public class TipoEntero extends TipoAbstracto {
 			return null;
 		}
 	}
-	
-	
+
 	@Override
 	public Tipo promocionaA(Tipo tipo) {
 		if (tipo instanceof TipoEntero) {
 			return this;
-		}else if (tipo instanceof TipoFloat) {
+		} else if (tipo instanceof TipoFloat) {
 			return tipo;
 		} else if (tipo instanceof TipoError) {
 			return tipo;
@@ -99,31 +100,34 @@ public class TipoEntero extends TipoAbstracto {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public boolean esLogico() {
 		return true;
 	}
-	
+
 	@Override
 	public int numeroBytes() {
 		return 2;
 	}
-	
+
 	@Override
 	public char sufijo() {
 		return 'i';
 	}
-	
+
 	@Override
 	public Tipo superTipo(Tipo expresion) {
 		if (expresion instanceof TipoFloat) {
 			return TipoFloat.getInstance();
 		} else if (expresion instanceof TipoError) {
 			return expresion;
-		} else {
+		} else if (expresion instanceof TipoEntero 
+				|| expresion instanceof TipoCaracter) {
 			return this;
+		} else {
+			return null;
 		}
 	}
-	
+
 }

@@ -28,9 +28,9 @@ public class TipoFloat extends TipoAbstracto {
 
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		if (expresion instanceof TipoFloat) {
-			return this;
-		} else if (expresion instanceof TipoEntero) {
+		if (expresion instanceof TipoFloat 
+				|| expresion instanceof TipoEntero
+				|| expresion instanceof TipoCaracter) {
 			return this;
 		} else if (expresion instanceof TipoError) {
 			return expresion;
@@ -46,7 +46,9 @@ public class TipoFloat extends TipoAbstracto {
 
 	@Override
 	public Tipo comparacion(Tipo expresion) {
-		if (expresion instanceof TipoFloat) {
+		if (expresion instanceof TipoFloat 
+				|| expresion instanceof TipoEntero
+				|| expresion instanceof TipoCaracter) {
 			return TipoEntero.getInstance();
 		} else if (expresion instanceof TipoError) {
 			return expresion;
@@ -95,8 +97,12 @@ public class TipoFloat extends TipoAbstracto {
 	public Tipo superTipo(Tipo expresion) {
 		if (expresion instanceof TipoError) {
 			return expresion;
-		} else {
+		} else if (expresion instanceof TipoFloat
+				|| expresion instanceof TipoEntero 
+				|| expresion instanceof TipoCaracter) {
 			return this;
+		} else {
+			return null;
 		}
 	}
 }
