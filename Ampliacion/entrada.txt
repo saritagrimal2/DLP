@@ -1,16 +1,9 @@
+func main()  {
 
+ var c char;
 
-
-func f(r float32, e int) int{
-  var result int;
-  result = e;
-  return result;
+ 
+ c='a';
+ c = char ('a' + 'b');
+ 
 }
-
-
-func main(){
-	
-	write (f (1,1.1));
-
-}
-

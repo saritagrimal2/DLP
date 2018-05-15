@@ -37,6 +37,8 @@ import ast.tipo.*;
 %token OR
 %token MAS_MAS
 %token MENOS_MENOS
+%token MAS_IGUAL
+%token MENOS_IGUAL
 
 %right '='
 %left AND OR
@@ -119,6 +121,7 @@ sentencia: sentencia_if								{ List<Sentencia> sentencias = new ArrayList<Sent
 		 | sentencia_return							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_invocacion						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_modificarValor					{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_modificarValorConcreto			{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 ;
 				
 				
@@ -151,7 +154,9 @@ sentencia_modificarValor: expresion MAS_MAS	';'					{ $$ = new ModificarValor(le
 						| expresion MENOS_MENOS	';'				{ $$ = new ModificarValor(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2);}	
 						;
 					
-					
+sentencia_modificarValorConcreto: expresion MAS_IGUAL expresion	';'			{ $$ = new ModificarValorConcreto(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3 );}		
+						| expresion MENOS_IGUAL	expresion ';'				{ $$ = new ModificarValorConcreto(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3 );}	
+						;			
 		
 
 // * Definicion variable				

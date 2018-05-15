@@ -156,6 +156,12 @@ CodigoASCII = [']\\[0-9]*[']
 "--" {this.yylval = yytext(); 
 	  return Parser.MENOS_MENOS;	}
 	  
+"+=" {this.yylval = yytext(); 
+	  return Parser.MAS_IGUAL;	}
+	  
+"-=" {this.yylval = yytext(); 
+	  return Parser.MENOS_IGUAL;	}
+	  
 // * Delimitadores
 
 "{" |

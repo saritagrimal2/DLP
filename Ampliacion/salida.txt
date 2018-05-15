@@ -1,0 +1,32 @@
+
+#source "entrada.txt."
+
+
+' Invocation to the main function
+	call	main
+	halt
+ main:
+	' * Parameters
+	' * Local variables
+	' * var c char (offset -1)
+	enter	1
+	' * Function body
+#line	6
+	push	bp
+	pushi	-1
+	addi
+	pushb	97
+	storeb
+#line	7
+	push	bp
+	pushi	-1
+	addi
+	pushb	97
+	b2i
+	pushb	98
+	b2i
+	addi
+	i2b
+	storeb
+	' Void Return
+	ret 0, 1, 0

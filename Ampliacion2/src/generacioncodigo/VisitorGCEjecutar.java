@@ -6,8 +6,8 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Definicion;
 import ast.Escritura;
-import ast.Expresion;
 import ast.ModificarValor;
+import ast.ModificarValorConcreto;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
 import ast.Programa;
@@ -15,6 +15,7 @@ import ast.Return;
 import ast.Sentencia;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
+import ast.tipo.Tipo;
 import ast.tipo.TipoCaracter;
 import ast.tipo.TipoEntero;
 import ast.tipo.TipoFuncion;
@@ -195,6 +196,27 @@ public class VisitorGCEjecutar extends AbstractGC {
 		gc.store(i.getExpresion().getTipo());
 		
 		
+		return null;
+	}
+	
+	@Override
+	public Object visitar(ModificarValorConcreto i, Object param) {
+		Tipo superTipo = i.getExp1().getTipo().superTipo(i.getExp2().getTipo());
+		i.getExp1().aceptar(direccion, param);
+		i.getExp1().aceptar(valor, param);
+		gc.convertir(i.getExp1().getTipo(), superTipo);
+		i.getExp2().aceptar(valor, param);
+		gc.convertir(i.getExp2().getTipo(), superTipo);
+		
+		gc.modificarValorConcreto(i.getOperador(), superTipo);
+		
+		if (i.getExp2().getTipo() instanceof TipoCaracter && i.getExp1().getTipo() instanceof TipoCaracter) {
+			gc.i2b();
+			gc.store(TipoCaracter.getInstance());
+		} else {
+			gc.store(superTipo);
+		}
+
 		return null;
 	}
 

@@ -114,6 +114,14 @@ public class GC {
 		}
 	}
 	
+	public void modificarValorConcreto(String operador, Tipo tipo) {
+		if (operador.equals("+=")) {
+			add(tipo);
+		} else if (operador.equals("-=")) {
+			sub(tipo);
+		}
+	}
+	
 //	Instrucciones de comparacion
 	public void gt(Tipo tipo) {
 		String salida ="\tgt" + tipo.sufijo();

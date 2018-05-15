@@ -13,6 +13,7 @@ import ast.DefFuncion;
 import ast.Expresion;
 import ast.Identificador;
 import ast.ModificarValor;
+import ast.ModificarValorConcreto;
 import ast.InvocacionFuncionExp;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
@@ -358,6 +359,22 @@ public class VisitorSemantico extends VisitorAbstracto {
 		
 		if (!i.getExpresion().getLValue()) {
 			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] Se esperaba un Lvalue.");
+		}
+
+		return null;
+	}
+	
+	@Override
+	public Object visitar(ModificarValorConcreto mv, Object param) {
+		mv.getExp1().aceptar(this, param);
+		mv.getExp2().aceptar(this, param);
+		
+		if (mv.getExp2().getTipo().promocionaA(mv.getExp1().getTipo()) == null) {
+			new TipoError(mv.getLinea(), mv.getColumna(), "[ModificarValorConcreto] No se puede promocionar ese tipo.");
+		}
+		
+		if (!mv.getExp1().getLValue()) {
+			new TipoError(mv.getLinea(), mv.getColumna(), "[ModificarValorConcreto] Se esperaba un Lvalue.");
 		}
 
 		return null;

@@ -1,27 +1,11 @@
 func main()  {
 
- var v [3]int;
- var i int;
  var c char;
- var s struct{
-  j int;
- };
- 
- s.j=69;
- 
- v[0]=33;
- i=0;
- 
- while i>10 {
-  write( v[0]);
-  write( s.j);
-  write ('\n');
-  i--;
-  v[0]--;
-  s.j--; 
- }
- 
+
  c='a';
-//c++; //Error
+ 
+
+ c= c + 'a';
+ 
  
 }

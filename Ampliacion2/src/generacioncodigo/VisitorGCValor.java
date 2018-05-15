@@ -128,10 +128,7 @@ public class VisitorGCValor extends AbstractGC{
 	
 	@Override
 	public Object visitar(InvocacionFuncionExp f, Object param) {
-//		for (Expresion e : f.getArgumentos()) {
-//			e.aceptar(this, param);
-//		}
-		
+
 		for (int i =0; i< f.getArgumentos().size(); i++) {
 			f.getArgumentos().get(i).aceptar(this, param);
 			gc.convertir(f.getArgumentos().get(i).getTipo(), 
