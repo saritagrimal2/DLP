@@ -7,6 +7,7 @@ import ast.Cast;
 import ast.Comparacion;
 import ast.Expresion;
 import ast.Identificador;
+import ast.ModificarValor;
 import ast.InvocacionFuncionExp;
 import ast.LiteralCaracter;
 import ast.LiteralEntero;

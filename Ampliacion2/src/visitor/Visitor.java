@@ -10,6 +10,7 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Escritura;
 import ast.Identificador;
+import ast.ModificarValor;
 import ast.InvocacionFuncionExp;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
@@ -74,5 +75,6 @@ public interface Visitor {
 	public Object visitar(TipoFuncion f, Object param);
 	public Object visitar(TipoRegistro r, Object param);
 	public Object visitar(TipoVoid v, Object param);
+	public Object visitar(ModificarValor incrementar, Object param);
 	
 }

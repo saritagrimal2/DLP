@@ -149,7 +149,12 @@ CodigoASCII = [']\\[0-9]*[']
 	  
 "||" {this.yylval = yytext(); 
 	  return Parser.OR;	}
+
+"++" {this.yylval = yytext(); 
+	  return Parser.MAS_MAS;	}	  
 	  
+"--" {this.yylval = yytext(); 
+	  return Parser.MENOS_MENOS;	}
 	  
 // * Delimitadores
 

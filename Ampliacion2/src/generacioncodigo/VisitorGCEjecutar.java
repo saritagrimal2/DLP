@@ -7,6 +7,7 @@ import ast.DefVariable;
 import ast.Definicion;
 import ast.Escritura;
 import ast.Expresion;
+import ast.ModificarValor;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
 import ast.Programa;
@@ -14,6 +15,8 @@ import ast.Return;
 import ast.Sentencia;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
+import ast.tipo.TipoCaracter;
+import ast.tipo.TipoEntero;
 import ast.tipo.TipoFuncion;
 import ast.tipo.TipoVoid;
 
@@ -177,6 +180,21 @@ public class VisitorGCEjecutar extends AbstractGC {
 		gc.ret(((TipoFuncion) df.getTipo()).getTipoRetorno().numeroBytes(), 
 				df.numeroBytesLocales(), df.numeroBytesParam());
 
+		return null;
+	}
+	
+	
+	@Override
+	public Object visitar(ModificarValor i, Object param) {
+		i.getExpresion().aceptar(direccion, param);
+		i.getExpresion().aceptar(valor, param);
+		gc.push(TipoEntero.getInstance(), 1);
+		gc.convertir(TipoEntero.getInstance(), i.getExpresion().getTipo());
+		gc.modificarValor(i.getOperador(), i.getExpresion().getTipo());
+		
+		gc.store(i.getExpresion().getTipo());
+		
+		
 		return null;
 	}
 

@@ -106,6 +106,13 @@ public class GC {
 		}
 	}
 
+	public void modificarValor(String operador, Tipo tipo) {
+		if (operador.equals("++")) {
+			add(tipo);
+		} else if (operador.equals("--")) {
+			sub(tipo);
+		}
+	}
 	
 //	Instrucciones de comparacion
 	public void gt(Tipo tipo) {

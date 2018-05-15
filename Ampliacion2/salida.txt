@@ -1,614 +1,125 @@
 
 #source "entrada.txt"
 
-	' * var pair [(integer x int), (character x char)] (offset 0)
-	' * var acme [2, [(employees x [2, [(age x int)]])]] (offset 3)
-	' * var fibonacci [8, [3, int]] (offset 11)
 
 ' Invocation to the main function
 	call	main
 	halt
- p:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-	' Void Return
-	ret 0, 0, 0
- f:
-	' * Parameters
-	' * var r float32 (offset 6)
-	' * var e int (offset 4)
-	' * Local variables
-	' * var real float32 (offset -4)
-	' * var c char (offset -5)
-	' * var result int (offset -7)
-	enter	7
-	' * Function body
-#line	20
-	push	bp
-	pushi	-4
-	addi
-	push	bp
-	pushi	6
-	addi
-	loadf
-	pushf	10.0
-	mulf
-	storef
-#line	21
-	push	bp
-	pushi	-5
-	addi
-	pushb	48
-	storeb
-#line	28
-	push	bp
-	pushi	4
-	addi
-	loadi
-	pushi	256
-	lti
-	jz label_0
-#line	23
-	push	bp
-	pushi	-5
-	addi
-	push	bp
-	pushi	4
-	addi
-	loadi
-	i2b
-	storeb
-#line	24
-	push	bp
-	pushi	-7
-	addi
-	push	bp
-	pushi	-5
-	addi
-	loadb
-	b2i
-	storei
-	jmp label_1
-label_0:
-#line	27
-	push	bp
-	pushi	-7
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadf
-	f2i
-	storei
-label_1:
-#line	29
-	push	bp
-	pushi	-7
-	addi
-	loadi
-	' Return
-	ret 2, 7, 6
- initialize:
-	' * Parameters
-	' * Local variables
-	' * var i int (offset -2)
-	enter	2
-	' * Function body
-#line	34
-	pusha	11
-	pushi	0
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	pushi	0
-	storei
-#line	35
-	pusha	11
-	pushi	0
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pushi	1
-	storei
-#line	36
-	pusha	11
-	pushi	0
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	pushi	1
-	storei
-#line	37
-	push	bp
-	pushi	-2
-	addi
-	pushi	1
-	storei
-#line	43
-label_2:
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	8
-	lti
-	jz label_3
-#line	39
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	subi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	loadi
-	storei
-#line	40
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	subi
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	loadi
-	storei
-#line	41
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	loadi
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	loadi
-	addi
-	storei
-#line	42
-	push	bp
-	pushi	-2
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp label_2
-label_3:
-	' Void Return
-	ret 0, 2, 0
  main:
 	' * Parameters
 	' * Local variables
-	' * var i int (offset -2)
-	' * var j int (offset -4)
-	enter	4
+	' * var v [3, int] (offset -6)
+	' * var i int (offset -8)
+	' * var c char (offset -9)
+	' * var s [(j x int)] (offset -11)
+	enter	11
 	' * Function body
-#line	50
-	call	p
-#line	51
+#line	10
 	push	bp
-	pushi	-2
+	pushi	-11
+	addi
+	pushi	0
+	addi
+	pushi	69
+	storei
+#line	12
+	push	bp
+	pushi	-6
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	pushi	33
+	storei
+#line	13
+	push	bp
+	pushi	-8
 	addi
 	pushi	0
 	storei
-#line	52
-	pusha	0
-	pushi	2
+#line	22
+label_0:
+	push	bp
+	pushi	-8
 	addi
-	pushb	48
+	loadi
+	pushi	10
+	gti
+	jz label_1
+#line	16
+	push	bp
+	pushi	-6
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
+#line	17
+	push	bp
+	pushi	-11
+	addi
+	pushi	0
+	addi
+	loadi
+	outi
+#line	18
+	pushb	10
+	outb
+#line	19
+	push	bp
+	pushi	-8
+	addi
+	push	bp
+	pushi	-8
+	addi
+	loadi
+	pushi	1
+	subi
+	storei
+#line	20
+	push	bp
+	pushi	-6
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	push	bp
+	pushi	-6
+	addi
+	pushi	0
+	pushi	2
+	muli
+	addi
+	loadi
+	pushi	1
+	subi
+	storei
+#line	21
+	push	bp
+	pushi	-11
+	addi
+	pushi	0
+	addi
+	push	bp
+	pushi	-11
+	addi
+	pushi	0
+	addi
+	loadi
+	pushi	1
+	subi
+	storei
+	jmp label_0
+label_1:
+#line	24
+	push	bp
+	pushi	-9
+	addi
+	pushb	97
 	storeb
-#line	53
-	pusha	0
-	pushi	0
-	addi
-	pushb	48
-	b2i
-	storei
-#line	56
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	i2f
-	pusha	0
-	pushi	2
-	addi
-	loadb
-	b2i
-	call	f
-	outi
-#line	56
-	pushb	10
-	outb
-#line	57
-	pushf	1.3
-	pushi	2
-	call	f
-	popi
-#line	59
-	call	initialize
-#line	60
-	push	bp
-	pushi	-2
-	addi
-	pushi	0
-	storei
-#line	67
-label_4:
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	8
-	lti
-	jz label_5
-#line	65
-	pushb	40
-	outb
-#line	65
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	outi
-#line	65
-	pushb	41
-	outb
-#line	65
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	0
-	pushi	2
-	muli
-	addi
-	loadi
-	outi
-#line	65
-	pushb	43
-	outb
-#line	65
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	loadi
-	outi
-#line	65
-	pushb	61
-	outb
-#line	65
-	pusha	11
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	6
-	muli
-	addi
-	pushi	2
-	pushi	2
-	muli
-	addi
-	loadi
-	outi
-#line	65
-	pushb	10
-	outb
-#line	66
-	push	bp
-	pushi	-2
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp label_4
-label_5:
-#line	69
-	pusha	3
-	pushi	1
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	pushi	56
-	storei
-#line	71
-	pusha	3
-	pushi	1
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	pushi	1
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	loadi
-	outi
-#line	71
-	pushb	10
-	outb
-#line	72
-	push	bp
-	pushi	-2
-	addi
-	pushi	0
-	storei
-#line	80
-label_6:
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	2
-	lti
-	jz label_7
-#line	74
-	push	bp
-	pushi	-4
-	addi
-	pushi	0
-	storei
-#line	78
-label_8:
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	lti
-	jz label_9
-#line	76
-	pusha	3
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	addi
-	storei
-#line	77
-	push	bp
-	pushi	-4
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp label_8
-label_9:
-#line	79
-	push	bp
-	pushi	-2
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp label_6
-label_7:
-#line	83
-	push	bp
-	pushi	-2
-	addi
-	pushi	0
-	storei
-#line	92
-label_10:
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	2
-	lti
-	jz label_11
-#line	85
-	push	bp
-	pushi	-4
-	addi
-	pushi	0
-	storei
-#line	90
-label_12:
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	lti
-	jz label_13
-#line	88
-	pusha	3
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	4
-	muli
-	addi
-	pushi	0
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	2
-	muli
-	addi
-	pushi	0
-	addi
-	loadi
-	outi
-#line	88
-	pushb	32
-	outb
-#line	89
-	push	bp
-	pushi	-4
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp label_12
-label_13:
-#line	91
-	push	bp
-	pushi	-2
-	addi
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	pushi	1
-	addi
-	storei
-	jmp label_10
-label_11:
 	' Void Return
-	ret 0, 4, 0
+	ret 0, 11, 0

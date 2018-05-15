@@ -12,6 +12,7 @@ import ast.Comparacion;
 import ast.DefFuncion;
 import ast.Expresion;
 import ast.Identificador;
+import ast.ModificarValor;
 import ast.InvocacionFuncionExp;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
@@ -345,5 +346,22 @@ public class VisitorSemantico extends VisitorAbstracto {
 		i.setLValue(true);
 		return null;
 	}
+	
+	
+	@Override
+	public Object visitar(ModificarValor i, Object param) {
+		i.getExpresion().aceptar(this, param);
+		
+		if (TipoEntero.getInstance().promocionaA(i.getExpresion().getTipo()) == null) {
+			new TipoError(i.getLinea(), i.getColumna(), "[Incrementar] No se puede promocionar ese tipo.");
+		}
+		
+		if (!i.getExpresion().getLValue()) {
+			new TipoError(i.getLinea(), i.getColumna(), "[Incrementar] Se esperaba un Lvalue.");
+		}
+
+		return null;
+	}
+
 
 }

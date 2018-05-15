@@ -35,11 +35,13 @@ import ast.tipo.*;
 %token READ
 %token VAR
 %token OR
+%token MAS_MAS
+%token MENOS_MENOS
 
 %right '='
 %left AND OR
 %left '>' MAYOR_IGUAL '<' MENOR_IGUAL DISTINTO IGUAL_IGUAL
-%left '+' '-'
+%left '+' '-' 
 %left '*' '/' '%'
 %right '!'
 %right MENOSUNARIO
@@ -116,6 +118,8 @@ sentencia: sentencia_if								{ List<Sentencia> sentencias = new ArrayList<Sent
 		 | sentencia_asignacion						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_return							{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 | sentencia_invocacion						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_incremento						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
+		 | sentencia_decremento						{ List<Sentencia> sentencias = new ArrayList<Sentencia>(); sentencias.add((Sentencia)$1); $$ = sentencias;}
 		 ;
 				
 				
@@ -142,6 +146,12 @@ sentencia_return: RETURN expresion ';'							{$$ = new Return(lexico.getLinea(),
 				;
 
 sentencia_invocacion: ID '('  lista_expresiones ')' ';'			{$$ = new InvocacionFuncionSent(lexico.getLinea(), lexico.getColumna(), new Identificador(lexico.getLinea(), lexico.getColumna(),(String)$1), (List<Expresion>)$3);}
+					;
+					
+sentencia_incremento: expresion MAS_MAS	';'						{ $$ = new ModificarValor(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2);}		
+					;
+					
+sentencia_decremento: expresion MENOS_MENOS	';'					{ $$ = new ModificarValor(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2);}		
 					;
 		
 
