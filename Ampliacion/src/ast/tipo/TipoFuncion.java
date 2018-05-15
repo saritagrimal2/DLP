@@ -39,9 +39,18 @@ public class TipoFuncion extends TipoAbstracto {
 		if (tipos.size() == argumentos.size()) {
 			for (int i = 0; i < tipos.size(); i++) {
 
+//				if (tipos.get(i) != argumentos.get(i).getTipo()) {
+//					return null;
+//				}
+				
 				if (tipos.get(i) != argumentos.get(i).getTipo()) {
-					return null;
+					if ((tipos.get(i) instanceof TipoFloat && argumentos.get(i).getTipo() instanceof TipoEntero) 
+							|| (tipos.get(i) instanceof TipoEntero && argumentos.get(i).getTipo() instanceof TipoCaracter) 
+							|| (tipos.get(i) instanceof TipoFloat && argumentos.get(i).getTipo() instanceof TipoCaracter)) {
+						return null;
+					}
 				}
+				
 			}
 			return tipoRetorno;
 		}

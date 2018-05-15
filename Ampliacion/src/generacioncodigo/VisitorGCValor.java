@@ -16,6 +16,7 @@ import ast.MenosUnario;
 import ast.Negacion;
 import ast.tipo.Tipo;
 import ast.tipo.TipoEntero;
+import ast.tipo.TipoFuncion;
 
 public class VisitorGCValor extends AbstractGC{
 	
@@ -126,9 +127,17 @@ public class VisitorGCValor extends AbstractGC{
 	
 	@Override
 	public Object visitar(InvocacionFuncionExp f, Object param) {
-		for (Expresion e : f.getArgumentos()) {
-			e.aceptar(this, param);
+//		for (Expresion e : f.getArgumentos()) {
+//			e.aceptar(this, param);
+//		}
+		
+		for (int i =0; i< f.getArgumentos().size(); i++) {
+			f.getArgumentos().get(i).aceptar(this, param);
+			gc.convertir(f.getArgumentos().get(i).getTipo(), 
+					((TipoFuncion) f.getIdentificador().getTipo()).getArgumentos().get(i).getTipo());
 		}
+		
+		
 		gc.call(f.getIdentificador().getNombre());
 		return null;
 	}

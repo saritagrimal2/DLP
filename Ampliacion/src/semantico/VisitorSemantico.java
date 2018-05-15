@@ -133,7 +133,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (a.getTipo() == null) {
 			a.setTipo(new TipoError(a.getLinea(), a.getColumna(),
-					"[Aritmetica] Las expresiones no son de tipos compatibles."));
+					"[Aritmetica] No es posible realizar la expresión aritmética."));
 		}
 
 		a.setLValue(false);
@@ -152,7 +152,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 			if (c.getTipo() == null) {
 				c.setTipo(new TipoError(c.getLinea(), c.getColumna(),
-						"[Comparacion] Las expresiones deben de ser del mismo tipo."));
+						"[Comparacion] No es posible realizar la expresión de comparación."));
 			}
 		}
 
@@ -288,7 +288,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (f.getTipo() == null) {
 			f.setTipo(new TipoError(f.getLinea(), f.getColumna(),
-					"[InvocacionFuncionExp] No se puede invocar la siguiente función."));
+					"[InvocacionFuncionExp] Los argumentos de la invocación no son adecuados."));
 		}
 
 		f.setLValue(false);
@@ -310,7 +310,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (f.getIdentificador().getTipo().parentises(tipos) == null) {
 			new TipoError(f.getLinea(), f.getColumna(),
-					"[InvocacionFuncionSent] No se puede invocar la siguiente función.");
+					"[InvocacionFuncionSent] Los argumentos de la invocación no son adecuados.");
 		}
 
 		return null;

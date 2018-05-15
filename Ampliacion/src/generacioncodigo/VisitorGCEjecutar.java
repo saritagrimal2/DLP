@@ -151,9 +151,16 @@ public class VisitorGCEjecutar extends AbstractGC {
 	
 	@Override
 	public Object visitar(InvocacionFuncionSent f, Object param) {
-		for (Expresion e : f.getArgumentos()) {
-			e.aceptar(valor, param);
+//		for (Expresion e : f.getArgumentos()) {
+//			e.aceptar(valor, param);
+//		}
+		
+		for (int i =0; i< f.getArgumentos().size(); i++) {
+			f.getArgumentos().get(i).aceptar(valor, param);
+			gc.convertir(f.getArgumentos().get(i).getTipo(), 
+					((TipoFuncion) f.getIdentificador().getTipo()).getArgumentos().get(i).getTipo());
 		}
+		
 		gc.call(f.getIdentificador().getNombre());
 		if (((TipoFuncion) f.getIdentificador().getTipo()).getTipoRetorno() != TipoVoid.getInstance() ) {
 			gc.pop(((TipoFuncion) f.getIdentificador().getTipo()).getTipoRetorno());

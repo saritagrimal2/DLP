@@ -1,21 +1,16 @@
-var i int;
-var f float32;
-var c char;
+
+
+
+func f(r float32, e int) int{
+  var result int;
+  result = e;
+  return result;
+}
+
 
 func main(){
-
-	i = 1;
-	f = 1.0;
-	c= 'a';
-  
-  write( i == f );
-  write( i == c );
-  write( f == c );
-  write( i == i );
-  write( f == f );
-  write( c == c );
-
-
+	
+	write (f (1,1.1));
 
 }
 
