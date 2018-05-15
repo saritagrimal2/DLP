@@ -1,0 +1,395 @@
+
+#source "entrada.peque.txt"
+
+	' * var i int (offset 0)
+	' * var n int (offset 2)
+	' * var j int (offset 4)
+	' * var c char (offset 6)
+	' * var pair ((integer x int)x(character x char)) (offset 7)
+	' * var matrix [10, [10, int]] (offset 10)
+
+' Invocation to the main function
+	call	main
+	halt
+
+
+ p:
+	'  * Parameters
+	'  * Local variables
+	enter	0
+	'  * Function body
+	' Void Return
+	 ret 0, 0, 0
+
+ f:
+	'  * Parameters
+	' * var r float32 (offset 6)
+	' * var e int (offset 4)
+	'  * Local variables
+	' * var real float32 (offset -4)
+	' * var c char (offset -5)
+	enter	5
+	'  * Function body
+
+#line	17
+	push	bp
+	pushi	-4
+	addi
+	pusha	7
+	pushi	2
+	addi
+	loadb
+	b2i
+	i2f
+	pusha	7
+	pushi	0
+	addi
+	loadi
+	i2f
+	addf
+	push	bp
+	pushi	6
+	addi
+	loadf
+	addf
+	push	bp
+	pushi	4
+	addi
+	loadi
+	i2f
+	addf
+	storef
+
+#line	18
+	push	bp
+	pushi	-5
+	addi
+	pushb	48
+	storeb
+
+#line	19
+	push	bp
+	pushi	-5
+	addi
+	loadb
+	b2i
+	' Return
+	 ret 2, 5, 6
+
+ fill:
+	'  * Parameters
+	' * var row int (offset 8)
+	' * var value int (offset 6)
+	' * var increment int (offset 4)
+	'  * Local variables
+	' * var i int (offset -2)
+	' * var inc int (offset -4)
+	enter	4
+	'  * Function body
+
+#line	26
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+
+#line	27
+	push	bp
+	pushi	-4
+	addi
+	push	bp
+	pushi	4
+	addi
+	loadi
+	storei
+
+#line	32
+label_0:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	10
+	lti
+	jz	label_1
+
+#line	29
+	pusha	10
+	push	bp
+	pushi	8
+	addi
+	loadi
+	pushi	20
+	muli
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	push	bp
+	pushi	6
+	addi
+	loadi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	addi
+	storei
+
+#line	30
+	push	bp
+	pushi	-2
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+
+#line	31
+	push	bp
+	pushi	-4
+	addi
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	push	bp
+	pushi	4
+	addi
+	loadi
+	addi
+	storei
+	jmp	label_0
+label_1:
+	' Void Return
+	 ret 0, 4, 6
+
+ show:
+	'  * Parameters
+	' * var row int (offset 4)
+	'  * Local variables
+	' * var i int (offset -2)
+	enter	2
+	'  * Function body
+
+#line	37
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+
+#line	41
+label_2:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	10
+	lti
+	jz	label_3
+
+#line	39
+	pushb	40
+	outb
+
+#line	39
+	push	bp
+	pushi	4
+	addi
+	loadi
+	outi
+
+#line	39
+	pushb	44
+	outb
+
+#line	39
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	outi
+
+#line	39
+	pushb	41
+	outb
+
+#line	39
+	pushb	58
+	outb
+
+#line	39
+	pusha	10
+	push	bp
+	pushi	4
+	addi
+	loadi
+	pushi	20
+	muli
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
+
+#line	39
+	pushb	32
+	outb
+
+#line	40
+	push	bp
+	pushi	-2
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+	jmp	label_2
+label_3:
+
+#line	42
+	pushb	10
+	outb
+	' Void Return
+	 ret 0, 2, 2
+
+ main:
+	'  * Parameters
+	'  * Local variables
+	' * var i int (offset -2)
+	enter	2
+	'  * Function body
+
+#line	50
+	call	p
+
+#line	51
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+
+#line	52
+	pusha	7
+	pushi	2
+	addi
+	pushb	48
+	storeb
+
+#line	53
+	pusha	7
+	pushi	0
+	addi
+	pushb	48
+	b2i
+	storei
+
+#line	54
+
+#line	54
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	i2f
+	pusha	7
+	pushi	2
+	addi
+	loadb
+	b2i
+	call	f
+	outi
+
+#line	54
+	pushb	10
+	outb
+
+#line	56
+	pushf	1.3
+	pushi	2
+	call	f
+	popi
+
+#line	58
+	push	bp
+	pushi	-2
+	addi
+	pushi	0
+	storei
+
+#line	59
+	pusha	4
+	pushi	0
+	storei
+
+#line	65
+label_4:
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	10
+	lti
+	jz	label_5
+
+#line	61
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pusha	4
+	loadi
+	pushi	1
+	call	fill
+
+#line	62
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	call	show
+
+#line	63
+	push	bp
+	pushi	-2
+	addi
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	1
+	addi
+	storei
+
+#line	64
+	pusha	4
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	pushi	10
+	muli
+	storei
+	jmp	label_4
+label_5:
+	' Void Return
+	 ret 0, 2, 0
+

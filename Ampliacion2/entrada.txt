@@ -1,0 +1,16 @@
+
+
+
+func f(r float32, e int) int{
+  var result int;
+  result = e;
+  return result;
+}
+
+
+func main(){
+	
+	write (f (1,1.1));
+
+}
+
