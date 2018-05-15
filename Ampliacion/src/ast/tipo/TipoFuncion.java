@@ -38,32 +38,22 @@ public class TipoFuncion extends TipoAbstracto {
 	public Tipo parentises(List<Tipo> tipos) {
 		if (tipos.size() == argumentos.size()) {
 			for (int i = 0; i < tipos.size(); i++) {
-
-//				if (tipos.get(i) != argumentos.get(i).getTipo()) {
-//					return null;
-//				}
-				
-				if (tipos.get(i) != argumentos.get(i).getTipo()) {
-					if ((tipos.get(i) instanceof TipoFloat && argumentos.get(i).getTipo() instanceof TipoEntero) 
-							|| (tipos.get(i) instanceof TipoEntero && argumentos.get(i).getTipo() instanceof TipoCaracter) 
-							|| (tipos.get(i) instanceof TipoFloat && argumentos.get(i).getTipo() instanceof TipoCaracter)) {
-						return null;
-					}
+				if (tipos.get(i).promocionaA(argumentos.get(i).getTipo()) == null) {
+					return null;
 				}
-				
 			}
 			return tipoRetorno;
 		}
 		return null;
 	}
-	
+
 	@Override
 	public int numeroBytes() {
 		if (tipoRetorno instanceof TipoVoid) {
 			return 0;
-		}else if (tipoRetorno instanceof TipoError) {
+		} else if (tipoRetorno instanceof TipoError) {
 			throw new IllegalStateException();
-		}else {
+		} else {
 			return tipoRetorno.numeroBytes();
 		}
 	}
