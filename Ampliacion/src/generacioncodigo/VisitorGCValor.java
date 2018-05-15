@@ -12,8 +12,10 @@ import ast.LiteralCaracter;
 import ast.LiteralEntero;
 import ast.LiteralReal;
 import ast.Logica;
+import ast.MenosUnario;
 import ast.Negacion;
 import ast.tipo.Tipo;
+import ast.tipo.TipoEntero;
 
 public class VisitorGCValor extends AbstractGC{
 	
@@ -62,17 +64,24 @@ public class VisitorGCValor extends AbstractGC{
 		
 		return null;
 	}
+	
+	@Override
+	public Object visitar(MenosUnario m, Object param) {
+		m.getExpresion().aceptar(this, param);
+		gc.push(TipoEntero.getInstance(), -1);
+		gc.convertir(TipoEntero.getInstance(), m.getTipo());
+		gc.mul(m.getTipo());
+		return null;
+	}
 
 	@Override
 	public Object visitar(Comparacion c, Object param) {
-		//Tipo superTipo = c.getExp1().getTipo().superTipo(c.getExp2().getTipo());
+		Tipo superTipo = c.getExp1().getTipo().superTipo(c.getExp2().getTipo());
 		c.getExp1().aceptar(this, param);
-		gc.convertir(c.getExp1().getTipo(), c.getTipo());
-		//gc.convertir(c.getExp1().getTipo(), superTipo);
+		gc.convertir(c.getExp1().getTipo(), superTipo);
 		c.getExp2().aceptar(this, param);
-		gc.convertir(c.getExp1().getTipo(), c.getTipo());
-		//gc.convertir(c.getExp2().getTipo(), superTipo);
-		gc.comparacion(c.getOperador(), c.getTipo());
+		gc.convertir(c.getExp2().getTipo(), superTipo);
+		gc.comparacion(c.getOperador(), superTipo);
 		
 		return null;
 	}

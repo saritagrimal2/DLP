@@ -119,6 +119,8 @@ public class TipoEntero extends TipoAbstracto {
 	public Tipo superTipo(Tipo expresion) {
 		if (expresion instanceof TipoFloat) {
 			return TipoFloat.getInstance();
+		} else if (expresion instanceof TipoError) {
+			return expresion;
 		} else {
 			return this;
 		}

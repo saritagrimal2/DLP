@@ -1,105 +1,35 @@
 
 #source "entrada.txt"
 
+	' * var i int (offset 0)
 
 ' Invocation to the main function
 	call	main
 	halt
- f:
-	' * Parameters
-	' * var e int (offset 4)
-	' * Local variables
-	enter	0
-	' * Function body
-#line	3
-	push	bp
-	pushi	4
-	addi
-	loadi
-	i2f
-	' Return
-	ret 4, 0, 2
  main:
 	' * Parameters
 	' * Local variables
-	' * var i int (offset -2)
-	' * var a int (offset -4)
-	' * var j int (offset -6)
-	' * var v [10, float32] (offset -46)
-	enter	46
+	enter	0
 	' * Function body
-#line	11
-	push	bp
-	pushi	-4
-	addi
+#line	6
+	pusha	0
 	pushi	0
 	storei
-#line	12
-	push	bp
-	pushi	-2
-	addi
-	pushi	0
-	storei
-#line	13
-	push	bp
-	pushi	-6
-	addi
+#line	9
+label_0:
+	pusha	0
+	loadi
+	pushi	10
+	lti
+	jz label_1
+#line	8
+	pusha	0
+	pusha	0
+	loadi
 	pushi	1
-	pushi	3
-	muli
-	pushi	2
-	subi
+	addi
 	storei
-#line	14
-	push	bp
-	pushi	-46
-	addi
-	push	bp
-	pushi	-46
-	addi
-	push	bp
-	pushi	-6
-	addi
-	loadi
-	pushi	4
-	muli
-	addi
-	loadf
-	f2i
-	pushi	4
-	muli
-	addi
-	push	bp
-	pushi	-4
-	addi
-	loadi
-	i2f
-	storef
-#line	15
-	pushb	102
-	outb
-#line	15
-	pushb	40
-	outb
-#line	15
-	pushb	105
-	outb
-#line	15
-	pushb	41
-	outb
-#line	15
-	pushb	61
-	outb
-#line	15
-	push	bp
-	pushi	-2
-	addi
-	loadi
-	call	f
-	outf
-#line	16
-	pushi	1
-	call	f
-	outf
+	jmp label_0
+label_1:
 	' Void Return
-	ret 0, 46, 0
+	ret 0, 0, 0
