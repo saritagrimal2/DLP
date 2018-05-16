@@ -1,0 +1,91 @@
+var i int;
+var j float32;
+var c char;
+
+
+func promocionParams(c char,i int,j double) int{
+ 
+ write (c);
+ write ('\n');
+ write (i);
+ write ('\n');
+ write (j);
+ write ('\n');
+ 
+ return 0;
+}
+
+func DoubleRetDouble() double{
+ return 2.2;  
+}
+
+func DoubleRetInt() double{
+ return 2;  
+}
+
+func DoubleRetChar() double{
+ return 'a';  
+}
+
+
+func IntRetInt() int{
+ return 2;  
+}
+
+func IntRetChar() int{
+ return 'a';  
+}
+
+func CharRetChar() char{
+ return 'a';  
+}
+
+
+########## ERRORS #########
+
+"""
+ def IntRetDouble():int{
+  return 2.2;  
+ }
+ 
+ def CharRetInt():char{
+  return 1;  
+ }
+ 
+ def CharRetDouble():char{
+  return 1.2;  
+ }
+ 
+"""
+
+ 
+
+
+def main():void {
+
+
+ 
+ promocionParams('a',2,4.4);   #Char,Int,Double
+ promocionParams('a','b','c');  #Char,Char,Char
+ promocionParams('a','b',1);   #Char,Char,Int
+ promocionParams('a','b',3.3);  #Char,Char,Double
+ promocionParams('a',1,'b');   #Char,Int,Char
+ 
+ DoubleRetDouble();    
+ DoubleRetInt();     
+ DoubleRetChar();   
+
+ IntRetInt();
+ IntRetChar();
+ 
+ CharRetChar();
+ 
+ 
+ ##### ERRORES ####
+ 
+# promocionParams(1,4,2.3);   # ERROR  Int,Int,Double
+# promocionParams(1.1,4,2.3);   # ERROR  Double,Int,Double
+# promocionParams('a',1.9,2.3);  # ERROR  Char,Double,Double
+ 
+ 
+}

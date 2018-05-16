@@ -2,99 +2,113 @@ var i int;
 var j float32;
 var c char;
 
-var v[10]int;
-var w[10]float32;
-var z[10]char;
 
-var s struct{
- n int;
- m float32;
- l char;
-};
-
-func  p() int{
- return 2;
+func promocionParams(c char,i int,j float32) int{
+ 
+ write (c);
+ write ('\n');
+ write (i);
+ write ('\n');
+ write (j);
+ write ('\n');
+ 
+ return 0;
 }
+
+func DoubleRetDouble() float32{
+ return 2.2;  
+}
+
+func DoubleRetInt() float32{
+ return 2;  
+}
+
+func DoubleRetChar() float32{
+ return 'a';  
+}
+
+
+func IntRetInt() int{
+ return 2;  
+}
+
+func IntRetChar() int{
+ return 'a';  
+}
+
+func CharRetChar() char{
+  return 'a';  
+}
+
+
+ func IntRetDouble() int{
+  return 2.2;  
+ }
+ 
+ func CharRetInt() char{
+  return 1;  
+ }
+ 
+ func CharRetDouble() char{
+  return 1.2;  
+ }
+ 
+
+
+
 
 
 func main() {
 
+
+ 
+ promocionParams('a',2,4.4);   //Char,Int,Double
+ promocionParams('a','b','c');  //Char,Char,Char
+ promocionParams('a','b',1);   //Char,Char,Int
+ promocionParams('a','b',3.3);  //Char,Char,Double
+ promocionParams('a',1,'b');   //Char,Int,Char
+ 
+ DoubleRetDouble();    
+ DoubleRetInt();     
+ DoubleRetChar();   
+
+ IntRetInt();
+ IntRetChar();
+ 
+ CharRetChar();
+ 
+ 
+ 
+ promocionParams(1,4,2.3);   
+ promocionParams(1.1,4,2.3);   
+ promocionParams('a',1.9,2.3); 
+ 
+ 
  i=0;
- j=1.1;
+ j=1.0;
  c='a';
  
- s.n=10;
- s.m=10.7;
- s.l='Z';
+ j='a';   
+ j=1;  
+ j=2.2;  
  
-  
- while i<10{
-  v[i]=i;
-  w[i]=j;
-  z[i]=c;
-  
-  i++;
-  j++;
-  c++;
- }
- i--;
+ i='a';  
+ i=1;  
+ i=2.2;   
+ 
+ c='a'; 
+ c=1;   
+ c=2.2;   
 
- while v[i]!=0{
-  v[i]--;
-  
-  if s.n > v[i]{
-   write( s.n,' ','>',' ', v[i], '\n');
-   s.n--;
-  }
-  
- }
- write( '\n');
- while s.l!='A'{
-  
-  write (s.l, '\n');
-  s.l--;  
- }
- write (s.l);
+
+ write( 'a'+'b'-'c');
+ write ('\n');
+ write (1+2/3);
+ write ('\n');
+ write (1.2+2.3*3.4);
  write ('\n');
  
- while s.m > 0{
- 
-  if v[i] % 2 == 0{
-   write( v[i],'\n');
-  }else{
-  	s.m-=1;
-  }
-   
-  v[i]+=1;
-  
- }
- 
- 
- p();
-   v++; 
-   w++;
-   z++; 
-   s++; 
- 
-   v+=1; 
-   w+=33;
-   z+=2; 
-   s+=8; 
-   
-   6+6++; 
-   8/9--; 
-   float32(i)++;
-   p()--; 
-   -8++; 
-   
-   9*9+=33;
-   float32(c)-=44;
-      p()+=9; 
-   -69-=22; 
- 
-   
-
- 
+ write ('a'+2*3.5/'v');
  
  
  
