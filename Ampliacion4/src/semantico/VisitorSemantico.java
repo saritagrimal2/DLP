@@ -12,8 +12,6 @@ import ast.Comparacion;
 import ast.DefFuncion;
 import ast.Expresion;
 import ast.Identificador;
-import ast.ModificarValor;
-import ast.ModificarValorConcreto;
 import ast.InvocacionFuncionExp;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
@@ -345,37 +343,6 @@ public class VisitorSemantico extends VisitorAbstracto {
 			i.setTipo(i.getDefinicion().getTipo());
 		}
 		i.setLValue(true);
-		return null;
-	}
-
-	@Override
-	public Object visitar(ModificarValor i, Object param) {
-		i.getExpresion().aceptar(this, param);
-		
-		if (TipoCaracter.getInstance().promocionaA(i.getExpresion().getTipo()) == null) {
-			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValorConcreto] No se puede promocionar ese tipo.");
-		}
-
-		if (!i.getExpresion().getLValue()) {
-			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] Se esperaba un Lvalue.");
-		}
-
-		return null;
-	}
-
-	@Override
-	public Object visitar(ModificarValorConcreto mv, Object param) {
-		mv.getExp1().aceptar(this, param);
-		mv.getExp2().aceptar(this, param);
-
-		if (mv.getExp2().getTipo().promocionaA(mv.getExp1().getTipo()) == null) {
-			new TipoError(mv.getLinea(), mv.getColumna(), "[ModificarValorConcreto] No se puede promocionar ese tipo.");
-		}
-
-		if (!mv.getExp1().getLValue()) {
-			new TipoError(mv.getLinea(), mv.getColumna(), "[ModificarValorConcreto] Se esperaba un Lvalue.");
-		}
-
 		return null;
 	}
 

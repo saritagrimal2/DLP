@@ -39,6 +39,8 @@ import ast.tipo.*;
 %token MENOS_MENOS
 %token MAS_IGUAL
 %token MENOS_IGUAL
+%token MUL_IGUAL
+%token DIV_IGUAL
 
 %right '='
 %left AND OR
@@ -150,12 +152,21 @@ sentencia_return: RETURN expresion ';'							{$$ = new Return(lexico.getLinea(),
 sentencia_invocacion: ID '('  lista_expresiones ')' ';'			{$$ = new InvocacionFuncionSent(lexico.getLinea(), lexico.getColumna(), new Identificador(lexico.getLinea(), lexico.getColumna(),(String)$1), (List<Expresion>)$3);}
 					;
 					
-sentencia_modificarValor: expresion MAS_MAS	';'					{ $$ = new ModificarValor(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2);}		
-						| expresion MENOS_MENOS	';'				{ $$ = new ModificarValor(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2);}	
+sentencia_modificarValor: expresion MAS_MAS	';'					{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,
+																	(Expresion) new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) new LiteralEntero(lexico.getLinea(), lexico.getColumna(),1)));}		
+						
+						| expresion MENOS_MENOS	';'				{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,
+																	(Expresion) new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) new LiteralEntero(lexico.getLinea(), lexico.getColumna(),1)));}		
 						;
 					
-sentencia_modificarValorConcreto: expresion MAS_IGUAL expresion	';'			{ $$ = new ModificarValorConcreto(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3 );}		
-						| expresion MENOS_IGUAL	expresion ';'				{ $$ = new ModificarValorConcreto(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3 );}	
+sentencia_modificarValorConcreto: expresion MAS_IGUAL expresion	';'			{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,
+																				(Expresion) new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3));}				
+						| expresion MENOS_IGUAL	expresion ';'				{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,
+																				(Expresion) new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3));}		
+						| expresion MUL_IGUAL expresion ';'					{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,
+																				(Expresion) new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3));}				
+						| expresion DIV_IGUAL expresion ';'					{ $$ = new Asignacion(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,
+																				(Expresion) new Aritmetica(lexico.getLinea(), lexico.getColumna(), (Expresion) $1,(String)$2,(Expresion) $3));}						
 						;			
 		
 

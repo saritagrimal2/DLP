@@ -103,24 +103,21 @@ public class GC {
 			div(tipo);
 		}else if (operador.equals("%")) {
 			mod(tipo);
+		}else if (operador.equals("++")) {
+			add(tipo);
+		}else if (operador.equals("--")) {
+			sub(tipo);
+		}else if (operador.equals("+=")) {
+			add(tipo);
+		}else if (operador.equals("-=")) {
+			sub(tipo);
+		}else if (operador.equals("*=")) {
+			mul(tipo);
+		}else if (operador.equals("/=")) {
+			div(tipo);
 		}
 	}
 
-	public void modificarValor(String operador, Tipo tipo) {
-		if (operador.equals("++")) {
-			add(tipo);
-		} else if (operador.equals("--")) {
-			sub(tipo);
-		}
-	}
-	
-	public void modificarValorConcreto(String operador, Tipo tipo) {
-		if (operador.equals("+=")) {
-			add(tipo);
-		} else if (operador.equals("-=")) {
-			sub(tipo);
-		}
-	}
 	
 //	Instrucciones de comparacion
 	public void gt(Tipo tipo) {

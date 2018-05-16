@@ -6,8 +6,6 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Definicion;
 import ast.Escritura;
-import ast.ModificarValor;
-import ast.ModificarValorConcreto;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
 import ast.Programa;
@@ -15,9 +13,6 @@ import ast.Return;
 import ast.Sentencia;
 import ast.sentenciaIf;
 import ast.sentenciaWhile;
-import ast.tipo.Tipo;
-import ast.tipo.TipoCaracter;
-import ast.tipo.TipoEntero;
 import ast.tipo.TipoFuncion;
 import ast.tipo.TipoVoid;
 
@@ -155,10 +150,7 @@ public class VisitorGCEjecutar extends AbstractGC {
 	
 	@Override
 	public Object visitar(InvocacionFuncionSent f, Object param) {
-//		for (Expresion e : f.getArgumentos()) {
-//			e.aceptar(valor, param);
-//		}
-		
+
 		for (int i =0; i< f.getArgumentos().size(); i++) {
 			f.getArgumentos().get(i).aceptar(valor, param);
 			gc.convertir(f.getArgumentos().get(i).getTipo(), 
@@ -180,53 +172,6 @@ public class VisitorGCEjecutar extends AbstractGC {
 		gc.comentarioReturn();
 		gc.ret(((TipoFuncion) df.getTipo()).getTipoRetorno().numeroBytes(), 
 				df.numeroBytesLocales(), df.numeroBytesParam());
-
-		return null;
-	}
-	
-	
-	@Override
-	public Object visitar(ModificarValor i, Object param) {
-		i.getExpresion().aceptar(direccion, param);
-		i.getExpresion().aceptar(valor, param);
-		if (i.getExpresion().getTipo() instanceof TipoCaracter) {
-			gc.b2i();
-		}
-		gc.push(TipoEntero.getInstance(), 1);
-		
-		if (i.getExpresion().getTipo() instanceof TipoCaracter) {
-			gc.modificarValor(i.getOperador(),TipoEntero.getInstance());
-		}else {
-			gc.convertir(TipoEntero.getInstance(), i.getExpresion().getTipo());
-			gc.modificarValor(i.getOperador(), i.getExpresion().getTipo());
-		}
-		if (i.getExpresion().getTipo() instanceof TipoCaracter) {
-			gc.i2b();
-		}
-		
-		gc.store(i.getExpresion().getTipo());
-		
-		
-		return null;
-	}
-	
-	@Override
-	public Object visitar(ModificarValorConcreto i, Object param) {
-		Tipo superTipo = i.getExp1().getTipo().superTipo(i.getExp2().getTipo());
-		i.getExp1().aceptar(direccion, param);
-		i.getExp1().aceptar(valor, param);
-		gc.convertir(i.getExp1().getTipo(), superTipo);
-		i.getExp2().aceptar(valor, param);
-		gc.convertir(i.getExp2().getTipo(), superTipo);
-		
-		gc.modificarValorConcreto(i.getOperador(), superTipo);
-		
-		if (i.getExp2().getTipo() instanceof TipoCaracter && i.getExp1().getTipo() instanceof TipoCaracter) {
-			gc.i2b();
-			gc.store(TipoCaracter.getInstance());
-		} else {
-			gc.store(superTipo);
-		}
 
 		return null;
 	}

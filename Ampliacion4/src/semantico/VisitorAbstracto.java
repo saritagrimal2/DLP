@@ -12,8 +12,6 @@ import ast.Definicion;
 import ast.Escritura;
 import ast.Expresion;
 import ast.Identificador;
-import ast.ModificarValor;
-import ast.ModificarValorConcreto;
 import ast.InvocacionFuncionExp;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
@@ -257,16 +255,4 @@ public abstract class VisitorAbstracto implements Visitor {
 		return null;
 	}
 
-	@Override
-	public Object visitar(ModificarValor i, Object param) {
-		i.getExpresion().aceptar(this, param);
-		return null;
-	}
-	
-	@Override
-	public Object visitar(ModificarValorConcreto mv, Object param) {
-		mv.getExp1().aceptar(this, param);
-		mv.getExp2().aceptar(this, param);
-		return null;
-	}
 }

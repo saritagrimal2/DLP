@@ -11,8 +11,6 @@ import ast.DefFuncion;
 import ast.DefVariable;
 import ast.Escritura;
 import ast.Identificador;
-import ast.ModificarValor;
-import ast.ModificarValorConcreto;
 import ast.InvocacionFuncionExp;
 import ast.InvocacionFuncionSent;
 import ast.Lectura;
@@ -197,15 +195,5 @@ public abstract class AbstractGC implements Visitor{
 	@Override
 	public Object visitar(TipoVoid v, Object param) {
 		return new IllegalAccessError("Plantilla de generacion de codigo \"TipoVoid\" no definida para la funcion de codigo " + this.getClass().getName());
-	}
-
-	@Override
-	public Object visitar(ModificarValor v, Object param) {
-		return new IllegalAccessError("Plantilla de generacion de codigo \"ModificarValor\" no definida para la funcion de codigo " + this.getClass().getName());
-	}
-	
-	@Override
-	public Object visitar(ModificarValorConcreto v, Object param) {
-		return new IllegalAccessError("Plantilla de generacion de codigo \"ModificarValorConcreto\" no definida para la funcion de codigo " + this.getClass().getName());
 	}
 }

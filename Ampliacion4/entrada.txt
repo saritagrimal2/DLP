@@ -1,115 +1,97 @@
-var i int;
-var j float32;
-var c char;
+var pair struct { 
+  integer int;
+  character char;
+};
 
+var acme [2]struct {
+   employees [2] struct { age int; };
+};
 
-func promocionParams(c char,i int,j float32) int{
- 
- write (c);
- write ('\n');
- write (i);
- write ('\n');
- write (j);
- write ('\n');
- 
- return 0;
+var fibonacci [8][3]int;
+
+//-------------------------------
+
+func p() {}
+
+func f(r float32, e int) int{
+  var real float32;
+  var c char;
+  var result int;
+  real = r * 10.0;
+  c='0';
+  if (e < 256) {
+    c = char(e);
+    result = int(c);
+  }
+  else {
+    result = int(real);
+  }
+  return result;
 }
 
-func DoubleRetDouble() float32{
- return 2.2;  
+func initialize() {
+  var i int;
+  fibonacci[0][0] = 0;
+  fibonacci[0][1] = 1;
+  fibonacci[0][2] = 1;
+  i = 1;
+  while i < 8 {
+    fibonacci[i][0] = fibonacci[i - 1][1];
+    fibonacci[i][1] = fibonacci[i - 1][2];
+    fibonacci[i][2] = fibonacci[i][0] + fibonacci[i][1];
+    i = i + 1;
+  }
 }
 
-func DoubleRetInt() float32{
- return 2;  
+//-------------------------------
+
+func main(){
+  var i, j int;
+  p();
+  i=0;
+  pair.character='0';
+  pair.integer=int('0');
+
+  // * Shows 48 (decimal value of '0')
+  write (f(float32(i), int(pair.character)), '\n');
+  f(1.3, 2); 
+
+  initialize(); 
+  i = 0;
+  while i < 8 {
+    // Shows the Fib sequence, from 1 to 8 (34)
+    write ('(', i + 1, ')', fibonacci[i][0], 
+          '+', fibonacci[i][1] , '=' ,
+          fibonacci[i][2] , '\n');
+    i = i + 1;
+  }
+
+  acme[1].employees[1].age = 56;
+  // Shows 56
+  write(acme[1].employees[1].age, '\n');
+  i = 0;
+  while i<2 {
+    j = 0;
+    while j<2 {
+      acme[i].employees[j].age = i + j;
+      j = j+ 1;
+    }
+    i= i + 1;
+  }
+
+
+  i = 0;
+  while i<2 {
+    j = 0;
+    while (j<2) {
+      // Shows 0 1 1 2
+      write(acme[i].employees[j].age, ' ');
+      j = j+ 1;
+    }
+    i= i + 1;
+  }
+
 }
 
-func DoubleRetChar() float32{
- return 'a';  
-}
 
-
-func IntRetInt() int{
- return 2;  
-}
-
-func IntRetChar() int{
- return 'a';  
-}
-
-func CharRetChar() char{
-  return 'a';  
-}
-
-
- func IntRetDouble() int{
-  return 2.2;  
- }
- 
- func CharRetInt() char{
-  return 1;  
- }
- 
- func CharRetDouble() char{
-  return 1.2;  
- }
- 
-
-
-
-
-
-func main() {
-
-
- 
- promocionParams('a',2,4.4);   //Char,Int,Double
- promocionParams('a','b','c');  //Char,Char,Char
- promocionParams('a','b',1);   //Char,Char,Int
- promocionParams('a','b',3.3);  //Char,Char,Double
- promocionParams('a',1,'b');   //Char,Int,Char
- 
- DoubleRetDouble();    
- DoubleRetInt();     
- DoubleRetChar();   
-
- IntRetInt();
- IntRetChar();
- 
- CharRetChar();
- 
- 
- 
- promocionParams(1,4,2.3);   
- promocionParams(1.1,4,2.3);   
- promocionParams('a',1.9,2.3); 
- 
- 
- i=0;
- j=1.0;
- c='a';
- 
- j='a';   
- j=1;  
- j=2.2;  
- 
- i='a';  
- i=1;  
- i=2.2;   
- 
- c='a'; 
- c=1;   
- c=2.2;   
-
-
- write( 'a'+'b'-'c');
- write ('\n');
- write (1+2/3);
- write ('\n');
- write (1.2+2.3*3.4);
- write ('\n');
- 
- write ('a'+2*3.5/'v');
- 
- 
- 
-}
+	
