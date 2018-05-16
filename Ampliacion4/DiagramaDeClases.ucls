@@ -48,7 +48,7 @@
   </interface>  
   <class id="6" language="java" name="ast.Asignacion" project="Ampliacion4" file="/Ampliacion4/src/ast/Asignacion.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-134" y="436"/>    
+    <position height="-1" width="-1" x="-273" y="489"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="ast.Escritura" project="Ampliacion4" file="/Ampliacion4/src/ast/Escritura.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3" y="443"/>    
+    <position height="-1" width="-1" x="-105" y="492"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="ast.InvocacionFuncionSent" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/InvocacionFuncionSent.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="171" y="439"/>    
+    <position height="-1" width="-1" x="87" y="500"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="ast.Lectura" project="Ampliacion4" file="/Ampliacion4/src/ast/Lectura.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="314" y="444"/>    
+    <position height="-1" width="-1" x="249" y="493"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="ast.Return" project="Ampliacion4" file="/Ampliacion4/src/ast/Return.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="424" y="449"/>    
+    <position height="-1" width="-1" x="397" y="492"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="ast.sentenciaIf" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/sentenciaIf.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="610" y="446"/>    
+    <position height="-1" width="-1" x="588" y="482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="ast.sentenciaWhile" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/sentenciaWhile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="824" y="447"/>    
+    <position height="-1" width="-1" x="821" y="490"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <interface id="13" language="java" name="ast.Expresion" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/Expresion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="398" y="597"/>    
+    <position height="-1" width="-1" x="394" y="591"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </interface>  
   <class id="14" language="java" name="ast.Negacion" project="Ampliacion4" file="/Ampliacion4/src/ast/Negacion.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-368" y="936"/>    
+    <position height="-1" width="-1" x="-493" y="978"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="ast.MenosUnario" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/MenosUnario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-179" y="936"/>    
+    <position height="-1" width="-1" x="-329" y="992"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="ast.Logica" project="Ampliacion4" file="/Ampliacion4/src/ast/Logica.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-23" y="945"/>    
+    <position height="-1" width="-1" x="-144" y="1001"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="ast.LiteralEntero" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/LiteralEntero.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="107" y="942"/>    
+    <position height="-1" width="-1" x="-14" y="1000"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="ast.LiteralReal" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/LiteralReal.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="211" y="940"/>    
+    <position height="-1" width="-1" x="105" y="993"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="ast.LiteralCaracter" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/LiteralCaracter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="319" y="941"/>    
+    <position height="-1" width="-1" x="227" y="978"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="ast.InvocacionFuncionExp" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/InvocacionFuncionExp.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="467" y="948"/>    
+    <position height="-1" width="-1" x="386" y="990"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="ast.Comparacion" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/Comparacion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="613" y="943"/>    
+    <position height="-1" width="-1" x="543" y="982"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,7 +201,7 @@
   </class>  
   <class id="23" language="java" name="ast.Cast" project="Ampliacion4" file="/Ampliacion4/src/ast/Cast.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="736" y="947"/>    
+    <position height="-1" width="-1" x="696" y="985"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -210,7 +210,7 @@
   </class>  
   <class id="24" language="java" name="ast.Aritmetica" project="Ampliacion4" file="/Ampliacion4/src/ast/Aritmetica.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="863" y="953"/>    
+    <position height="-1" width="-1" x="837" y="981"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -219,7 +219,7 @@
   </class>  
   <class id="25" language="java" name="ast.AccesoCampo" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/AccesoCampo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="995" y="951"/>    
+    <position height="-1" width="-1" x="977" y="994"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,7 +228,7 @@
   </class>  
   <class id="26" language="java" name="ast.Identificador" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/Identificador.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1137" y="946"/>    
+    <position height="-1" width="-1" x="1300" y="962"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -237,7 +237,7 @@
   </class>  
   <class id="27" language="java" name="ast.AccesoArray" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/AccesoArray.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1268" y="920"/>    
+    <position height="-1" width="-1" x="1169" y="995"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -264,7 +264,7 @@
   </interface>  
   <interface id="30" language="java" name="ast.tipo.Tipo" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/Tipo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1829" y="268"/>    
+    <position height="-1" width="-1" x="1983" y="276"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -273,7 +273,7 @@
   </interface>  
   <class id="31" language="java" name="ast.tipo.TipoAbstracto" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoAbstracto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1826" y="534"/>    
+    <position height="-1" width="-1" x="1990" y="530"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -282,7 +282,7 @@
   </class>  
   <class id="32" language="java" name="ast.tipo.TipoArray" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoArray.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1226" y="744"/>    
+    <position height="-1" width="-1" x="1429" y="807"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -291,7 +291,7 @@
   </class>  
   <class id="33" language="java" name="ast.tipo.TipoVoid" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoVoid.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1368" y="756"/>    
+    <position height="-1" width="-1" x="1560" y="818"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -300,7 +300,7 @@
   </class>  
   <class id="34" language="java" name="ast.tipo.TipoEntero" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoEntero.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1531" y="754"/>    
+    <position height="-1" width="-1" x="1708" y="821"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -309,7 +309,7 @@
   </class>  
   <class id="35" language="java" name="ast.tipo.TipoFloat" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoFloat.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1690" y="758"/>    
+    <position height="-1" width="-1" x="1855" y="817"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -318,7 +318,7 @@
   </class>  
   <class id="36" language="java" name="ast.tipo.TipoError" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoError.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2221" y="759"/>    
+    <position height="-1" width="-1" x="2389" y="810"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -327,7 +327,7 @@
   </class>  
   <class id="37" language="java" name="ast.tipo.TipoRegistro" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoRegistro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2045" y="762"/>    
+    <position height="-1" width="-1" x="2225" y="799"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -336,7 +336,7 @@
   </class>  
   <class id="38" language="java" name="ast.tipo.TipoCaracter" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoCaracter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1854" y="748"/>    
+    <position height="-1" width="-1" x="2023" y="817"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -345,312 +345,238 @@
   </class>  
   <class id="39" language="java" name="ast.tipo.TipoFuncion" project="Ampliacion4" 
     file="/Ampliacion4/src/ast/tipo/TipoFuncion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2402" y="739"/>    
+    <position height="-1" width="-1" x="2573" y="809"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <association id="40">    
-    <bendpoint x="763" y="597"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="41" name="expresion">        
-        <position height="18" width="56" x="-100" y="46"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-73" y="53"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="42">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
   <realization id="43">    
     <bendpoint x="782" y="178"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
+  <realization id="44">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <generalization id="45">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="31"/>  
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
   </generalization>  
   <generalization id="46">    
     <end type="SOURCE" refId="25"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
   <generalization id="47">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="31"/>  
   </generalization>  
   <realization id="48">    
-    <end type="SOURCE" refId="12"/>    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
   <generalization id="49">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <association id="51">    
-    <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="52" name="instance"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="34" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <bendpoint x="28" y="515"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="55" name="expresion">        
-        <position height="18" width="56" x="-62" y="42"/>      
-      </attribute>      
-      <multiplicity id="56" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-90" y="44"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="57">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="30"/>  
-  </realization>  
-  <generalization id="58">    
-    <end type="SOURCE" refId="39"/>    
+    <end type="SOURCE" refId="38"/>    
     <end type="TARGET" refId="31"/>  
   </generalization>  
-  <association id="59">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="60" name="instance"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="62">    
-    <bendpoint x="410" y="530"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="63" name="expresion">        
-        <position height="18" width="56" x="-110" y="41"/>      
+  <association id="50">    
+    <bendpoint x="1300" y="533"/>    
+    <bendpoint x="1298" y="143"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="51" name="definicion">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="64" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-96" y="53"/>      
+      <multiplicity id="52" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="65">    
-    <bendpoint x="571" y="532"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="66" name="expresion">        
-        <position height="18" width="56" x="-99" y="51"/>      
-      </attribute>      
-      <multiplicity id="67" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-69" y="47"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="68">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <association id="69">    
-    <end type="SOURCE" refId="38" navigable="false">      
-      <attribute id="70" name="instance"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="38" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="72">    
-    <end type="SOURCE" refId="37"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <realization id="73">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <association id="74">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="75" name="definiciones"/>      
-      <multiplicity id="76" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="77">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="78" name="expresion">        
-        <position height="18" width="56" x="-113" y="32"/>      
+  <realization id="53">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <realization id="58">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="59">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="60">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <association id="64">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="65" name="instance">        
+        <position height="0" width="0" x="169" y="69"/>      
       </attribute>      
-      <multiplicity id="79" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-52" y="47"/>      
+      <multiplicity id="66" minimum="0" maximum="1">        
+        <position height="0" width="0" x="169" y="69"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="38" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="67">    
+    <bendpoint x="971" y="59"/>    
+    <bendpoint x="448" y="59"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="68" name="sentencias">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="69" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="70">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="71" name="instance">        
+        <position height="0" width="0" x="192" y="62"/>      
+      </attribute>      
+      <multiplicity id="72" minimum="0" maximum="1">        
+        <position height="0" width="0" x="192" y="62"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="75">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="76" name="instance">        
+        <position height="0" width="0" x="177" y="67"/>      
+      </attribute>      
+      <multiplicity id="77" minimum="0" maximum="1">        
+        <position height="0" width="0" x="177" y="67"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
   <realization id="80">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
   <generalization id="81">    
-    <end type="SOURCE" refId="18"/>    
+    <end type="SOURCE" refId="27"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
-  <association id="82">    
-    <bendpoint x="-60" y="550"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="83" name="exp2">        
-        <position height="18" width="32" x="-73" y="46"/>      
+  <generalization id="82">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <association id="83">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="84" name="definiciones">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="84" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-81" y="46"/>      
+      <multiplicity id="85" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="85">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="86">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <realization id="87">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <association id="88">    
-    <bendpoint x="1136" y="143"/>    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="89" name="definicion"/>      
-      <multiplicity id="90" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="91">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="92">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <realization id="93">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="94">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <realization id="95">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <association id="96">    
+  <association id="86">    
     <end type="SOURCE" refId="35" navigable="false">      
-      <attribute id="97" name="instance"/>      
-      <multiplicity id="98" minimum="0" maximum="1"/>    
+      <attribute id="87" name="instance">        
+        <position height="0" width="0" x="165" y="59"/>      
+      </attribute>      
+      <multiplicity id="88" minimum="0" maximum="1">        
+        <position height="0" width="0" x="165" y="59"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="99">    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <generalization id="100">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="101">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="102">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <association id="103">    
-    <bendpoint x="-130" y="597"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="104" name="exp1">        
-        <position height="18" width="32" x="-84" y="31"/>      
-      </attribute>      
-      <multiplicity id="105" minimum="0" maximum="1">        
-        <position height="16" width="23" x="-100" y="67"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="106">    
-    <bendpoint x="971" y="59"/>    
-    <bendpoint x="448" y="59"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="107" name="sentencias"/>      
-      <multiplicity id="108" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="109">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="110">    
-    <end type="SOURCE" refId="38"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <association id="111">    
-    <bendpoint x="222" y="501"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="112" name="argumentos">        
-        <position height="18" width="65" x="272" y="552"/>      
-      </attribute>      
-      <multiplicity id="113" minimum="0" maximum="2147483647">        
-        <position height="16" width="21" x="-107" y="43"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="114">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+  <realization id="89">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="30"/>  
   </realization>  
-  <generalization id="115">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <realization id="116">    
-    <end type="SOURCE" refId="6"/>    
+  <realization id="90">    
+    <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <generalization id="117">    
-    <end type="SOURCE" refId="20"/>    
+  <realization id="91">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <generalization id="92">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="93">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="94">    
+    <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
-  <realization id="118">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="29"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
