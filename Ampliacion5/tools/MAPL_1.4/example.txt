@@ -1,8 +1,0 @@
-' Example that asks for two integers (INI = INput Integer)
-' The two integers are added (addi = ADD Integer)
-' And the result is shown (outi = OUTput Integer)
-
-ini
-ini
-addi
-outi
