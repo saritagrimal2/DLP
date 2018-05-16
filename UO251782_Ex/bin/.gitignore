@@ -1,0 +1,11 @@
+/JFlex.jar
+/Main.class
+/ast/
+/generacioncodigo/
+/lexico/
+/manejadorerrores/
+/run.cmd
+/semantico/
+/sintactico/
+/tablasimbolos/
+/visitor/

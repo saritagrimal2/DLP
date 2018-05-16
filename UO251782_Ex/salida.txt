@@ -1,6 +1,9 @@
 
 #source "entrada.txt"
 
+	' * var c char (offset 0)
+	' * var a int (offset 1)
+	' * var r float32 (offset 3)
 
 ' Invocation to the main function
 	call	main
@@ -8,37 +11,155 @@
  main:
 	' * Parameters
 	' * Local variables
-	' * var c char (offset -1)
-	enter	1
+	' * var a int (offset -2)
+	' * var i int (offset -4)
+	enter	4
 	' * Function body
-#line	5
-	push	bp
-	pushi	-1
-	addi
-	pushb	98
+#line	8
+	pusha	0
+	pushb	97
 	storeb
-#line	6
-	push	bp
-	pushi	-1
-	addi
-	push	bp
-	pushi	-1
-	addi
+#line	9
+	pusha	0
 	loadb
+	outb
+#line	9
+	pushb	10
+	outb
+#line	11
+	push	bp
+	pushi	-2
+	addi
+	pushi	1
+	storei
+#line	12
+	push	bp
+	pushi	-4
+	addi
+	pushb	48
 	b2i
-	pushb	99
+	pushi	3
+	muli
+	storei
+#line	13
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	outi
+#line	13
+	pushb	32
+	outb
+#line	13
+	push	bp
+	pushi	-4
+	addi
+	loadi
+	outi
+#line	13
+	pushb	10
+	outb
+#line	15
+	pusha	3
+	inf
+	storef
+#line	16
+	pushi	2
+	i2f
+	pusha	3
+	loadf
+	mulf
+	outf
+#line	16
+	pushb	10
+	outb
+#line	21
+	pushi	3
+	i2f
+	pushf	4.5
+	subf
+	outf
+#line	21
+	pushb	32
+	outb
+#line	21
+	pushb	48
+	b2i
+	i2f
+	pushf	48.0
+	divf
+	outf
+#line	21
+	pushb	32
+	outb
+#line	21
+	pushb	48
+	b2i
+	pushb	49
+	b2i
+	modi
+	i2b
+	outb
+#line	21
+	pushb	32
+	outb
+#line	21
+	pushb	48
+	b2i
+	pushb	49
 	b2i
 	addi
 	i2b
-	storeb
-#line	8
-	push	bp
-	pushi	-1
-	addi
-	loadb
-	b2i
+	outb
+#line	21
+	pushb	10
+	outb
+#line	27
 	pushi	1
-	addi
+	pushi	2
+	lti
 	outi
+#line	27
+	pushb	32
+	outb
+#line	27
+	pushi	4
+	pushi	3
+	gei
+	outi
+#line	27
+	pushb	32
+	outb
+#line	27
+	pushi	5
+	pushi	5
+	eqi
+	outi
+#line	27
+	pushb	32
+	outb
+#line	27
+	pushi	1
+	pushi	2
+	and
+	outi
+#line	27
+	pushb	32
+	outb
+#line	27
+	pushi	0
+	pushi	3
+	or
+	outi
+#line	27
+	pushb	32
+	outb
+#line	27
+	pushi	0
+	not
+	outi
+#line	27
+	pushb	10
+	outb
 	' Void Return
-	ret 0, 1, 0
+	ret 0, 4, 0

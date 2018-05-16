@@ -98,8 +98,9 @@ public class VisitorGCValor extends AbstractGC{
 	@Override
 	public Object visitar(Logica l, Object param) {
 		l.getExp1().aceptar(this, param);
+		gc.convertir(l.getExp1().getTipo(), l.getTipo());
 		l.getExp2().aceptar(this, param);
-		
+		gc.convertir(l.getExp2().getTipo(), l.getTipo());
 		gc.logica(l.getOperador());
 		
 		return null;

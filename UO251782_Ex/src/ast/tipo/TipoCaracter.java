@@ -67,7 +67,7 @@ public class TipoCaracter extends TipoAbstracto {
 	@Override
 	public Tipo logica(Tipo expresion) {
 		if (expresion instanceof TipoCaracter) {
-			return this;
+			return TipoEntero.getInstance();
 		} else if (expresion instanceof TipoError) {
 			return expresion;
 		} else {
