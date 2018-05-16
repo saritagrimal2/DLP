@@ -1,1 +1,0 @@
-java -cp JFlex.jar JFlex.Main -d lexico lexico\lexico.jflex

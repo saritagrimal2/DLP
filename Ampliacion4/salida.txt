@@ -1,170 +1,44 @@
 
 #source "entrada.txt"
 
-	' * var i int (offset 0)
-	' * var j float32 (offset 2)
-	' * var c char (offset 6)
 
 ' Invocation to the main function
 	call	main
 	halt
- promocionParams:
-	' * Parameters
-	' * var c char (offset 10)
-	' * var i int (offset 8)
-	' * var j float32 (offset 4)
-	' * Local variables
-	enter	0
-	' * Function body
-#line	8
-	push	bp
-	pushi	10
-	addi
-	loadb
-	outb
-#line	9
-	pushb	10
-	outb
-#line	10
-	push	bp
-	pushi	8
-	addi
-	loadi
-	outi
-#line	11
-	pushb	10
-	outb
-#line	12
-	push	bp
-	pushi	4
-	addi
-	loadf
-	outf
-#line	13
-	pushb	10
-	outb
-#line	15
-	pushi	0
-	' Return
-	ret 2, 0, 7
- DoubleRetDouble:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-#line	19
-	pushf	2.2
-	' Return
-	ret 4, 0, 0
- DoubleRetInt:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-#line	23
-	pushi	2
-	i2f
-	' Return
-	ret 4, 0, 0
- DoubleRetChar:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-#line	27
-	pushb	97
-	b2i
-	i2f
-	' Return
-	ret 4, 0, 0
- IntRetInt:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-#line	32
-	pushi	2
-	' Return
-	ret 2, 0, 0
- IntRetChar:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-#line	36
-	pushb	97
-	b2i
-	' Return
-	ret 2, 0, 0
- CharRetChar:
-	' * Parameters
-	' * Local variables
-	enter	0
-	' * Function body
-#line	40
-	pushb	97
-	' Return
-	ret 1, 0, 0
  main:
 	' * Parameters
 	' * Local variables
-	enter	0
+	' * var c char (offset -1)
+	enter	1
 	' * Function body
-#line	52
-	pushb	97
-	pushi	2
-	pushf	4.4
-	call	promocionParams
-	popi
-#line	53
-	pushb	97
+#line	5
+	push	bp
+	pushi	-1
+	addi
 	pushb	98
+	storeb
+#line	6
+	push	bp
+	pushi	-1
+	addi
+	push	bp
+	pushi	-1
+	addi
+	loadb
 	b2i
 	pushb	99
 	b2i
-	i2f
-	call	promocionParams
-	popi
-#line	54
-	pushb	97
-	pushb	98
+	addi
+	i2b
+	storeb
+#line	8
+	push	bp
+	pushi	-1
+	addi
+	loadb
 	b2i
 	pushi	1
-	i2f
-	call	promocionParams
-	popi
-#line	55
-	pushb	97
-	pushb	98
-	b2i
-	pushf	3.3
-	call	promocionParams
-	popi
-#line	56
-	pushb	97
-	pushi	1
-	pushb	98
-	b2i
-	i2f
-	call	promocionParams
-	popi
-#line	58
-	call	DoubleRetDouble
-	popf
-#line	59
-	call	DoubleRetInt
-	popf
-#line	60
-	call	DoubleRetChar
-	popf
-#line	62
-	call	IntRetInt
-	popi
-#line	63
-	call	IntRetChar
-	popi
-#line	65
-	call	CharRetChar
-	popb
+	addi
+	outi
 	' Void Return
-	ret 0, 0, 0
+	ret 0, 1, 0
