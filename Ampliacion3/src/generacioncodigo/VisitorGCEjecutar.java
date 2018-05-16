@@ -189,9 +189,20 @@ public class VisitorGCEjecutar extends AbstractGC {
 	public Object visitar(ModificarValor i, Object param) {
 		i.getExpresion().aceptar(direccion, param);
 		i.getExpresion().aceptar(valor, param);
+		if (i.getExpresion().getTipo() instanceof TipoCaracter) {
+			gc.b2i();
+		}
 		gc.push(TipoEntero.getInstance(), 1);
-		gc.convertir(TipoEntero.getInstance(), i.getExpresion().getTipo());
-		gc.modificarValor(i.getOperador(), i.getExpresion().getTipo());
+		
+		if (i.getExpresion().getTipo() instanceof TipoCaracter) {
+			gc.modificarValor(i.getOperador(),TipoEntero.getInstance());
+		}else {
+			gc.convertir(TipoEntero.getInstance(), i.getExpresion().getTipo());
+			gc.modificarValor(i.getOperador(), i.getExpresion().getTipo());
+		}
+		if (i.getExpresion().getTipo() instanceof TipoCaracter) {
+			gc.i2b();
+		}
 		
 		gc.store(i.getExpresion().getTipo());
 		

@@ -351,9 +351,9 @@ public class VisitorSemantico extends VisitorAbstracto {
 	@Override
 	public Object visitar(ModificarValor i, Object param) {
 		i.getExpresion().aceptar(this, param);
-
-		if (TipoEntero.getInstance().promocionaA(i.getExpresion().getTipo()) == null) {
-			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] No se puede promocionar ese tipo.");
+		
+		if (TipoCaracter.getInstance().promocionaA(i.getExpresion().getTipo()) == null) {
+			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValorConcreto] No se puede promocionar ese tipo.");
 		}
 
 		if (!i.getExpresion().getLValue()) {

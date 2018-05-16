@@ -1,14 +1,14 @@
 var i int;
-var j float32;
+var j double;
 var c char;
 
 var v[10]int;
-var w[10]float32;
+var w[10]double;
 var z[10]char;
 
 var s struct{
  n int;
- m float32;
+ m double;
  l char;
 };
 
@@ -71,29 +71,33 @@ func main() {
  
  
  p();
-   v++; 
-   w++;
-   z++; 
-   s++; 
  
-   v+=1; 
-   w+=33;
-   z+=2; 
-   s+=8; 
-   
-   6+6++; 
-   8/9--; 
-   float32(i)++;
-   p()--; 
-   -8++; 
-   
-   9*9+=33;
-   float32(c)-=44;
-      p()+=9; 
-   -69-=22; 
+ ############## ERRORES DESCOMENTAR ##########
  
+ 
+ 
+"""   v++; #Error
+   w++; #Error
+   z++; #Error
+   s++; #Error
    
-
+   v+=1; #Error
+   w+=33; #Error
+   z+=2; #Error
+   s+=8; #Error
+   
+   6+6++; #Error
+   8/9--; #Error
+   (double) i++; #Error
+   p()--; #Error
+   -8++; #Error
+   
+   9*9+=33; #Error
+   (double) c-=44; #Error
+   p()+=9; #Error
+   -69-=22; #Error  """
+   
+       
  
  
  

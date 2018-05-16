@@ -57,13 +57,22 @@ public class VisitorGCValor extends AbstractGC{
 	
 	@Override
 	public Object visitar(Aritmetica a, Object param) {
-		a.getExp1().aceptar(this, param);
-		gc.convertir(a.getExp1().getTipo(), a.getTipo());
-		a.getExp2().aceptar(this, param);
-		gc.convertir(a.getExp2().getTipo(), a.getTipo());
-		//Cuando son char, el tipo de aritmetca será de tipo entero
-		//Cambiado en clase TipoCaracter
-		gc.aritmetica(a.getOperador(), a.getTipo());
+		
+		if (a.getExp1().getTipo() instanceof TipoCaracter 
+				&& a.getExp2().getTipo() instanceof TipoCaracter) {
+			a.getExp1().aceptar(this, param);
+			gc.b2i();
+			a.getExp2().aceptar(this, param);
+			gc.b2i();
+			gc.aritmetica(a.getOperador(), TipoEntero.getInstance());
+			gc.i2b();
+		} else {
+			a.getExp1().aceptar(this, param);
+			gc.convertir(a.getExp1().getTipo(), a.getTipo());
+			a.getExp2().aceptar(this, param);
+			gc.convertir(a.getExp2().getTipo(), a.getTipo());
+			gc.aritmetica(a.getOperador(), a.getTipo());
+		}
 		return null;
 	}
 	

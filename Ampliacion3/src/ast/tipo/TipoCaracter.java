@@ -28,10 +28,11 @@ public class TipoCaracter extends TipoAbstracto {
 
 	@Override
 	public Tipo aritmetica(Tipo expresion) {
-		if (expresion instanceof TipoCaracter
-				|| expresion instanceof TipoEntero) {
-			return TipoEntero.getInstance();
-		} else if (expresion instanceof TipoFloat) {
+		if (expresion instanceof TipoCaracter) {
+			return this;
+		} else if (expresion instanceof TipoEntero) {
+			return expresion;
+		}else if (expresion instanceof TipoFloat) {
 			return expresion;
 		}else if (expresion instanceof TipoError) {
 			return expresion;
@@ -93,10 +94,13 @@ public class TipoCaracter extends TipoAbstracto {
 	public Tipo promocionaA(Tipo tipo) {
 		if (tipo instanceof TipoCaracter) {
 			return this;
-		} else {
+		} else if(tipo instanceof TipoError || tipo instanceof TipoEntero || tipo instanceof TipoFloat) {
 			return tipo;
+		}else {
+			return null;
 		}
 	}
+	
 
 	@Override
 	public boolean esLogico() {

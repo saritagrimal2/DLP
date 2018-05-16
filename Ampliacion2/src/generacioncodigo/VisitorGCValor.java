@@ -64,6 +64,11 @@ public class VisitorGCValor extends AbstractGC{
 		//Cuando son char, el tipo de aritmetca será de tipo entero
 		//Cambiado en clase TipoCaracter
 		gc.aritmetica(a.getOperador(), a.getTipo());
+		
+		if (a.getExp1().getTipo() instanceof TipoCaracter && a.getExp2().getTipo() instanceof TipoCaracter) {
+			gc.i2b();
+		}
+		
 		return null;
 	}
 	
