@@ -113,7 +113,7 @@ public class VisitorSemantico extends VisitorAbstracto {
 
 		if (a.getExp1().getTipo() != null && a.getExp2().getTipo() != null) {
 			a.getExp2().getTipo().promocionaA(a.getExp1().getTipo());
-			
+
 			if (a.getExp2().getTipo().promocionaA(a.getExp1().getTipo()) == null) {
 				new TipoError(a.getLinea(), a.getColumna(), "[Asignacion] No se puede promocionar ese tipo.");
 			}
@@ -347,38 +347,36 @@ public class VisitorSemantico extends VisitorAbstracto {
 		i.setLValue(true);
 		return null;
 	}
-	
-	
+
 	@Override
 	public Object visitar(ModificarValor i, Object param) {
 		i.getExpresion().aceptar(this, param);
-		
+
 		if (TipoEntero.getInstance().promocionaA(i.getExpresion().getTipo()) == null) {
 			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] No se puede promocionar ese tipo.");
 		}
-		
+
 		if (!i.getExpresion().getLValue()) {
 			new TipoError(i.getLinea(), i.getColumna(), "[ModificarValor] Se esperaba un Lvalue.");
 		}
 
 		return null;
 	}
-	
+
 	@Override
 	public Object visitar(ModificarValorConcreto mv, Object param) {
 		mv.getExp1().aceptar(this, param);
 		mv.getExp2().aceptar(this, param);
-		
+
 		if (mv.getExp2().getTipo().promocionaA(mv.getExp1().getTipo()) == null) {
 			new TipoError(mv.getLinea(), mv.getColumna(), "[ModificarValorConcreto] No se puede promocionar ese tipo.");
 		}
-		
+
 		if (!mv.getExp1().getLValue()) {
 			new TipoError(mv.getLinea(), mv.getColumna(), "[ModificarValorConcreto] Se esperaba un Lvalue.");
 		}
 
 		return null;
 	}
-
 
 }

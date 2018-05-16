@@ -1,11 +1,10 @@
 func main()  {
 
  var c char;
-
- c='a';
  
-
- c+='b';
+ c = 'a';
+ 
+ c = char(c + 'b');
  
  
 }

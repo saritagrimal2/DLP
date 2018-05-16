@@ -16,13 +16,13 @@ Añadir bucle for
 
 Pasar tipos complejos 
 
+Operador ternario
+
 Añadir la asignacion como expresion
 
 Añadir tipo boolean (true o false)
 
 Hacer el XOR
-
-Operador ternario
 
 else if
 
