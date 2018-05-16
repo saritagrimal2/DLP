@@ -1,0 +1,27 @@
+**Promocion implícita de tipos en:
+	- Comparación
+	- Aritmética
+	- Asignación
+	- Retorno de una función
+	- Invocación de función como expresión
+	- Invocación de función como sentencia
+	
+**Añadir operador ++ , -- (Clase ModificarValor, vale para floats y enteros)
+
+**Añadir operador += , -= , *= , /= (Clase ModificarValor, vale para floats, caracteres y enteros)
+
+Añadir bucle for
+
+Pasar tipos complejos 
+
+Operador ternario
+
+Añadir la asignacion como expresion
+
+Añadir tipo boolean (true o false)
+
+Hacer el XOR
+
+else if
+
+switch

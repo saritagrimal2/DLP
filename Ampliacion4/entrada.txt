@@ -2,109 +2,68 @@ var i int;
 var j float32;
 var c char;
 
-var v [10]int;
-var w [10]float32;
 
-var s struct{
-	n int;
-	m float32;
-};
-
-func  p() int{
-	return 2;
+func promocionParams(c char,i int,j float32) int{
+ 
+ write (c);
+ write ('\n');
+ write (i);
+ write ('\n');
+ write (j);
+ write ('\n');
+ 
+ return 0;
 }
+
+func DoubleRetDouble() float32{
+ return 2.2;  
+}
+
+func DoubleRetInt() float32{
+ return 2;  
+}
+
+func DoubleRetChar() float32{
+ return 'a';  
+}
+
+
+func IntRetInt() int{
+ return 2;  
+}
+
+func IntRetChar() int{
+ return 'a';  
+}
+
+func CharRetChar() char{
+ return 'a';  
+}
+
+
+
+ 
 
 
 func main() {
 
-	i=0;
-	j=1.1;
-	
-	s.n=10;
-	s.m=10.7;
-	
-		
-	while i<10 {
-		v[i]=i;
-		w[i]=j;
-		
-		i++;
-		j++;
-	}
-	i--;
 
-	while v[i]!=0 {
-		v[i]--;
-		
-		if s.n > v[i] {
-			write( s.n,' ','>',' ', v[i], '\n');
-			s.n--;
-		}
-		
-	}
-	write( '\n');
+ 
+ promocionParams('a',2,4.4);   
+ promocionParams('a','b','c');  
+ promocionParams('a','b',1);   
+ promocionParams('a','b',3.3); 
+ promocionParams('a',1,'b');   
+ 
+ DoubleRetDouble();    
+ DoubleRetInt();     
+ DoubleRetChar();   
 
-	
-	while s.m > 0 {
-	
-		if v[i] % 2 == 0:{
-			write ( v[i],'\n' );
-		}else{
-			s.m-=1;
-			}
-		
-		v[i]+=1;
-		
-	}
-	
-	p();
-	
-	c='a';
-	c='a'+'b';
-
-	i=2;
-	while i < 10{
-		write( i);
-		write( '\n');
-		i*=2;
-	}
-	
-
-	
-	j=10000;
-	while j > 10{
-		write( j);
-		write( '\n');
-		j/=10;
-	}
-	
-	
-	##############	ERRORES DESCOMENTAR ##########
-	
-	
-	
-"""			v++; #Error
-			w++; #Error
-			z++; #Error
-			s++; #Error
-			
-			v+=1; #Error
-			w+=33; #Error
-			z+=2; #Error
-			s+=8; #Error
-			v*=33;	#Error
-			v/=33.9;	#Error
-			
-			6+6++; #Error
-			8/9--; #Error
-			(double) i++; #Error
-			p()--; #Error
-			-8++; #Error
-			
-			9*9+=33; #Error
-			(double) c-=44; #Error
-			p()+=9; #Error
-			-69-=22; #Error		"""
-		
-	
+ IntRetInt();
+ IntRetChar();
+ 
+ CharRetChar();
+ 
+ 
+ 
 }
