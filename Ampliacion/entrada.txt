@@ -1,9 +1,0 @@
-func main()  {
-
- var c char;
-
- 
- c='a';
- c = char ('a' + 'b');
- 
-}
