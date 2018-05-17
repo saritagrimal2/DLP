@@ -1,2 +1,2 @@
 # DLP
-Desarrollo de lenguajes de programación
+Diseño de lenguajes de programación
