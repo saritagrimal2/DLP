@@ -1,2 +1,2 @@
 # DLP
-Diseño de lenguajes de programación
+Design of programming languages
